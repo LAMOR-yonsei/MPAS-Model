@@ -27,6 +27,8 @@ OBJS = \
 	module_ra_rrtmg_lw.o           \
 	module_ra_rrtmg_sw.o           \
 	module_ra_rrtmg_vinterp.o      \
+        module_ra_hs94.o               \
+        module_ra_pk02.o               \
 	module_sf_bem.o                \
 	module_sf_bep.o                \
 	module_sf_bep_bem.o            \

@@ -205,6 +205,8 @@ module atm_time_integration
       type (mpas_pool_type), pointer :: tend
       type (mpas_pool_type), pointer :: tend_physics
       type (mpas_pool_type), pointer :: lbc  ! regional_MPAS addition
+      !SHP-HS
+      type (mpas_pool_type), pointer :: sfc_input
 
       type (field2DReal), pointer :: theta_m_field
       type (field3DReal), pointer :: scalars_field
@@ -264,7 +266,7 @@ module atm_time_integration
 
       !
       ! allocate storage for physics tendency save
-      !
+       !
       call mpas_pool_get_dimension(state, 'nCells', nCells)
       call mpas_pool_get_dimension(state, 'nEdges', nEdges)
       call mpas_pool_get_dimension(state, 'nVertLevels', nVertLevels)
@@ -566,6 +568,9 @@ module atm_time_integration
                call mpas_pool_get_subpool(block % structs, 'mesh', mesh)
                call mpas_pool_get_subpool(block % structs, 'tend', tend)
                call mpas_pool_get_subpool(block % structs, 'tend_physics', tend_physics)
+               !SHP-HS
+               call mpas_pool_get_subpool(block % structs, 'diag_physics', diag_physics)
+               call mpas_pool_get_subpool(block % structs, 'sfc_input'   , sfc_input)
    
                call mpas_pool_get_dimension(mesh, 'nCells', nCells)
                call mpas_pool_get_dimension(mesh, 'nEdges', nEdges)
@@ -606,7 +611,8 @@ module atm_time_integration
 
 !$OMP PARALLEL DO
                do thread=1,nThreads
-                  call atm_compute_dyn_tend( tend, tend_physics, state, diag, mesh, block % configs, nVertLevels, rk_step, dt, & 
+                  !SHP-HS
+                  call atm_compute_dyn_tend( tend, tend_physics, state, diag, diag_physics, sfc_input, mesh, block % configs, nVertLevels, rk_step, dt, dt_dynamics, & 
                                              cellThreadStart(thread), cellThreadEnd(thread), &
                                              vertexThreadStart(thread), vertexThreadEnd(thread), &
                                              edgeThreadStart(thread), edgeThreadEnd(thread), &
@@ -4214,7 +4220,7 @@ module atm_time_integration
    end subroutine atm_advance_scalars_mono_work
 
 
-   subroutine atm_compute_dyn_tend(tend, tend_physics, state, diag, mesh, configs, nVertLevels, rk_step, dt, &
+   subroutine atm_compute_dyn_tend(tend, tend_physics, state, diag, diag_physics, sfc_input, mesh, configs, nVertLevels, rk_step, dt, dt_dynamics, &
                                    cellStart, cellEnd, vertexStart, vertexEnd, edgeStart, edgeEnd, &
                                    cellSolveStart, cellSolveEnd, vertexSolveStart, vertexSolveEnd, edgeSolveStart, edgeSolveEnd)
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
@@ -4241,6 +4247,11 @@ module atm_time_integration
       type (mpas_pool_type), intent(in) :: diag
       type (mpas_pool_type), intent(in) :: mesh
       type (mpas_pool_type), intent(in) :: configs
+      !SHP-HS
+      type (mpas_pool_type), intent(in) :: diag_physics
+      type (mpas_pool_type), intent(in) :: sfc_input
+      real (kind=RKIND), intent(in) :: dt_dynamics
+
       integer, intent(in) :: nVertLevels              ! for allocating stack variables
       integer, intent(in) :: rk_step
       real (kind=RKIND), intent(in) :: dt
@@ -4313,6 +4324,11 @@ module atm_time_integration
 
       logical :: inactive_rthdynten
 
+      !SHP-HS
+      character (len=StrKIND), pointer :: config_radt_lw_scheme
+      !real (kind=RKIND), dimension(:), pointer ::  xland
+      integer, dimension(:), pointer ::  xland
+
 
       call mpas_pool_get_config(mesh, 'sphere_radius', r_earth)
       call mpas_pool_get_config(configs, 'config_coef_3rd_order', coef_3rd_order)
@@ -4332,6 +4348,10 @@ module atm_time_integration
       call mpas_pool_get_config(configs, 'config_rayleigh_damp_u', config_rayleigh_damp_u)
       call mpas_pool_get_config(configs, 'config_rayleigh_damp_u_timescale_days', config_rayleigh_damp_u_timescale_days)
       call mpas_pool_get_config(configs, 'config_number_rayleigh_damp_u_levels', config_number_rayleigh_damp_u_levels)
+
+      !SHP-HS
+      call mpas_pool_get_config(configs, 'config_radt_lw_scheme', config_radt_lw_scheme)
+      call mpas_pool_get_array(sfc_input, 'landmask', xland)
 
       call mpas_pool_get_array(state, 'rho_zz', rho_zz, 2)
       call mpas_pool_get_array(state, 'u', u, 2)
@@ -4465,6 +4485,8 @@ module atm_time_integration
          tend_w_pgf, tend_w_buoy, coef_3rd_order, c_s, config_mix_full, config_horiz_mixing, config_del4u_div_factor, &
          config_h_mom_eddy_visc2, config_v_mom_eddy_visc2, config_h_theta_eddy_visc2, config_v_theta_eddy_visc2, &
          config_h_theta_eddy_visc4, config_h_mom_eddy_visc4, config_visc4_2dsmag, config_len_disp, rk_step, dt, &
+         !SHP-HS
+         dt_dynamics, config_radt_lw_scheme, xland, &
          config_mpas_cam_coef, &
          config_rayleigh_damp_u, config_rayleigh_damp_u_timescale_days, config_number_rayleigh_damp_u_levels, &
          tend_rtheta_adv, rthdynten, &
@@ -4492,6 +4514,8 @@ module atm_time_integration
       tend_w_pgf, tend_w_buoy, coef_3rd_order, c_s, config_mix_full, config_horiz_mixing, config_del4u_div_factor, &
       config_h_mom_eddy_visc2, config_v_mom_eddy_visc2, config_h_theta_eddy_visc2, config_v_theta_eddy_visc2, &
       config_h_theta_eddy_visc4, config_h_mom_eddy_visc4, config_visc4_2dsmag, config_len_disp, rk_step, dt, &
+      !SHP-HS
+      dt_dynamics, config_radt_lw_scheme, xland, &
       config_mpas_cam_coef, &
       config_rayleigh_damp_u, config_rayleigh_damp_u_timescale_days, config_number_rayleigh_damp_u_levels, &
       tend_rtheta_adv, rthdynten, &
@@ -4625,6 +4649,12 @@ module atm_time_integration
       integer, intent(in) :: cellStart, cellEnd, vertexStart, vertexEnd, edgeStart, edgeEnd
       integer, intent(in) :: cellSolveStart, cellSolveEnd, vertexSolveStart, vertexSolveEnd, edgeSolveStart, edgeSolveEnd
 
+      !SHP-HS
+      character (len=StrKIND) :: config_radt_lw_scheme
+      real (kind=RKIND), intent(in) :: dt_dynamics
+      !real (kind=RKIND), dimension(nCells+1) :: xland
+      integer, dimension(nCells+1) :: xland
+
 
       !
       ! Local variables
@@ -4648,6 +4678,9 @@ module atm_time_integration
       real (kind=RKIND) :: kdiffu, z1, z2, z3, z4, zm, z0, zp, rayleigh_coef_inverse
 
       real (kind=RKIND), dimension( nVertLevels ) :: rayleigh_damp_coef
+
+      !SHP-HS
+      real (kind=RKIND) :: daylensec, sigb, sig, sigterm, kkf, kkv, kkf_xland, xland1, xland2
 
       real (kind=RKIND) :: flux3, flux4
       real (kind=RKIND) :: q_im2, q_im1, q_i, q_ip1, ua, coef3
@@ -4827,17 +4860,89 @@ module atm_time_integration
             tend_u(k,iEdge) = tend_u(k,iEdge) + rho_edge(k,iEdge)* (q(k) - (ke(k,cell2) - ke(k,cell1))       &
                                                                  * invDcEdge(iEdge))                            &
                                              - u(k,iEdge)*0.5*(h_divergence(k,cell1)+h_divergence(k,cell2)) 
-#ifdef CURVATURE
-            ! curvature terms for the sphere
-            tend_u(k,iEdge) = tend_u(k,iEdge) &
-                             - 2.*omega*cos(angleEdge(iEdge))*cos(latEdge(iEdge))  &
-                               *rho_edge(k,iEdge)*.25*(w(k,cell1)+w(k+1,cell1)+w(k,cell2)+w(k+1,cell2))          & 
-                             - u(k,iEdge)*.25*(w(k+1,cell1)+w(k,cell1)+w(k,cell2)+w(k+1,cell2))                  &
-                               *rho_edge(k,iEdge) * inv_r_earth
-#endif
+!#ifdef CURVATURE
+!            ! curvature terms for the sphere
+!            tend_u(k,iEdge) = tend_u(k,iEdge) &
+!                             - 2.*omega*cos(angleEdge(iEdge))*cos(latEdge(iEdge))  &
+!                               *rho_edge(k,iEdge)*.25*(w(k,cell1)+w(k+1,cell1)+w(k,cell2)+w(k+1,cell2))          & 
+!                             - u(k,iEdge)*.25*(w(k+1,cell1)+w(k,cell1)+w(k,cell2)+w(k+1,cell2))                  &
+!                               *rho_edge(k,iEdge) * inv_r_earth
+!#endif
          end do
 
       end do
+
+      !SHP-HS 
+      if (config_radt_lw_scheme == "heldsuarez_lw" .or. config_radt_lw_scheme == "pk02_lw") THEN
+
+         sigb=0.7
+         daylensec=60.0*60.0*24.0
+         kkf=1.0/daylensec
+
+         do iEdge=edgeSolveStart,edgeSolveEnd
+            cell1 = cellsOnEdge(1,iEdge)
+            cell2 = cellsOnEdge(2,iEdge)
+
+            !XLAND10
+            xland1= 1.    ! 2.0 for land, 1.0 for ocean
+            xland2= 1.
+            !XLAND10_X2
+            !xland1= xland(cell1) + 1.     ! 2.0 for land, 1.0 for ocean
+            !xland2= xland(cell2) + 1.      
+            !XLAND10_X4
+            !xland1= 3.*xland(cell1) + 1. ! 4.0 for land, 1.0 for ocean
+            !xland2= 3.*xland(cell2) + 1.  
+            !XLAND10_X8
+            !xland1= 7.*xland(cell1) + 1. ! 8.0 for land, 0.5 for ocean
+            !xland2= 7.*xland(cell2) + 1.
+
+            !XLAND05
+            !xland1= 0.5  ! 0.5 for land, 0.5 for ocean
+            !xland2= 0.5
+            !XLAND05_X2
+            !xland1= 0.5*xland(cell1) + 0.5 ! 1.0 for land, 0.5 for ocean
+            !xland2= 0.5*xland(cell2) + 0.5
+            !XLAND05_X4
+            !xland1= 1.5*xland(cell1) + 0.5 ! 2.0 for land, 0.5 for ocean
+            !xland2= 1.5*xland(cell2) + 0.5
+            !XLAND05_X8
+            !xland1= 3.5*xland(cell1) + 0.5 ! 4.0 for land, 0.5 for ocean
+            !xland2= 3.5*xland(cell2) + 0.5
+
+            !XLAND20
+            !xland1= 2.0 ! 2.0 for land, 2.0 for ocean
+            !xland2= 2.0
+            !XLAND20_X2
+            !xland1= 2.*xland(cell1) + 2.   ! 4.0 for land, 2.0 for ocean
+            !xland2= 2.*xland(cell2) + 2.
+            !XLAND20_X4
+            !xland1= 6.*xland(cell1) + 2.  ! 8.0 for land, 2.0 for ocean
+            !xland2= 6.*xland(cell2) + 2.
+            !XLAND20_X8
+            !xland1= 14.*xland(cell1) + 2.  ! 16.0 for land, 2.0 for ocean
+            !xland2= 14.*xland(cell2) + 2.
+
+            kkf_xland= 0.5*(xland1+xland2)*kkf
+
+            do k=1,nVertLevels
+              sig = (pp(k,cell1)+pressure_b(k,cell1) + pp(k,cell2)+pressure_b(k,cell2))/  &
+                    (pp(1,cell1)+pressure_b(1,cell1) + pp(1,cell2)+pressure_b(1,cell2))
+              sigterm=max(0.0,(sig-sigb)/(1.0-sigb))
+              kkv=kkf*sigterm
+              !kkv=kkf_xland*sigterm
+
+              !kkv = 0.
+
+              tend_u(k,iEdge) = tend_u(k,iEdge) - kkv * ru(k,iEdge)
+              !tend_u(k,iEdge) = tend_u(k,iEdge) - kkv * ru(k,iEdge) * cos(grid % angleEdge % array(iEdge)) 
+
+              !!tend_u_cos(k,iEdge) = (tend_u(k,iEdge) - kkv * ru(k,iEdge)) * cos(angleEdge(iEdge))
+              !!tend_u(k,iEdge) = sqrt((tend_u(k,iEdge) * sin(angleEdge(iEdge)))**2. + tend_u_cos(k,iEdge)**2.)
+            end do
+
+         end do
+
+      end if
 
 
       !
@@ -5073,20 +5178,20 @@ module atm_time_integration
          end do
       end do
 
-#ifdef CURVATURE
-      do iCell = cellSolveStart, cellSolveEnd
-!DIR$ IVDEP
-         do k=2,nVertLevels
-            tend_w(k,iCell) = tend_w(k,iCell) + (rho_zz(k,iCell)*fzm(k)+rho_zz(k-1,iCell)*fzp(k))*          &
-                                      ( (fzm(k)*ur_cell(k,iCell)+fzp(k)*ur_cell(k-1,iCell))**2.             &
-                                       +(fzm(k)*vr_cell(k,iCell)+fzp(k)*vr_cell(k-1,iCell))**2. )/r_earth   &
-                                + 2.*omega*cos(latCell(iCell))                                              &
-                                       *(fzm(k)*ur_cell(k,iCell)+fzp(k)*ur_cell(k-1,iCell))                 &
-                                       *(rho_zz(k,iCell)*fzm(k)+rho_zz(k-1,iCell)*fzp(k))
-
-         end do
-      end do
-#endif
+!#ifdef CURVATURE
+!      do iCell = cellSolveStart, cellSolveEnd
+!!DIR$ IVDEP
+!         do k=2,nVertLevels
+!            tend_w(k,iCell) = tend_w(k,iCell) + (rho_zz(k,iCell)*fzm(k)+rho_zz(k-1,iCell)*fzp(k))*          &
+!                                      ( (fzm(k)*ur_cell(k,iCell)+fzp(k)*ur_cell(k-1,iCell))**2.             &
+!                                       +(fzm(k)*vr_cell(k,iCell)+fzp(k)*vr_cell(k-1,iCell))**2. )/r_earth   &
+!                                + 2.*omega*cos(latCell(iCell))                                              &
+!                                       *(fzm(k)*ur_cell(k,iCell)+fzp(k)*ur_cell(k-1,iCell))                 &
+!                                       *(rho_zz(k,iCell)*fzm(k)+rho_zz(k-1,iCell)*fzp(k))
+!
+!         end do
+!      end do
+!#endif
 
 
       !

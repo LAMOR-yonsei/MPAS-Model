@@ -210,7 +210,9 @@
 !lw radiation scheme:
  if(.not. (config_radt_lw_scheme .eq. 'off'    .or. &
            config_radt_lw_scheme .eq. 'cam_lw' .or. &
-           config_radt_lw_scheme .eq. 'rrtmg_lw')) then
+           config_radt_lw_scheme .eq. 'rrtmg_lw' .or. &
+           config_radt_lw_scheme .eq. 'heldsuarez_lw' .or. & 
+           config_radt_lw_scheme .eq. 'pk02_lw' )) then
  
     write(mpas_err_message,'(A,A10)') 'illegal value for longwave radiation scheme: ', &
           trim(config_radt_lw_scheme)

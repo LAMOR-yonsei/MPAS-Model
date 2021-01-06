@@ -488,6 +488,7 @@ ifneq "$(NETCDF)" ""
 	LIBS += $(NCLIB)
 endif
 
+LIBS += -L$(HDF5)/lib -lhdf5_hl -lhdf5
 
 ifneq "$(PNETCDF)" ""
 	CPPINCLUDES += -I$(PNETCDF)/include

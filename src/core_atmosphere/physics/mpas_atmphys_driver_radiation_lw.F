@@ -18,6 +18,10 @@
  use mpas_atmphys_rrtmg_lwinit
  use mpas_atmphys_vars
 
+ !SHP-HS
+ use module_ra_hs
+ use module_ra_pk02
+
 !wrf physics:
  use module_ra_cam            
  use module_ra_rrtmg_lw
@@ -51,6 +55,8 @@
 ! --------------------------------------------
 ! * module_ra_cam        : CAM long wave radiation code.
 ! * module_ra_rrtmg_lw   : RRTMG long wave radiation code.
+! * module_ra_hs         : held & suarez temperature damping.
+! * module_ra_pk02       : polvani & kushner (2002) temperature damping.
 !
 ! add-ons and modifications to sourcecode:
 ! ----------------------------------------
@@ -199,6 +205,13 @@
              allocate(absnxt_p(ims:ime,kms:kme,cam_abs_dim1,jms:jme) )
        endif
 
+    case("heldsuarez_lw")
+       if(.not.allocated(xlat_p)       ) allocate(xlat_p(ims:ime,jms:jme))
+
+    case("pk02_lw")
+       if(.not.allocated(alt_p)        ) allocate(alt_p(ims:ime,kms:kme,jms:jme))
+       if(.not.allocated(xlat_p)       ) allocate(xlat_p(ims:ime,jms:jme))
+
     case default
 
  end select radiation_lw_select
@@ -289,6 +302,13 @@
        if(allocated(aerosolcn_p)  ) deallocate(aerosolcn_p  )
        if(allocated(aerosolcp_p)  ) deallocate(aerosolcp_p  )
 
+    case("heldsuarez_lw")
+       if(allocated(xlat_p)       ) deallocate(xlat_p       )
+
+    case("pk02_lw")
+       if(allocated(alt_p)        ) deallocate(alt_p        )
+       if(allocated(xlat_p)       ) deallocate(xlat_p       )
+
     case default
 
  end select radiation_lw_select
@@ -329,6 +349,9 @@
  real(kind=RKIND),dimension(:,:),pointer  :: cldfrac,m_hybi,o3clim,o3vmr
  real(kind=RKIND),dimension(:,:),pointer  :: re_cloud,re_ice,re_snow
  real(kind=RKIND),dimension(:,:,:),pointer:: aerosols,ozmixm
+
+ !SHP-HS
+ real(kind=RKIND),dimension(:,:),pointer:: zgrid
 
 !local variables and arrays:
  integer:: ncols,nlevs
@@ -606,6 +629,27 @@
        enddo
        enddo
        enddo
+
+    case("heldsuarez_lw")
+       do j = jts,jte
+       do i = its,ite
+          xlat_p(i,j) = latCell(i) / degrad
+       end do
+       end do
+
+    case("pk02_lw")
+       call mpas_pool_get_array(mesh,'zgrid'      ,zgrid      )
+
+       do j = jts,jte
+       do i = its,ite
+          xlat_p(i,j) = latCell(i) / degrad
+       end do
+       do k = kts,kte
+       do i = its,ite
+          alt_p(i,k,j) = (zgrid(k,i)+zgrid(k+1,i))*0.5/1000._RKIND
+       end do
+       end do
+       end do
 
     case default
 
@@ -938,6 +982,47 @@
                 its = its , ite = ite , jts = jts , jte = jte , kts = kts , kte = kte        &
                   )
        call mpas_timer_stop('CAMRAD_lw')
+
+    !SHP-HS
+    case ("heldsuarez_lw")
+
+       call mpas_timer_start('hs94_lw')
+       call mpas_log_write(' bfore hs94 forcing min/max: $r, $r', realArgs=(/ minval(rthratenlw_p(its:ite,kts:kte,jts:jte)), maxval(rthratenlw_p(its:ite,kts:kte,jts:jte)) /))
+       call hsrad( &
+                RTHRATEN      = rthratenlw_p  , p8w           = pres2_hyd_p   , &
+                p_phy         = pres_hyd_p    , pi_phy        = pi_p          , &
+                dz8w          = dz_p          , t_phy         = t_p           , &
+                t8w           = t2_p          , rho_phy       = rho_p         , &
+                R_d           = R_d           , G             = g             , &
+                CP            = cp            , dt            = dt_dyn        , &
+                xlat          = xlat_p        , degrad        = degrad        , &
+                ids = ids , ide = ide , jds = jds , jde = jde , kds = kds , kde = kde ,      &
+                ims = ims , ime = ime , jms = jms , jme = jme , kms = kms , kme = kme ,      &
+                its = its , ite = ite , jts = jts , jte = jte , kts = kts , kte = kte        &
+                  )
+       call mpas_log_write(' after hs94 forcing min/max: $r, $r', realArgs=(/ minval(rthratenlw_p(its:ite,kts:kte,jts:jte)), maxval(rthratenlw_p(its:ite,kts:kte,jts:jte)) /))
+       call mpas_timer_stop('hs94_lw')
+
+    case ("pk02_lw")
+
+       call mpas_timer_start('pk02_lw')
+       call mpas_log_write(' bfore pk02 forcing min/max: $r, $r', realArgs=(/ minval(rthratenlw_p(its:ite,kts:kte,jts:jte)), maxval(rthratenlw_p(its:ite,kts:kte,jts:jte)) /))
+       call pk02rad( &
+                RTHRATEN      = rthratenlw_p  , p8w           = pres2_hyd_p   , &
+                p_phy         = pres_hyd_p    , pi_phy        = pi_p          , &
+                dz8w          = dz_p          , t_phy         = t_p           , &
+                t8w           = t2_p          , rho_phy       = rho_p         , &
+                z_phy         = alt_p         ,                                 &
+                R_d           = R_d           , G             = g             , &
+                CP            = cp            , dt            = dt_dyn        , &
+                xlat          = xlat_p        , degrad        = degrad        , &
+                ids = ids , ide = ide , jds = jds , jde = jde , kds = kds , kde = kde ,      &
+                ims = ims , ime = ime , jms = jms , jme = jme , kms = kms , kme = kme ,      &
+                its = its , ite = ite , jts = jts , jte = jte , kts = kts , kte = kte        &
+                  )
+       call mpas_log_write(' after pk02 forcing min/max: $r, $r', realArgs=(/ minval(rthratenlw_p(its:ite,kts:kte,jts:jte)), maxval(rthratenlw_p(its:ite,kts:kte,jts:jte)) /))
+       call mpas_timer_stop('pk02_lw')
+
 
     case default
 

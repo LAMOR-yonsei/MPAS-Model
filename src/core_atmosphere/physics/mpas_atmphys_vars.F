@@ -585,6 +585,9 @@
     rreice_p,         &!effective radius for cloud ice calculated in rrmtg_lwrad               [mu]
     rresnow_p         !effective radius for snow calculated in rrtmg_lwrad                    [mu]
 
+ real(kind=RKIND),dimension(:,:,:),allocatable:: &
+    alt_p             !altitude for HS94/PK02 subroutine
+
 !=================================================================================================================
 !... variables and arrays related to parameterization of long- and short-wave radiation needed
 !    only by the "CAM" radiation codes:
