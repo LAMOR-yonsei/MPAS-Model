@@ -321,6 +321,7 @@
                 <package name="initial_conds" description="Used by test cases that produce initial conditions."/>
                 <package name="sfc_update" description="Used by test cases that produce surface updates."/>
                 <package name="lbcs" description="Active when lateral boundary conditions are interpolated and written."/>
+                <package name="fddas" description="Four Dimensional Data Analysis"/>
                 <package name="gwd_stage_in" description="Active only if GWD static fields are be generated and other static fields are not being generated"/>
                 <package name="gwd_stage_out" description="Active only if GWD static fields are be generated and other static fields are not being generated"/>
                 <package name="vertical_stage_in" description="Active only if a vertical grid is being generated"/>
@@ -589,6 +590,18 @@
 			<var name="xtime"/>
 			<var_struct name="lbc_state"/>
 		</stream>
+
+                <stream name="fdda"
+                        type="output"
+                        filename_template="fdda.$Y-$M-$D_$h.$m.$s.nc"
+                        output_interval="1_00:00:00"
+                        filename_interval="output_interval"
+                        packages="fddas"
+                        immutable="true">
+
+                        <var name="xtime"/>
+                        <var_struct name="fdda_state"/>
+                </stream>
 
 	</streams>
 
@@ -942,6 +955,32 @@
 
                         <var name="lbc_qr" array_group="moist" units="kg kg^{-1}"
                              description="Rain water mixing ratio on lateral boundary cells"/>
+                </var_array>
+
+        </var_struct>
+
+        <var_struct name="fdda_state" time_levs="1">
+                <var name="fdda_u" type="real" dimensions="nVertLevels nCells Time" packages="fddas"
+                     units="m s^{-1}"
+                     description="Zonal velocity for FDDA"/>
+
+                <var name="fdda_v" type="real" dimensions="nVertLevels nCells Time" packages="fddas"
+                     units="m s^{-1}"
+                     description="Meridional normal velocity for FDDA"/>
+
+                <var name="fdda_theta" type="real" dimensions="nVertLevels nCells Time" packages="fddas"
+                     units="K"
+                     description="Potential temperature for FDDA"/>
+
+                <var_array name="fdda_scalars" type="real" dimensions="nVertLevels nCells Time" packages="fddas">
+                        <var name="fdda_qv" array_group="moist" units="kg kg^{-1}"
+                             description="Water vapor mixing ratio for FDDA"/>
+
+                        <var name="fdda_qc" array_group="moist" units="kg kg^{-1}"
+                             description="Cloud water mixing ratio for FDDA"/>
+
+                        <var name="fdda_qr" array_group="moist" units="kg kg^{-1}"
+                             description="Rain water mixing ratio for FDDA"/>
                 </var_array>
 
         </var_struct>

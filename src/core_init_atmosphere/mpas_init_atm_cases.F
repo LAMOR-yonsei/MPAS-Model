@@ -61,6 +61,7 @@ module init_atm_cases
       type (mpas_pool_type), pointer :: diag
       type (mpas_pool_type), pointer :: diag_physics
       type (mpas_pool_type), pointer :: lbc_state
+      type (mpas_pool_type), pointer :: fdda_state
 
       integer, pointer :: config_init_case
       logical, pointer :: config_static_interp
@@ -74,7 +75,7 @@ module init_atm_cases
       character(len=StrKIND), pointer :: xtime
 
       type (MPAS_Time_type)  :: curr_time, stop_time
-      type (MPAS_TimeInterval_type)  :: clock_interval, lbc_stream_interval
+      type (MPAS_TimeInterval_type)  :: clock_interval, lbc_stream_interval, fdda_stream_interval
       character(len=StrKIND) :: timeString
 
       integer, pointer :: nCells
@@ -183,6 +184,9 @@ module init_atm_cases
             call mpas_pool_get_dimension(block_ptr % dimensions, 'nEdges', nEdges)
             call mpas_pool_get_dimension(block_ptr % dimensions, 'nVertLevels', nVertLevels)
 
+            !SHP-fdda
+            call mpas_pool_get_subpool(block_ptr % structs, 'fdda_state', fdda_state)
+
             !
             ! Before proceeding with any other processing that takes non-trivial time (e.g., static field interpolation),
             ! check that the intermediate file with terrain information exists if config_blend_bdy_terrain = true.
@@ -252,7 +256,7 @@ module init_atm_cases
             end if
 
             call init_atm_case_gfs(block_ptr, mesh, nCells, nEdges, nVertLevels, fg, state, &
-                                   diag, diag_physics, config_init_case, block_ptr % dimensions, block_ptr % configs)
+                                   diag, diag_physics, config_init_case, block_ptr % dimensions, block_ptr % configs, fdda_state, timeString)
             
             if (config_met_interp) then
                call physics_initialize_real(mesh, fg, domain % dminfo, block_ptr % dimensions, block_ptr % configs)
@@ -337,10 +341,72 @@ module init_atm_cases
          !
          call mpas_stream_mgr_reset_alarms(stream_manager, streamID='lbc', direction=MPAS_STREAM_OUTPUT, ierr=ierr)
 
+
+      else if (config_init_case == 10 ) then
+
+         call mpas_log_write('FDDA case')
+
+         !
+         ! Check that the first-guess interval (which is the same as the clock timestep)
+         ! matches the output interval of the 'fdda' stream
+         !
+         clock_interval = mpas_get_clock_timestep(domain % clock, ierr=ierr)
+         fdda_stream_interval = MPAS_stream_mgr_get_stream_interval(stream_manager, 'fdda', MPAS_STREAM_OUTPUT, ierr)
+         if (clock_interval /= fdda_stream_interval) then
+            call mpas_log_write('****************************************************************', messageType=MPAS_LOG_ERR)
+            call mpas_log_write('The intermediate file interval specified by ''config_fg_interval''', messageType=MPAS_LOG_ERR)
+            call mpas_log_write('does not match the output_interval for the ''fdda'' stream.',        messageType=MPAS_LOG_ERR)
+            call mpas_log_write('Please correct the namelist.init_atmosphere and/or',                 messageType=MPAS_LOG_ERR)
+            call mpas_log_write('streams.init_atmosphere files.', messageType=MPAS_LOG_ERR)
+            call mpas_log_write('****************************************************************', messageType=MPAS_LOG_CRIT)
+         end if
+
+         curr_time = mpas_get_clock_time(domain % clock, MPAS_NOW)
+         stop_time = mpas_get_clock_time(domain % clock, MPAS_STOP_TIME)
+
+         do while (curr_time <= stop_time)
+
+            block_ptr => domain % blocklist
+            do while (associated(block_ptr))
+               call mpas_pool_get_subpool(block_ptr % structs, 'mesh', mesh)
+               call mpas_pool_get_subpool(block_ptr % structs, 'fg', fg)
+               call mpas_pool_get_subpool(block_ptr % structs, 'state', state)
+               call mpas_pool_get_subpool(block_ptr % structs, 'diag', diag)
+               call mpas_pool_get_subpool(block_ptr % structs, 'diag_physics', diag_physics)
+               call mpas_pool_get_subpool(block_ptr % structs, 'fdda_state', fdda_state)
+
+               call mpas_pool_get_array(state, 'xtime', xtime)
+
+               call mpas_pool_get_dimension(block_ptr % dimensions, 'nCells', nCells)
+               call mpas_pool_get_dimension(block_ptr % dimensions, 'nEdges', nEdges)
+               call mpas_pool_get_dimension(block_ptr % dimensions, 'nVertLevels', nVertLevels)
+
+               call mpas_get_time(curr_time, dateTimeString=timeString)
+               xtime = timeString   ! Set field valid time, xtime, to the current time in the time loop
+
+               call init_atm_case_gfs(block_ptr, mesh, nCells, nEdges, nVertLevels, fg, state, &
+                                      diag, diag_physics, config_init_case, block_ptr % dimensions, block_ptr % configs, fdda_state, timeString)
+
+               call mpas_stream_mgr_reset_alarms(stream_manager, streamID='output', direction=MPAS_STREAM_OUTPUT, ierr=ierr)
+
+               block_ptr => block_ptr % next
+            end do
+
+            call mpas_stream_mgr_write(stream_manager, streamID='fdda', ierr=ierr)
+            call mpas_stream_mgr_reset_alarms(stream_manager, streamID='fdda', direction=MPAS_STREAM_OUTPUT, ierr=ierr)
+
+            call mpas_advance_clock(domain % clock)
+            curr_time = mpas_get_clock_time(domain % clock, MPAS_NOW)
+
+         end do
+
+         call mpas_stream_mgr_reset_alarms(stream_manager, streamID='fdda', direction=MPAS_STREAM_OUTPUT, ierr=ierr)
+
+
       else
 
          call mpas_log_write(' ****************************************************', messageType=MPAS_LOG_ERR)
-         call mpas_log_write(' Only test cases 1 through 9 are currently supported.', messageType=MPAS_LOG_ERR)
+         call mpas_log_write(' Only test cases 1 through 10 are currently supported.', messageType=MPAS_LOG_ERR)
          call mpas_log_write(' ****************************************************', messageType=MPAS_LOG_CRIT)
 
       end if
@@ -2523,7 +2589,7 @@ module init_atm_cases
    end subroutine init_atm_case_mtn_wave
 
 
-   subroutine init_atm_case_gfs(block, mesh, nCells, nEdges, nVertLevels, fg, state, diag, diag_physics, init_case, dims, configs)
+   subroutine init_atm_case_gfs(block, mesh, nCells, nEdges, nVertLevels, fg, state, diag, diag_physics, init_case, dims, configs, fdda_state, timestamp)
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    ! Real-data test case using GFS data
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -2549,6 +2615,9 @@ module init_atm_cases
       integer, intent(in) :: init_case
       type (mpas_pool_type), intent(inout):: dims
       type (mpas_pool_type), intent(inout):: configs
+
+      type (mpas_pool_type), intent(inout) :: fdda_state
+      character(len=*), intent(in) :: timestamp
 
       type (parallel_info), pointer :: parinfo
       type (dm_info), pointer :: dminfo
@@ -2711,6 +2780,10 @@ module init_atm_cases
       real (kind=RKIND), dimension(:,:), pointer :: uReconstructZonal
       real (kind=RKIND), dimension(:,:), pointer :: uReconstructMeridional
 
+      real (kind=RKIND), dimension(:,:), pointer :: fdda_u, fdda_v
+      real (kind=RKIND), dimension(:,:), pointer :: fdda_theta
+      real (kind=RKIND), dimension(:,:,:), pointer :: fdda_scalars
+
       real (kind=RKIND), dimension(:), pointer :: psfc
       real (kind=RKIND), dimension(:), pointer :: skintemp
       real (kind=RKIND), dimension(:), pointer :: snow
@@ -2731,8 +2804,6 @@ module init_atm_cases
       logical :: too_many_fg_levs
       integer :: level_value
   
-      logical, parameter :: nsc_igw_grids = .true. 
-
       ! For outputting surface fields u10, v10, q2, rh2, and t2m from first-guess data
       real (kind=RKIND), dimension(:), pointer :: u10
       real (kind=RKIND), dimension(:), pointer :: v10
@@ -2835,6 +2906,11 @@ module init_atm_cases
       call mpas_pool_get_array(diag, 'uReconstructZonal', uReconstructZonal)
       call mpas_pool_get_array(diag, 'uReconstructMeridional', uReconstructMeridional)
 
+      call mpas_pool_get_array(fdda_state, 'fdda_u', fdda_u)
+      call mpas_pool_get_array(fdda_state, 'fdda_v', fdda_v)
+      call mpas_pool_get_array(fdda_state, 'fdda_theta', fdda_theta)
+      call mpas_pool_get_array(fdda_state, 'fdda_scalars', fdda_scalars)
+
       call mpas_pool_get_array(mesh, 'latCell', latCell)
       call mpas_pool_get_array(mesh, 'lonCell', lonCell)
       call mpas_pool_get_array(mesh, 'latEdge', latEdge)
@@ -2880,7 +2956,7 @@ module init_atm_cases
       p0 = 1.e+05
 
       scalars(:,:,:) = 0.
-
+      fdda_scalars(:,:,:) = 0.
 
       !
       ! If requested, blend the terrain along the domain boundaries with terrain from
@@ -3000,7 +3076,7 @@ module init_atm_cases
       !
       ! Otherwise, see if the user has requested to set up the vertical grid as in the MPAS TC configuration
       !
-      else if (config_tc_vertical_grid .and. .not.nsc_igw_grids) then
+      else if (config_tc_vertical_grid) then
 
          call mpas_log_write('Setting up vertical levels as in 2014 TC experiments')
 
@@ -3045,12 +3121,6 @@ module init_atm_cases
             end if
             if (k > 1) dzw(k-1) = zw(k)-zw(k-1)
          end do
-
-      else if ( nsc_igw_grids ) then
-
-         zt = config_ztop
-         dz = zt/float(nz1)
-         call levels_igw(zw,nz)
 
       !
       ! Otherwise, use the vertical level configuration from MPAS v2.0
@@ -4660,7 +4730,11 @@ call mpas_log_write('Done with soil consistency check')
                             uReconstructZonal,       &
                             uReconstructMeridional   &
                            )
-   
+
+      if (init_case.eq.10) then
+        fdda_u(:,:) = uReconstructZonal(:,:)
+        fdda_v(:,:) = uReconstructMeridional(:,:)
+      end if
 
       !
       ! Adjust surface pressure for difference in topography
@@ -4724,6 +4798,8 @@ call mpas_log_write('Done with soil consistency check')
                !
                rs = rslf(pressure(k,iCell),t(k,iCell))
                scalars(index_qv,k,iCell) = 0.01_RKIND*rs*relhum(k,iCell)
+
+               if (init_case==10) fdda_scalars(index_qv,k,iCell) = scalars(index_qv,k,iCell)
              enddo
          enddo
       else
@@ -4922,6 +4998,11 @@ call mpas_log_write('Done with soil consistency check')
          do k=1,nVertLevels
             rho(k,iCell) = rho_zz(k,iCell) * zz(k,iCell)
             theta(k,iCell) = t(k,iCell) / (1.0 + 1.61 * scalars(index_qv,k,iCell))
+
+            if (init_case.eq.10) then
+               fdda_theta(k,iCell) = theta(k,iCell)
+            end if
+
          end do
       end do
 
@@ -6333,464 +6414,6 @@ call mpas_log_write('Done with soil consistency check')
       end do
 
    end subroutine convert_relhum_wrt_ice
-
-   subroutine levels_igw(zw,nVertLevelsP1)
-     implicit none
-     integer :: nVertLevelsP1
-     real (kind=RKIND), dimension(nVertLevelsP1) :: zw
-   
-     integer :: k
-   
-     if (nVertlevelsP1 == 66) then  ! 800 m ztop to 40 km
-   
-     zw(1)=0.
-     zw(2)=61.8229
-     zw(3)=154.544
-     zw(4)=277.502
-     zw(5)=430.038
-     zw(6)=611.49
-     zw(7)=821.2
-     zw(8)=1058.51
-     zw(9)=1322.75
-     zw(10)=1613.27
-     zw(11)=1929.4
-     zw(12)=2270.49
-     zw(13)=2635.87
-     zw(14)=3024.89
-     zw(15)=3436.88
-     zw(16)=3871.19
-     zw(17)=4327.15
-     zw(18)=4804.1
-     zw(19)=5301.39
-     zw(20)=5818.35
-     zw(21)=6354.32
-     zw(22)=6908.65
-     zw(23)=7480.66
-     zw(24)=8069.71
-     zw(25)=8675.13
-     zw(26)=9296.26
-     zw(27)=9932.45
-     zw(28)=10583
-     zw(29)=11247.3
-     zw(30)=11924.7
-     zw(31)=12614.5
-     zw(32)=13316
-     zw(33)=14028.6
-     zw(34)=14751.7
-     zw(35)=15484.5
-     zw(36)=16226.4
-     zw(37)=16976.8
-     zw(38)=17735
-     zw(39)=18500.2
-     zw(40)=19272
-     zw(41)=20049.6
-     zw(42)=20832.3
-     zw(43)=21619.5
-     zw(44)=22410.5
-     zw(45)=23204.7
-     zw(46)=24001.4
-     zw(47)=24799.9
-     zw(48)=25599.6
-     zw(49)=26399.9
-     zw(50)=27200.
-     do k=51,66
-        zw(k) = zw(k-1)+800.
-     end do
-   
-     else if (nVertlevelsP1 == 107) then  ! 400 m ztop to 40 km
-   
-     zw(1)=0.
-     zw(2)=64.0993
-     zw(3)=146.062
-     zw(4)=256.171
-     zw(5)=395.382
-     zw(6)=562.579
-     zw(7)=755.31
-     zw(8)=974.912
-     zw(9)=1221.36
-     zw(10)=1494.08
-     zw(11)=1792.42
-     zw(12)=2115.53
-     zw(13)=2461.73
-     zw(14)=2827.94
-     zw(15)=3209.85
-     zw(16)=3602.33
-     zw(17)=4000.27
-     zw(18)=4400
-     do k=19,107
-        zw(k) = zw(k-1)+400.
-     end do
-   
-     else if (nVertlevelsP1 == 203) then  ! 200 m ztop to 40 km
-     
-     zw(1)=0.
-     zw(2)=66.1357
-     zw(3)=161.266
-     zw(4)=286.111
-     zw(5)=439.048
-     zw(6)=614.478
-     zw(7)=803.756
-     zw(8)=1000.58
-     zw(9)=1200.03
-     zw(10)=1400.
-     do k=11,203
-        zw(k) = zw(k-1)+200.
-     end do
-   
-     else if (nVertlevelsP1 == 285) then  ! 200 m ztop to 64 km
-     
-       zw(1)=0.
-       zw(2)=66.1357
-       zw(3)=161.266
-       zw(4)=286.111
-       zw(5)=439.048
-       zw(6)=614.478
-       zw(7)=803.756
-       zw(8)=1000.58
-       zw(9)=1200.03
-       zw(10)=1400.
-       do k=11,253
-          zw(k) = zw(k-1)+200.
-       end do
-   
-       do k=254,285
-          zw(k) = 7.5*k**2. - 3597.5*k + 480100.
-       end do
-   
-     else if (nVertlevelsP1 == 402) then  ! 100 m ztop to 40 km
-     
-       zw(1)=0.
-       zw(2)=62.4339
-       zw(3)=130.135
-       zw(4)=209.419
-       zw(5)=301.904
-       zw(6)=400.205
-       zw(7)=500.000
-       do k=8,402
-          zw(k) = zw(k-1)+100.
-       end do
-     
-     else if (nVertlevelsP1 == 801) then  ! 50 m ztop to 40 km
-   
-        do k=1,801
-           zw(k) = real(k-1)*50.
-        end do
-   
-     else if (nVertlevelsP1 == 151) then  ! 400 m ztop to 78 km
-   
-       zw(1)= 0.
-       zw(2)= 64.00387
-       zw(3)= 181.03028
-       zw(4)= 332.57386
-       zw(5)= 512.03095
-       zw(6)= 715.58501
-       zw(7)= 940.66092
-       zw(8)= 1185.36824
-       zw(9)= 1448.24223
-       zw(10)= 1728.10446
-       zw(11)= 2023.98004
-       zw(12)= 2335.04500
-       zw(13)= 2660.59086
-       zw(14)= 3000.00000
-       zw(15)= 3352.72768
-       zw(16)= 3718.28877
-       zw(17)= 4096.24760
-       zw(18)= 4486.21010
-   
-       do k=19,131
-          zw(k) = zw(k-1)+400.
-       end do
-   
-     ! 400m, ztop for 78km
-     do k=132,151
-        zw(k) = 26.71627* k**2. - 6618.37892563*k + 458217.55281456
-     end do
-   
-     else if (nVertlevelsP1 == 225) then  ! 250 m ztop to 58 km
-   
-       zw(1)= 0.
-       zw(2)= 42.66925
-       zw(3)= 120.68685
-       zw(4)= 221.71591
-       zw(5)= 341.35397
-       zw(6)= 477.05667
-       zw(7)= 627.10728
-       zw(8)= 790.24549
-       zw(9)= 965.49482
-       zw(10)= 1152.06964
-       zw(11)= 1349.32003
-       zw(12)= 1556.69666
-       zw(13)= 1773.72724
-       zw(14)= 2000.00000
-       zw(15)= 2235.15179
-       zw(16)= 2478.85918
-   
-       do k=17,206
-          zw(k) = zw(k-1)+250.
-       end do
-   
-       do k=207,225
-          zw(k) = 8.898073*k**2. - 3412.90397345*k + 375438.46992041
-       end do
-   
-     else if (nVertlevelsP1 == 97) then  ! z~500m, ztop=48km
-   
-       zw(1)=0.
-       zw(2)=61.8229
-       zw(3)=154.544
-       zw(4)=277.502
-       zw(5)=430.038
-       zw(6)=611.49
-       zw(7)=821.2
-       zw(8)=1058.51
-       zw(9)=1322.75
-       zw(10)=1613.27
-       zw(11)=1929.4
-       zw(12)=2270.49
-       zw(13)=2635.87
-       zw(14)=3024.89
-       zw(15)=3436.88
-       zw(16)=3871.19
-       zw(17)=4327.15
-       zw(18)=4804.1
-       zw(19)=5301.39
-     
-       do k=20,84
-          zw(k) = zw(k-1)+500.
-       end do
-   
-       do k=85,97
-          zw(k) =  21.625705128205940*k**2. -3129.744166666813726*k +148108.924615391239058
-       end do
-   
-     else if (nVertlevelsP1 == 56) then  ! CAM-L55, ztop=64km
-   
-       zw(1)=0
-       zw(2)=109.6931393
-       zw(3)=241.3285091
-       zw(4)=394.9002399
-       zw(5)=570.4137165
-       zw(6)=767.8641155
-       zw(7)=987.2553794
-       zw(8)=1228.585453
-       zw(9)=1665.170672
-       zw(10)=2297.014184
-       zw(11)=3124.114761
-       zw(12)=4146.472828
-       zw(13)=5334.834653 
-   
-       do k=14,48
-          zw(k) = zw(k-1) + zw(13) - zw(12)
-       end do
-   
-       do k=49,nVertlevelsP1
-          zw(k) = 119.151811999997236*k**2. - 10257.725763999715127*k + 264772.560351992724463
-       end do
-   
-     else if (nVertlevelsP1 == 33) then  ! CAM level distribution
-     
-     zw(1) = 0
-     zw(2) = 109.6931400016316
-     zw(3) = 241.3285100097693
-     zw(4) = 394.9002400321726
-     zw(5) = 570.413720080081
-     zw(6) = 767.8641201686789
-     zw(7) = 987.2553803172657
-     zw(8) = 1228.585450548884
-     zw(9) = 1665.170670967897
-     zw(10) = 2297.014181724551
-     zw(11) = 3124.114762966244
-     zw(12) = 4146.472834698309
-     zw(13) = 5334.834656611305
-     zw(14) = 6523.196768232036
-     zw(15) = 7711.558059385073
-     zw(16) = 8899.920290208733
-     zw(17) = 10088.28225070351
-     zw(18) = 11276.64420054024
-     zw(19) = 12465.00618945409
-     zw(20) = 13653.36722762118
-     zw(21) = 14841.72987553516
-     zw(22) = 16030.0912836756
-     zw(23) = 17218.45255227464
-     zw(24) = 18497.99874127788
-     zw(25) = 19789.30527068596
-     zw(26) = 21086.79176036794
-     zw(27) = 22373.60067020438
-     zw(28) = 23673.77514010878
-     zw(29) = 25708.42285001896
-     zw(30) = 29156.92293
-     zw(31) = 33563.00532
-     zw(32) = 38700.38866
-     zw(33) = 44569.07186
-
-  !----------------------------------------------------------------------------------------
-
-  !56->>    48     47.723240571427525  -3329.154335428462673    96772.560351997206453
-  !119->>  102      0.000002184328197     -0.044058760572632      690.085891069555032
-  !221->>  195      0.000000219361432     -0.016688576717653      563.305733794703997
-    else if (nVertlevelsP1 == 56) then  ! QBO ztop=60km 
-
-     zw(1)=0
-     zw(2)=109.6931393
-     zw(3)=241.3285091
-     zw(4)=394.9002399
-     zw(5)=570.4137165
-     zw(6)=767.8641155
-     zw(7)=987.2553794
-     zw(8)=1228.585453
-     zw(9)=1665.170672
-     zw(10)=2297.014184
-     zw(11)=3124.114761
-     zw(12)=4146.472828
-     zw(13)=5334.834653
-
-     do k=14,48
-        zw(k) = zw(k-1) + zw(13) - zw(12)
-     end do
-
-     do k=49,nVertlevelsP1
-        zw(k) = 47.723240571427525*k**2. - 3329.154335428462673*k + 96772.560351997206453
-     end do
-
-
-   else if (nVertlevelsP1 == 119) then  ! QBO ztop=60km, dz~500m
-
-     zw(1)=0.
-     zw(2)=109.6931393
-     zw(3)=241.3285091
-     zw(4)=394.9002399
-     zw(5)=570.4137165
-     zw(6)=767.8641155
-     zw(7)=987.2553794
-     zw(8)=1228.585453
-     zw(9)=1506.
-     zw(10)=1850.
-     zw(11)=2260.
-     zw(12)=2750.
-
-     do k=13,102
-        zw(k) = zw(k-1) + 500.
-     end do
-
-     do k=103,nVertlevelsP1
-        zw(k) = 0.000002184328197*k**5.  -0.044058760572632*k**3.  +690.085891069555032*k
-     end do
-
-
-   else if (nVertlevelsP1 == 221) then  ! QBO ztop=60km, dz~250m
-
-     zw(1)=0.
-     zw(2)=109.6931393
-     zw(3)=241.3285091
-     zw(4)=394.9002399
-     zw(5)=570.4137165
-     zw(6)=767.8641155
-     zw(7)=987.2553794
-     zw(8)=1228.585453
-     zw(9)=1450.
-
-     do k=10,195
-        zw(k) = zw(k-1) + 250.
-     end do
-
-     do k=196,nVertlevelsP1
-        zw(k) = 0.000000219361432*k**5.   -0.016688576717653*k**3.  +563.305733794703997
-     end do
-
-  !----------------------------------------------------------------------------------------
-
-  ! 64->>   53     32.733566790909030  -2272.491646627265254  81362.775808581587626
-  ! 136->> 114      0.089826839827504    -20.990259740502999  1798.790043319642336 -1.235506e+04
-  ! 251->> 218      0.055596285432718    -30.526759529221820  5645.304740597931414 -3.029131e+05
-
-   else if (nVertlevelsP1 == 64) then  ! QBO ztop=70km
-
-     zw(1)=0
-     zw(2)=109.6931393
-     zw(3)=241.3285091
-     zw(4)=394.9002399
-     zw(5)=570.4137165
-     zw(6)=767.8641155
-     zw(7)=987.2553794
-     zw(8)=1228.585453
-     zw(9)=1665.170672
-     zw(10)=2297.014184
-     zw(11)=3124.114761
-     zw(12)=4146.472828
-     zw(13)=5334.834653
-
-     do k=14,53
-        zw(k) = zw(k-1) + zw(13) - zw(12)
-     end do
-
-     do k=54,nVertlevelsP1
-        zw(k) = 32.733566790909030*k**2. -2272.491646627265254*k +81362.775808581587626
-     end do
-
-   else if (nVertlevelsP1 == 136) then  ! QBO-L136, ztop=70km
-
-     zw(1)=         0.
-     zw(2)=   41.04049
-     zw(3)=  114.18401
-     zw(4)=  219.46362
-     zw(5)=  356.91235
-     zw(6)=  526.56328
-     zw(7)=  728.44945
-     zw(8)=  962.60393
-     zw(9)= 1229.05976
-     zw(10)= 1527.85000
-     zw(11)= 1859.00771
-     zw(12)= 2222.56594
-     zw(13)= 2618.55774
-     zw(14)= 3047.01618
-     zw(15)= 3507.97430
-     zw(16)= 4000.;
-
-     do k=17,114
-        zw(k) = zw(k-1) + 500.
-     end do
-
-     do k=115,nVertlevelsP1
-        ! 136->> 114      0.089826839827504    -20.990259740502999  1798.790043319642336 -1.235506e+04
-        zw(k) = 0.089826839827504*k**3. -20.990259740502999*k**2.  +1798.790043319642336*k -1.235506e+04
-     end do
-
-   else if (nVertlevelsP1 == 251) then  ! QBO-L251, ztop=70km
- 
-     zw(1)=         0.
-     zw(2)=   23.72989
-     zw(3)=   69.94115
-     zw(4)=  138.66618
-     zw(5)=  229.93737
-     zw(6)=  343.78712
-     zw(7)=  480.24781
-     zw(8)=  639.35185
-     zw(9)=  821.13163
-     zw(10)= 1025.61953
-     zw(11)= 1252.84796
-     zw(12)= 1500.00000
- 
-     do k=13,218
-        zw(k) = zw(k-1) + 250.
-     end do
- 
-     do k=219,nVertlevelsP1
-        ! 251->> 218      0.055596285432718    -30.526759529221820  5645.304740597931414 -3.029131e+05
-        zw(k) = 0.055596285432718*k**3. -30.526759529221820*k**2.  +5645.304740597931414*k -3.029131e+05
-     end do
-
-  !----------------------------------------------------------------------------------------
-   
-     else
-      
-        write(0,*) ' no levels specification for nVertLevelsP1 = ',nVertLevelsP1
-        write(0,*) ' error stop '
-        stop
-   
-     end if
-   
-   end subroutine levels_igw
-
 
    !-----------------------------------------------------------------------
    !  routine read_text_array

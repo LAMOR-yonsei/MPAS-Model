@@ -112,7 +112,7 @@ module init_atm_core_interface
       type (mpas_io_context_type), intent(inout) :: iocontext
       integer :: ierr
 
-      logical, pointer :: initial_conds, sfc_update, lbcs
+      logical, pointer :: initial_conds, sfc_update, lbcs, fddas
       logical, pointer :: gwd_stage_in, gwd_stage_out, vertical_stage_in, vertical_stage_out, met_stage_in, met_stage_out
       logical, pointer :: config_native_gwd_static, config_static_interp, config_vertical_grid, config_met_interp
       integer, pointer :: config_init_case
@@ -134,6 +134,9 @@ module init_atm_core_interface
 
       nullify(lbcs)
       call mpas_pool_get_package(packages, 'lbcsActive', lbcs)
+
+      nullify(fddas)
+      call mpas_pool_get_package(packages, 'fddasActive', fddas)
 
       nullify(gwd_stage_in)
       call mpas_pool_get_package(packages, 'gwd_stage_inActive', gwd_stage_in)
@@ -180,6 +183,13 @@ module init_atm_core_interface
          lbcs = .true.
       else
          lbcs = .false.
+      end if
+
+      if (config_init_case == 10) then
+         initial_conds = .true.
+         fddas = .true.
+      else
+         fddas = .false.
       end if
 
       if (config_init_case == 7) then
