@@ -1793,7 +1793,7 @@ module isobaric_diagnostics
        
         if (NEED_VORTICITY) then
            !interpolation to fixed pressure levels for fields located at cell vertices and at mass points:
-            nIntP = 12
+            nIntP = 18
             if(.not.allocated(field_interp)) allocate(field_interp(nVertices,nIntP) )
             if(.not.allocated(press_interp)) allocate(press_interp(nVertices,nIntP) )
             do iVert = 1, nVertices
