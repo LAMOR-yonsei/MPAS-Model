@@ -284,6 +284,23 @@
                      possible_values="true or false; this option must be set to true for limited-area simulations and false for global simulations"/>
 	</nml_record>
 
+        <nml_record name="fdda" in_defaults="true">
+                <nml_option name="config_apply_fdda" type="logical" default_value="false"
+                     units="-"
+                     description="Whether to apply four dimensional data assimilation "
+                     possible_values="true or false"/>
+
+                <nml_option name="config_fdda_xnutr" type="real" default_value="0.0001"
+                     units="-"
+                     description="Maximum nudging coefficient"
+                     possible_values="Positive real values"/>
+
+                <nml_option name="config_fdda_interval" type="real" default_value="21600"
+                     units="-"
+                     description="time interval between fdda files"
+                     possible_values="Positive real values"/>
+        </nml_record>
+
         <nml_record name="io" in_defaults="true">
                 <nml_option name="config_restart_timestamp_name" type="character" default_value="restart_timestamp" in_defaults="false"
                      units="-"
@@ -387,6 +404,7 @@
                 <package name="iau" description="Incremental Analysis Update"/>
                 <package name="limited_area" description="Limited-area simulations, which have lateral boundaries"/>
                 <package name="jedi_da" description="Data Assimilation in JEDI framework"/>
+                <package name="nudging" description="Four Dimensional Data Assimilation"/>
         </packages>
 
 
@@ -459,6 +477,7 @@
 			<var name="zb"/>
 			<var name="zb3"/>
 			<var name="dss"/>
+                        <var name="dss_fdda"/>
 			<var name="u_init"/>
 			<var name="v_init"/>
 			<var name="t_init"/>
@@ -591,6 +610,7 @@
 			<var name="zb"/>
 			<var name="zb3"/>
 			<var name="dss"/>
+                        <var name="dss_fdda"/>
 			<var name="u_init"/>
 			<var name="v_init"/>
 			<var name="t_init"/>
@@ -801,6 +821,14 @@
 			<var name="rniblten"/>
 			<var name="rthratensw"/>
 			<var name="rthratenlw"/>
+                        <var name="rufddaten"/>
+                        <var name="rvfddaten"/>
+                        <var name="rthfddaten"/>
+                        <var name="rqvfddaten"/>
+                        <var name="ufddaten"/>
+                        <var name="vfddaten"/>
+                        <var name="thfddaten"/>
+                        <var name="qvfddaten"/>
 			<var name="pin"/>
 			<var name="ozmixm"/>
 			<var name="isltyp"/>
@@ -1117,6 +1145,22 @@
                         <var_array name="lbc_scalars" />
 
                 </stream>
+
+                <stream name="fdda_in"
+                        type="input"
+                        filename_template="fdda.$Y-$M-$D_$h.$m.$s.nc"
+                        filename_interval="input_interval"
+                        input_interval="1_00:00:00"
+                        runtime_format="single_file"
+                        immutable="true"
+                        packages="nudging">
+
+                        <var name="fdda_u" />
+                        <var name="fdda_v" />
+                        <var name="fdda_theta" />
+                        <var_array name="fdda_scalars" />
+
+                </stream>
 	</streams>
 
 
@@ -1333,6 +1377,10 @@
                 <!-- W-Rayleigh damping coefficients -->
                 <var name="dss" type="real" dimensions="nVertLevels nCells" units="unitless"
                      description="w-damping coefficient"/>
+
+                <!-- FDDA damping coefficients for upper-atmosphere -->
+                <var name="dss_fdda" type="real" dimensions="nVertLevels nCells" units="unitless"
+                     description="fdda damping coefficient for top region"/>
 
                 <!-- Reference profiles -->
                 <var name="u_init" type="real" dimensions="nVertLevels" units="m s^{-1}"
@@ -1835,6 +1883,42 @@
                 </var_array>
         </var_struct>
 
+        <var_struct name="fdda" time_levs="2" packages="nudging">
+                <var name="fdda_u" type="real" dimensions="nVertLevels nCells Time" units="m s^{-1}"
+                     description="Zonal wind for FDDA"/>
+
+                <var name="fdda_v" type="real" dimensions="nVertLevels nCells Time" units="m s^{-1}"
+                     description="Meridional wind for FDDA"/>
+
+                <var name="fdda_theta" type="real" dimensions="nVertLevels nCells Time" units="K"
+                     description="theta for FDDA"/>
+
+                <var_array name="fdda_scalars" type="real" dimensions="nVertLevels nCells Time">
+                        <var name="fdda_qv" name_in_code="qv" array_group="moist" units="kg kg^{-1}"
+                             description="water vapor mixing ratio for FDDA"/>
+
+                        <var name="fdda_qc" name_in_code="qc" array_group="moist"  packages="bl_mynn_in;cu_tiedtke_in;mp_kessler_in;mp_thompson_in;mp_wsm6_in" units="kg kg^{-1}"
+                             description="cloud water mixing ratio for FDDA"/>
+
+                        <var name="fdda_qr" name_in_code="qr" array_group="moist"  packages="mp_kessler_in;mp_thompson_in;mp_wsm6_in" units="kg kg^{-1}"
+                             description="rain water mixing ratio for FDDA"/>
+
+                        <var name="fdda_qi" name_in_code="qi" array_group="moist"  packages="bl_mynn_in;cu_tiedtke_in;mp_thompson_in;mp_wsm6_in" units="kg kg^{-1}"
+                             description="ice mixing ratio for FDDA"/>
+
+                        <var name="fdda_qs" name_in_code="qs" array_group="moist"  packages="mp_thompson_in;mp_wsm6_in" units="kg kg^{-1}"
+                             description="snow mixing ratio for FDDA"/>
+
+                        <var name="fdda_qg" name_in_code="qg" array_group="moist"  packages="mp_thompson_in;mp_wsm6_in" units="kg kg^{-1}"
+                             description="graupel mixing ratio for FDDA"/>
+
+                        <var name="fdda_nr" name_in_code="nr" array_group="number" packages="mp_thompson_in" units="m^{-3}"
+                             description="rain number concentration for FDDA"/>
+
+                        <var name="fdda_ni" name_in_code="ni" array_group="number" packages="bl_mynn_in;mp_thompson_in" units="m^{-3}"
+                             description="ice number concentration for FDDA"/>
+                </var_array>
+        </var_struct>
 
 <!-- ================================================================================================== -->
 <!--  DECLARATIONS OF ALL PHYSICS VARIABLES (will need to be moved to a Physics Registry shared by the  -->
@@ -2860,6 +2944,43 @@
         </var_struct>
 
         <var_struct name="tend_physics" time_levs="1">
+
+                <!-- ================================================================================================== -->
+                <!-- TENDENCIES FROM PARAMETERIZATION OF FDDA:                                                          -->
+                <!-- ================================================================================================== -->
+                <var name="ufddaten" type="real" dimensions="nVertLevels nCells Time" units="m s^{-1} s^{-1}"
+                     description="tendency of zonal wind due to FDDA"
+                     packages="nudging"/>
+
+                <var name="vfddaten" type="real" dimensions="nVertLevels nCells Time" units="m s^{-1} s^{-1}"
+                     description="tendency of zonal wind due to FDDA"
+                     packages="nudging"/>
+
+                <var name="thfddaten" type="real" dimensions="nVertLevels nCells Time" units="K s^{-1}"
+                     description="tendency of potential temperature due to FDDA"
+                     packages="nudging"/>
+
+                <var name="qvfddaten" type="real" dimensions="nVertLevels nCells Time" units="kg kg^{-1} s^{-1}"
+                     description="tendency of water vapor mixing ratio due to FDDA"
+                     packages="nudging"/>
+
+                <var name="rufddaten" type="real" dimensions="nVertLevels nCells Time" units="m s^{-1} s^{-1}"
+                     description="tendency of zonal wind due to FDDA"
+                     packages="nudging"/>
+
+                <var name="rvfddaten" type="real" dimensions="nVertLevels nCells Time" units="m s^{-1} s^{-1}"
+                     description="tendency of meridional wind due FDDA"
+                     packages="nudging"/>
+
+                <var name="rthfddaten" type="real" dimensions="nVertLevels nCells Time" units="K s^{-1}"
+                     description="tendency of potential temperature due to FDDA"
+                     packages="nudging"/>
+
+                <var name="rqvfddaten" type="real" dimensions="nVertLevels nCells Time" units="kg kg^{-1} s^{-1}"
+                     description="tendency of water vapor mixing ratio due to FDDA"
+                     packages="nudging"/>
+
+                <var name="rufddaten_Edge" type="real"     dimensions="nVertLevels nEdges Time"/>
  
                 <!-- ================================================================================================== -->
                 <!-- TENDENCIES FROM PARAMETERIZATION OF CONVECTION:                                                    -->

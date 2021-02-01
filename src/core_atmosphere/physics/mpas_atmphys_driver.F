@@ -19,6 +19,7 @@
  use mpas_atmphys_driver_radiation_sw 
  use mpas_atmphys_driver_sfclayer
  use mpas_atmphys_driver_oml
+ use mpas_atmphys_fdda
  use mpas_atmphys_constants
  use mpas_atmphys_interface
  use mpas_atmphys_update
@@ -117,6 +118,7 @@
  type(mpas_pool_type),pointer::  configs,      &
                                  mesh,         &
                                  state,        &
+                                 fdda_state,   &
                                  diag,         &
                                  diag_physics, &
                                  tend_physics, &
@@ -134,7 +136,7 @@
                                   config_radt_sw_scheme,    &
                                   config_sfclayer_scheme
 
- logical, pointer:: config_oml1d
+ logical, pointer:: config_oml1d, config_apply_fdda
  real(kind=RKIND),pointer:: config_bucket_radt
 
 !local variables:
@@ -163,6 +165,7 @@
  call mpas_pool_get_config(domain%configs,'config_bucket_update'    ,config_bucket_update    )
  call mpas_pool_get_config(domain%configs,'config_frac_seaice'      ,config_frac_seaice      ) 
  call mpas_pool_get_config(domain%configs,'config_oml1d'            ,config_oml1d            )
+ call mpas_pool_get_config(domain%configs,'config_apply_fdda'       ,config_apply_fdda       )
 
  if(config_convection_scheme .ne. 'off' .or. &
     config_lsm_scheme        .ne. 'off' .or. &
@@ -176,6 +179,7 @@
 
     call mpas_pool_get_subpool(block%structs,'mesh'        ,mesh        )
     call mpas_pool_get_subpool(block%structs,'state'       ,state       )
+    call mpas_pool_get_subpool(block%structs,'fdda'        ,fdda_state  )
     call mpas_pool_get_subpool(block%structs,'diag'        ,diag        )
     call mpas_pool_get_subpool(block%structs,'diag_physics',diag_physics)
     call mpas_pool_get_subpool(block%structs,'atm_input'   ,atm_input   )
@@ -292,6 +296,22 @@
        call deallocate_pbl(block%configs)
 
     endif
+
+    !-----------------------------------------------------------------------------------------------------------
+    !call to FDDA:
+    if(config_apply_fdda) then
+       !call allocate_fdda(block%configs)
+!$OMP PARALLEL DO
+       do thread=1,nThreads
+          call mpas_atm_apply_fdda(xtime_s,block%configs,mesh,state,time_lev,fdda_state,diag,diag_physics,tend_physics, &
+                                   cellSolveThreadStart(thread),cellSolveThreadEnd(thread))
+       end do
+!$OMP END PARALLEL DO
+       !call deallocate_fdda(block%configs)
+
+    endif
+    !-----------------------------------------------------------------------------------------------------------
+
 
     !call to gravity wave drag over orography scheme:
     if(config_gwdo_scheme .ne. 'off') then

@@ -64,7 +64,7 @@ module atm_time_integration
    real (kind=RKIND), dimension(:,:), allocatable :: rt_driving_values ! regional_MPAS addition 
    real (kind=RKIND), dimension(:,:), allocatable :: rho_driving_values ! regional_MPAS addition 
    integer, dimension(:), pointer :: bdyMaskEdge ! regional_MPAS addition
-   logical, pointer :: config_apply_lbcs
+   logical, pointer :: config_apply_lbcs, config_apply_fdda
    
    ! Used in compute_solve_diagnostics
    real (kind=RKIND), allocatable, dimension(:,:) :: ke_vertex
@@ -6685,6 +6685,7 @@ module atm_time_integration
        logical, pointer :: config_print_global_minmax_vel
        logical, pointer :: config_print_detailed_minmax_vel
        logical, pointer :: config_print_global_minmax_sca
+       logical, pointer :: config_apply_fdda
 
        type (block_type), pointer :: block
 
@@ -6694,6 +6695,7 @@ module atm_time_integration
        type (mpas_pool_type), pointer :: state
        type (mpas_pool_type), pointer :: diag
        type (mpas_pool_type), pointer :: mesh
+       type (mpas_pool_type), pointer :: fdda 
 
        real (kind=RKIND) :: scalar_min, scalar_max
        real (kind=RKIND) :: global_scalar_min, global_scalar_max
@@ -6713,10 +6715,12 @@ module atm_time_integration
        real (kind=RKIND), dimension(:,:), pointer :: w
        real (kind=RKIND), dimension(:,:), pointer :: u, v, uReconstructZonal, uReconstructMeridional, uReconstructX, uReconstructY, uReconstructZ
        real (kind=RKIND), dimension(:,:,:), pointer :: scalars, scalars_1, scalars_2
+       real (kind=RKIND), dimension(:,:), pointer :: fdda_u, fdda_v
 
        call mpas_pool_get_config(domain % blocklist % configs, 'config_print_global_minmax_vel', config_print_global_minmax_vel)
        call mpas_pool_get_config(domain % blocklist % configs, 'config_print_detailed_minmax_vel', config_print_detailed_minmax_vel)
        call mpas_pool_get_config(domain % blocklist % configs, 'config_print_global_minmax_sca', config_print_global_minmax_sca)
+       call mpas_pool_get_config(domain % blocklist % configs, 'config_apply_fdda', config_apply_fdda)
 
       if (config_print_detailed_minmax_vel) then
          call mpas_log_write('')
@@ -6726,6 +6730,7 @@ module atm_time_integration
             call mpas_pool_get_subpool(block % structs, 'state', state)
             call mpas_pool_get_subpool(block % structs, 'diag', diag)
             call mpas_pool_get_subpool(block % structs, 'mesh', mesh)
+            call mpas_pool_get_subpool(block % structs, 'fdda', fdda)
 
             call mpas_pool_get_array(state, 'w', w, 2)
             call mpas_pool_get_array(state, 'u', u, 2)
@@ -6738,6 +6743,9 @@ module atm_time_integration
             call mpas_pool_get_dimension(state, 'nCellsSolve', nCellsSolve)
             call mpas_pool_get_dimension(state, 'nEdgesSolve', nEdgesSolve)
             call mpas_pool_get_dimension(state, 'nVertLevels', nVertLevels)
+
+            call mpas_pool_get_array(fdda, 'fdda_u', fdda_u)
+            call mpas_pool_get_array(fdda, 'fdda_v', fdda_v)
 
             scalar_min = 1.0e20
             indexMax = -1
@@ -6882,6 +6890,49 @@ module atm_time_integration
             ! format statement should be '(a,f9.4,a,i4,a,f7.3,a,f8.3,a)'
             call mpas_log_write(' global max u: $r k=$i, $r lat, $r lon', intArgs=(/kMax_global/), &
                                 realArgs=(/global_scalar_max, latMax_global, lonMax_global/))
+
+
+            if (config_apply_fdda) then
+
+            scalar_max = -1.0e20
+            indexMax = -1
+            kMax = -1
+            latMax = 0.0
+            lonMax = 0.0
+            do iCell = 1, nCellsSolve
+            do k = 1, nVertLevels
+               spd = sqrt(fdda_u(k,iCell)*fdda_u(k,iCell) + fdda_v(k,iCell)*fdda_v(k,iCell))
+               if (spd > scalar_max) then
+                  scalar_max = spd
+                  indexMax = iCell
+                  kMax = k
+                  latMax = latCell(iCell)
+                  lonMax = lonCell(iCell)
+               end if
+            end do
+            end do
+            localVals(1) = scalar_max
+            localVals(2) = real(indexMax,kind=RKIND)
+            localVals(3) = real(kMax,kind=RKIND)
+            localVals(4) = latMax
+            localVals(5) = lonMax
+            call mpas_dmpar_maxattributes_real(domain % dminfo, scalar_max, localVals, globalVals)
+            global_scalar_max = globalVals(1)
+            indexMax_global = int(globalVals(2))
+            kMax_global = int(globalVals(3))
+            latMax_global = globalVals(4)
+            lonMax_global = globalVals(5)
+            latMax_global = latMax_global * 180.0_RKIND / pi_const
+            lonMax_global = lonMax_global * 180.0_RKIND / pi_const
+            if (lonMax_global > 180.0) then
+               lonMax_global = lonMax_global - 360.0
+            end if
+            ! format statement should be '(a,f9.4,a,i4,a,f7.3,a,f8.3,a)'
+            call mpas_log_write(' global max fdda_wsp: $r k=$i, $r lat, $r lon', intArgs=(/kMax_global/), &
+                                realArgs=(/global_scalar_max, latMax_global, lonMax_global/))
+
+            end if
+
 
             scalar_max = -1.0e20
             indexMax = -1

@@ -34,6 +34,9 @@
  character(len=*), parameter:: convAlarmID   = 'conv'
  character(len=*), parameter:: pblAlarmID    = 'pbl'
 
+!defines alarm to update fdda state:
+ character(len=*), parameter:: fddaAlarmID   = 'fdda'
+
 !defines alarm to update the surface boundary conditions:
  character(len=*), parameter:: sfcbdyAlarmID = 'sfcbdy'
 
@@ -148,7 +151,8 @@
                    config_sfc_albedo,         &
                    config_sst_update,         &
                    config_sstdiurn_update,    &
-                   config_deepsoiltemp_update
+                   config_deepsoiltemp_update,&
+                   config_apply_fdda
 
  character(len=StrKIND),pointer:: config_convection_scheme, &
                                   config_radt_lw_scheme,    &

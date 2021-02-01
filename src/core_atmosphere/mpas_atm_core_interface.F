@@ -119,8 +119,8 @@ module atm_core_interface
 
       logical, pointer :: iauActive
       character(len=StrKIND), pointer :: config_iau_option
-      logical, pointer :: limited_areaActive
-      logical, pointer :: config_apply_lbcs
+      logical, pointer :: limited_areaActive, nudgingActive
+      logical, pointer :: config_apply_lbcs, config_apply_fdda
       logical, pointer :: config_jedi_da, jedi_daActive
       integer :: local_ierr
 
@@ -154,6 +154,21 @@ module atm_core_interface
          limited_areaActive = .true.
       else
          limited_areaActive = .false.
+      end if
+
+      !
+      ! FDDA
+      !
+      nullify(config_apply_fdda)
+      call mpas_pool_get_config(configs, 'config_apply_fdda', config_apply_fdda)
+
+      nullify(nudgingActive)
+      call mpas_pool_get_package(packages, 'nudgingActive', nudgingActive)
+
+      if (config_apply_fdda) then
+         nudgingActive = .true.
+      else
+         nudgingActive = .false.
       end if
 
       !

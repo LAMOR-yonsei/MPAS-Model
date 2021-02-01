@@ -495,6 +495,8 @@ ifneq "$(PNETCDF)" ""
 	LIBS += -L$(PNETCDF)/lib -lpnetcdf
 endif
 
+LIBS += -L$(HDF5)/lib -lhdf5_hl -lhdf5
+
 RM = rm -f
 CPP = cpp -P -traditional
 RANLIB = ranlib

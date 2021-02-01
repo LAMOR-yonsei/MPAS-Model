@@ -43,7 +43,8 @@ OBJS = \
 	mpas_atmphys_todynamics.o          \
 	mpas_atmphys_update_surface.o      \
 	mpas_atmphys_update.o              \
-	mpas_atmphys_vars.o
+	mpas_atmphys_vars.o                \
+        mpas_atmphys_fdda.o
 
 lookup_tables:
 	./checkout_data_files.sh
@@ -82,7 +83,13 @@ mpas_atmphys_driver.o: \
 	mpas_atmphys_constants.o \
 	mpas_atmphys_interface.o \
 	mpas_atmphys_update.o \
-	mpas_atmphys_vars.o
+	mpas_atmphys_vars.o \
+        mpas_atmphys_fdda.o
+
+mpas_atmphys_fdda.o: \
+        mpas_atmphys_constants.o \
+        mpas_atmphys_utilities.o \
+        mpas_atmphys_vars.o
 
 mpas_atmphys_driver_cloudiness.o: \
 	mpas_atmphys_constants.o \

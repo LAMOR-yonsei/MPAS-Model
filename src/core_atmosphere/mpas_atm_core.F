@@ -483,6 +483,7 @@ module atm_core
       use mpas_timer
       use mpas_atm_boundaries, only : mpas_atm_update_bdy_tend
       use mpas_atm_diagnostics_manager, only : mpas_atm_diag_update, mpas_atm_diag_compute, mpas_atm_diag_reset
+      use mpas_atmphys_fdda
    
       implicit none
    
@@ -491,7 +492,7 @@ module atm_core
    
       real (kind=RKIND), pointer :: dt
       logical, pointer :: config_do_restart
-      logical, pointer :: config_apply_lbcs
+      logical, pointer :: config_apply_lbcs, config_apply_fdda
       type (block_type), pointer :: block_ptr
 
       type (MPAS_Time_Type) :: currTime
@@ -578,6 +579,7 @@ module atm_core
       call mpas_pool_get_subpool(block_ptr % structs, 'diag_physics', diag_physics)
 
       call mpas_pool_get_config(domain % blocklist % configs, 'config_apply_lbcs', config_apply_lbcs)
+      call mpas_pool_get_config(domain % blocklist % configs, 'config_apply_fdda', config_apply_fdda)
 
       !
       ! Read initial boundary state
@@ -597,6 +599,29 @@ module atm_core
             block_ptr => block_ptr % next
          end do
       end if
+
+      !------------------------------------------------------------------------------------------------------------------------------
+      !SHP-fdda
+      !
+      ! Read initial state for FDDA
+      !
+      if (config_apply_fdda .and. &
+          MPAS_stream_mgr_ringing_alarms(domain % streamManager, streamID='fdda_in', direction=MPAS_STREAM_INPUT, ierr=ierr)) then
+         block_ptr => domain % blocklist
+         do while (associated(block_ptr))
+            call mpas_atm_get_fdda_tend(clock, domain % streamManager, block_ptr, .true., ierr)
+            call mpas_log_write('SHP0:: FDDA PROCESS .. data from '//trim(timeStamp))
+            if (ierr /= 0) then
+               currTime = mpas_get_clock_time(clock, MPAS_NOW, ierr)
+               call mpas_get_time(curr_time=currTime, dateTimeString=timeStamp)
+               call mpas_log_write('Failed to process FDDA data at '//trim(timeStamp), messageType=MPAS_LOG_ERR)
+               return
+            end if
+
+            block_ptr => block_ptr % next
+         end do
+      end if
+      !------------------------------------------------------------------------------------------------------------------------------
 
       ! During integration, time level 1 stores the model state at the beginning of the
       !   time step, and time level 2 stores the state advanced dt in time by timestep(...)
@@ -629,6 +654,34 @@ module atm_core
          ! Regardless of whether boundary tendencies were updated, above, we do not want to read the 'lbc_in' stream
          ! as a general input stream, below.
          call MPAS_stream_mgr_reset_alarms(domain % streamManager, streamID='lbc_in', direction=MPAS_STREAM_INPUT, ierr=ierr)
+
+         !------------------------------------------------------------------------------------------------------------------------------
+         !SHP-fdda
+
+         !
+         ! Read current state and save them for FDDA
+         !
+         if (config_apply_fdda .and. &
+             MPAS_stream_mgr_ringing_alarms(domain % streamManager, streamID='fdda_in', direction=MPAS_STREAM_INPUT, ierr=ierr)) then
+            block_ptr => domain % blocklist
+            do while (associated(block_ptr))
+               call mpas_atm_get_fdda_tend(clock, domain % streamManager, block_ptr, .false., ierr)
+               call mpas_log_write('SHP1:: FDDA PROCESS .. data from '//trim(timeStamp))
+               if (ierr /= 0) then
+                  call mpas_log_write('Failed to process FDDA data at '//trim(timeStamp), messageType=MPAS_LOG_ERR)
+                  return
+               end if
+
+               block_ptr => block_ptr % next
+            end do
+         end if
+
+         ! Regardless of whether fdda-state were updated, above, we do not want to read the 'fdda_in' stream
+         ! as a general input stream, below.
+         call MPAS_stream_mgr_reset_alarms(domain % streamManager, streamID='fdda_in', direction=MPAS_STREAM_INPUT, ierr=ierr)
+
+         !SHP-fdda
+         !------------------------------------------------------------------------------------------------------------------------------
 
 
          !
@@ -1085,7 +1138,7 @@ module atm_core
       integer, pointer :: nCells, nVertLevels
       real (kind=RKIND), pointer :: config_xnutr, config_zd
       real (kind=RKIND) :: z, zt, m1, pii
-      real (kind=RKIND), dimension(:,:), pointer :: dss, zgrid
+      real (kind=RKIND), dimension(:,:), pointer :: dss, zgrid, dss_fdda
       real (kind=RKIND), dimension(:), pointer :: meshDensity
       real (kind=RKIND) :: dx_scale_power
 
@@ -1102,8 +1155,11 @@ module atm_core
       call mpas_pool_get_config(configs, 'config_zd', config_zd)
       call mpas_pool_get_config(configs, 'config_xnutr', config_xnutr)
 
+      call mpas_pool_get_array(mesh, 'dss_fdda', dss_fdda)
+
       dx_scale_power = 1.0
       dss(:,:) = 0.0
+      dss_fdda(:,:) = 0.0
       do iCell=1,nCells
          zt = zgrid(nVertLevels+1,iCell)
          do k=1,nVertLevels
@@ -1111,7 +1167,18 @@ module atm_core
             if (z > config_zd) then
                dss(k,iCell) = config_xnutr*sin(0.5*pii*(z-config_zd)/(zt-config_zd))**2.0
                dss(k,iCell) = dss(k,iCell) / meshDensity(iCell)**(0.25*dx_scale_power)
+ 
+               !SHP-fdda
+               dss_fdda(k,iCell) = tanh(2.5*(z-config_zd)/(zt-config_zd))
+               dss_fdda(k,iCell) = dss_fdda(k,iCell) / meshDensity(iCell)**(0.25*dx_scale_power)
             end if
+
+            !SHP-fdda
+            !H = zt-z_pbl
+            !if (z > z_pbl) then
+            !   dss_fdda(k,iCell) = tanh(2.5*(z-z_pbl)/H)
+            !   dss_fdda(k,iCell) = dss_fdda(k,iCell) / meshDensity(iCell)**(0.25*dx_scale_power)
+            !end if
          end do
       end do
 
