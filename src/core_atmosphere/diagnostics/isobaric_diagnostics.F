@@ -29,19 +29,19 @@ module isobaric_diagnostics
                need_relhum_200, need_relhum_250, need_relhum_500, need_relhum_700, need_relhum_850, need_relhum_925, &
                need_dewpoint_200, need_dewpoint_250, need_dewpoint_500, need_dewpoint_700, need_dewpoint_850, need_dewpoint_925, &
                need_temp_200, need_temp_250, need_temp_500, need_temp_700, need_temp_850, need_temp_925, &
-               need_temp_300, need_temp_150, need_temp_100, need_temp_70, need_temp_50, need_temp_30, need_temp_20, need_temp_10, need_temp_7, need_temp_5, need_temp_3, need_temp_2, need_temp_1, &
+               need_temp_300, need_temp_150, need_temp_100, need_temp_70, need_temp_50, need_temp_40, need_temp_30, need_temp_20, need_temp_10, need_temp_7, need_temp_5, need_temp_4, need_temp_3, need_temp_2, need_temp_1, &
                need_height_200, need_height_250, need_height_500, need_height_700, need_height_850, need_height_925, &
-               need_height_300, need_height_150, need_height_100, need_height_70, need_height_50, need_height_30, need_height_20, need_height_10, need_height_7, need_height_5, need_height_3, need_height_2, need_height_1, &
+               need_height_300, need_height_150, need_height_100, need_height_70, need_height_50, need_height_40, need_height_30, need_height_20, need_height_10, need_height_7, need_height_5, need_height_3, need_height_4, need_height_2, need_height_1, &
                need_uzonal_200, need_uzonal_250, need_uzonal_500, need_uzonal_700, need_uzonal_850, need_uzonal_925, &
-               need_uzonal_300, need_uzonal_150, need_uzonal_100, need_uzonal_70, need_uzonal_50, need_uzonal_30, need_uzonal_20, need_uzonal_10, need_uzonal_7, need_uzonal_5, need_uzonal_3, need_uzonal_2, need_uzonal_1, &
+               need_uzonal_300, need_uzonal_150, need_uzonal_100, need_uzonal_70, need_uzonal_50, need_uzonal_40, need_uzonal_30, need_uzonal_20, need_uzonal_10, need_uzonal_7, need_uzonal_5, need_uzonal_4, need_uzonal_3, need_uzonal_2, need_uzonal_1, &
                need_umeridional_200, need_umeridional_250, need_umeridional_500, need_umeridional_700, need_umeridional_850, need_umeridional_925, &
-               need_umeridional_300, need_umeridional_150, need_umeridional_100, need_umeridional_70, need_umeridional_50, need_umeridional_30, need_umeridional_20, need_umeridional_10, need_umeridional_7, need_umeridional_5, need_umeridional_3, need_umeridional_2, need_umeridional_1, &
+               need_umeridional_300, need_umeridional_150, need_umeridional_100, need_umeridional_70, need_umeridional_50, need_umeridional_40, need_umeridional_30, need_umeridional_20, need_umeridional_10, need_umeridional_7, need_umeridional_5, need_umeridional_4, need_umeridional_3, need_umeridional_2, need_umeridional_1, &
                need_w_200, need_w_250, need_w_500, need_w_700, need_w_850, need_w_925, &
-               need_w_300, need_w_150, need_w_100, need_w_70, need_w_50, need_w_30, need_w_20, need_w_10, need_w_7, need_w_5, need_w_3, need_w_2, need_w_1, &
+               need_w_300, need_w_150, need_w_100, need_w_70, need_w_50, need_w_40, need_w_30, need_w_20, need_w_10, need_w_7, need_w_5, need_w_4, need_w_3, need_w_2, need_w_1, &
                need_vorticity_200, need_vorticity_250, need_vorticity_500, need_vorticity_700, need_vorticity_850, need_vorticity_925, &
-               need_vorticity_300, need_vorticity_150, need_vorticity_100, need_vorticity_70, need_vorticity_50, need_vorticity_30, need_vorticity_20, need_vorticity_10, need_vorticity_7, need_vorticity_5, need_vorticity_3, need_vorticity_2, need_vorticity_1, &
+               need_vorticity_300, need_vorticity_150, need_vorticity_100, need_vorticity_70, need_vorticity_50, need_vorticity_40, need_vorticity_30, need_vorticity_20, need_vorticity_10, need_vorticity_7, need_vorticity_5, need_vorticity_4, need_vorticity_3, need_vorticity_2, need_vorticity_1, &
                need_divergence_200, need_divergence_250, need_divergence_500, need_divergence_700, need_divergence_850, need_divergence_925, &
-               need_divergence_300, need_divergence_150, need_divergence_100, need_divergence_70, need_divergence_50, need_divergence_30, need_divergence_20, need_divergence_10, need_divergence_7, need_divergence_5, need_divergence_3, need_divergence_2, need_divergence_1, &
+               need_divergence_300, need_divergence_150, need_divergence_100, need_divergence_70, need_divergence_50, need_divergence_40, need_divergence_30, need_divergence_20, need_divergence_10, need_divergence_7, need_divergence_5, need_divergence_4, need_divergence_3, need_divergence_2, need_divergence_1, &
                need_t_isobaric, need_z_isobaric, need_meanT_500_300, &
                need_uzonal_8km, need_uzonal_9km, need_uzonal_10km, need_uzonal_12km, need_uzonal_13km, need_uzonal_14km, &
                need_uzonal_16km, need_uzonal_17km, need_uzonal_18km, need_uzonal_20km, need_uzonal_24km, need_uzonal_28km, &
@@ -195,6 +195,9 @@ module isobaric_diagnostics
         need_temp_50 = MPAS_field_will_be_written('temperature_50hPa')
         need_temp = need_temp .or. need_temp_50
         need_any_diags = need_any_diags .or. need_temp_50
+        need_temp_40 = MPAS_field_will_be_written('temperature_40hPa')
+        need_temp = need_temp .or. need_temp_40
+        need_any_diags = need_any_diags .or. need_temp_40
         need_temp_30 = MPAS_field_will_be_written('temperature_30hPa')
         need_temp = need_temp .or. need_temp_30
         need_any_diags = need_any_diags .or. need_temp_30
@@ -210,6 +213,9 @@ module isobaric_diagnostics
         need_temp_5 = MPAS_field_will_be_written('temperature_5hPa')
         need_temp = need_temp .or. need_temp_5
         need_any_diags = need_any_diags .or. need_temp_5
+        need_temp_4 = MPAS_field_will_be_written('temperature_4hPa')
+        need_temp = need_temp .or. need_temp_4
+        need_any_diags = need_any_diags .or. need_temp_4
         need_temp_3 = MPAS_field_will_be_written('temperature_3hPa')
         need_temp = need_temp .or. need_temp_3
         need_any_diags = need_any_diags .or. need_temp_3
@@ -253,6 +259,9 @@ module isobaric_diagnostics
         need_height_50 = MPAS_field_will_be_written('height_50hPa')
         need_height = need_height .or. need_height_50
         need_any_diags = need_any_diags .or. need_height_50
+        need_height_40 = MPAS_field_will_be_written('height_40hPa')
+        need_height = need_height .or. need_height_40
+        need_any_diags = need_any_diags .or. need_height_40
         need_height_30 = MPAS_field_will_be_written('height_30hPa')
         need_height = need_height .or. need_height_30
         need_any_diags = need_any_diags .or. need_height_30
@@ -268,6 +277,9 @@ module isobaric_diagnostics
         need_height_5 = MPAS_field_will_be_written('height_5hPa')
         need_height = need_height .or. need_height_5
         need_any_diags = need_any_diags .or. need_height_5
+        need_height_4 = MPAS_field_will_be_written('height_4hPa')
+        need_height = need_height .or. need_height_4
+        need_any_diags = need_any_diags .or. need_height_4
         need_height_3 = MPAS_field_will_be_written('height_3hPa')
         need_height = need_height .or. need_height_3
         need_any_diags = need_any_diags .or. need_height_3
@@ -311,6 +323,9 @@ module isobaric_diagnostics
         need_uzonal_50 = MPAS_field_will_be_written('uzonal_50hPa')
         need_uzonal = need_uzonal .or. need_uzonal_50
         need_any_diags = need_any_diags .or. need_uzonal_50
+        need_uzonal_40 = MPAS_field_will_be_written('uzonal_40hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_40
+        need_any_diags = need_any_diags .or. need_uzonal_40
         need_uzonal_30 = MPAS_field_will_be_written('uzonal_30hPa')
         need_uzonal = need_uzonal .or. need_uzonal_30
         need_any_diags = need_any_diags .or. need_uzonal_30
@@ -326,6 +341,9 @@ module isobaric_diagnostics
         need_uzonal_5 = MPAS_field_will_be_written('uzonal_5hPa')
         need_uzonal = need_uzonal .or. need_uzonal_5
         need_any_diags = need_any_diags .or. need_uzonal_5
+        need_uzonal_4 = MPAS_field_will_be_written('uzonal_4hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_4
+        need_any_diags = need_any_diags .or. need_uzonal_4
         need_uzonal_3 = MPAS_field_will_be_written('uzonal_3hPa')
         need_uzonal = need_uzonal .or. need_uzonal_3
         need_any_diags = need_any_diags .or. need_uzonal_3
@@ -427,6 +445,9 @@ module isobaric_diagnostics
         need_w_50 = MPAS_field_will_be_written('w_50hPa')
         need_w = need_w .or. need_w_50
         need_any_diags = need_any_diags .or. need_w_50
+        need_w_40 = MPAS_field_will_be_written('w_40hPa')
+        need_w = need_w .or. need_w_40
+        need_any_diags = need_any_diags .or. need_w_40
         need_w_30 = MPAS_field_will_be_written('w_30hPa')
         need_w = need_w .or. need_w_30
         need_any_diags = need_any_diags .or. need_w_30
@@ -442,6 +463,9 @@ module isobaric_diagnostics
         need_w_5 = MPAS_field_will_be_written('w_5hPa')
         need_w = need_w .or. need_w_5
         need_any_diags = need_any_diags .or. need_w_5
+        need_w_4 = MPAS_field_will_be_written('w_4hPa')
+        need_w = need_w .or. need_w_4
+        need_any_diags = need_any_diags .or. need_w_4
         need_w_3 = MPAS_field_will_be_written('w_3hPa')
         need_w = need_w .or. need_w_3
         need_any_diags = need_any_diags .or. need_w_3
@@ -485,6 +509,9 @@ module isobaric_diagnostics
         need_vorticity_50 = MPAS_field_will_be_written('vorticity_50hPa')
         need_vorticity = need_vorticity .or. need_vorticity_50
         need_any_diags = need_any_diags .or. need_vorticity_50
+        need_vorticity_40 = MPAS_field_will_be_written('vorticity_40hPa')
+        need_vorticity = need_vorticity .or. need_vorticity_40
+        need_any_diags = need_any_diags .or. need_vorticity_40
         need_vorticity_30 = MPAS_field_will_be_written('vorticity_30hPa')
         need_vorticity = need_vorticity .or. need_vorticity_30
         need_any_diags = need_any_diags .or. need_vorticity_30
@@ -500,6 +527,9 @@ module isobaric_diagnostics
         need_vorticity_5 = MPAS_field_will_be_written('vorticity_5hPa')
         need_vorticity = need_vorticity .or. need_vorticity_5
         need_any_diags = need_any_diags .or. need_vorticity_5
+        need_vorticity_4 = MPAS_field_will_be_written('vorticity_4hPa')
+        need_vorticity = need_vorticity .or. need_vorticity_4
+        need_any_diags = need_any_diags .or. need_vorticity_4
         need_vorticity_3 = MPAS_field_will_be_written('vorticity_3hPa')
         need_vorticity = need_vorticity .or. need_vorticity_3
         need_any_diags = need_any_diags .or. need_vorticity_3
@@ -543,6 +573,9 @@ module isobaric_diagnostics
         need_divergence_50 = MPAS_field_will_be_written('divergence_50hPa')
         need_divergence = need_divergence .or. need_divergence_50
         need_any_diags = need_any_diags .or. need_divergence_50
+        need_divergence_40 = MPAS_field_will_be_written('divergence_40hPa')
+        need_divergence = need_divergence .or. need_divergence_40
+        need_any_diags = need_any_diags .or. need_divergence_40
         need_divergence_30 = MPAS_field_will_be_written('divergence_30hPa')
         need_divergence = need_divergence .or. need_divergence_30
         need_any_diags = need_any_diags .or. need_divergence_30
@@ -558,6 +591,9 @@ module isobaric_diagnostics
         need_divergence_5 = MPAS_field_will_be_written('divergence_5hPa')
         need_divergence = need_divergence .or. need_divergence_5
         need_any_diags = need_any_diags .or. need_divergence_5
+        need_divergence_4 = MPAS_field_will_be_written('divergence_4hPa')
+        need_divergence = need_divergence .or. need_divergence_4
+        need_any_diags = need_any_diags .or. need_divergence_4
         need_divergence_3 = MPAS_field_will_be_written('divergence_3hPa')
         need_divergence = need_divergence .or. need_divergence_3
         need_any_diags = need_any_diags .or. need_divergence_3
@@ -851,11 +887,13 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: temperature_100hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_70hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_50hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_40hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_30hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_20hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_10hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_7hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_5hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_4hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_3hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_2hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_1hPa
@@ -885,11 +923,13 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: uzonal_100hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_70hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_50hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_40hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_30hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_20hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_10hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_7hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_5hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_4hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_3hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_2hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_1hPa
@@ -905,11 +945,13 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: umeridional_100hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_70hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_50hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_40hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_30hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_20hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_10hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_7hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_5hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_4hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_3hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_2hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_1hPa
@@ -924,11 +966,13 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: height_100hPa
         real (kind=RKIND), dimension(:), pointer :: height_70hPa
         real (kind=RKIND), dimension(:), pointer :: height_50hPa
+        real (kind=RKIND), dimension(:), pointer :: height_40hPa
         real (kind=RKIND), dimension(:), pointer :: height_30hPa
         real (kind=RKIND), dimension(:), pointer :: height_20hPa
         real (kind=RKIND), dimension(:), pointer :: height_10hPa
         real (kind=RKIND), dimension(:), pointer :: height_7hPa
         real (kind=RKIND), dimension(:), pointer :: height_5hPa
+        real (kind=RKIND), dimension(:), pointer :: height_4hPa
         real (kind=RKIND), dimension(:), pointer :: height_3hPa
         real (kind=RKIND), dimension(:), pointer :: height_2hPa
         real (kind=RKIND), dimension(:), pointer :: height_1hPa
@@ -944,11 +988,13 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: w_100hPa
         real (kind=RKIND), dimension(:), pointer :: w_70hPa
         real (kind=RKIND), dimension(:), pointer :: w_50hPa
+        real (kind=RKIND), dimension(:), pointer :: w_40hPa
         real (kind=RKIND), dimension(:), pointer :: w_30hPa
         real (kind=RKIND), dimension(:), pointer :: w_20hPa
         real (kind=RKIND), dimension(:), pointer :: w_10hPa
         real (kind=RKIND), dimension(:), pointer :: w_7hPa
         real (kind=RKIND), dimension(:), pointer :: w_5hPa
+        real (kind=RKIND), dimension(:), pointer :: w_4hPa
         real (kind=RKIND), dimension(:), pointer :: w_3hPa
         real (kind=RKIND), dimension(:), pointer :: w_2hPa
         real (kind=RKIND), dimension(:), pointer :: w_1hPa
@@ -964,11 +1010,13 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: vorticity_100hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_70hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_50hPa
+        real (kind=RKIND), dimension(:), pointer :: vorticity_40hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_30hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_20hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_10hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_7hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_5hPa
+        real (kind=RKIND), dimension(:), pointer :: vorticity_4hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_3hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_2hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_1hPa
@@ -984,11 +1032,13 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: divergence_100hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_70hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_50hPa
+        real (kind=RKIND), dimension(:), pointer :: divergence_40hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_30hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_20hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_10hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_7hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_5hPa
+        real (kind=RKIND), dimension(:), pointer :: divergence_4hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_3hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_2hPa
         real (kind=RKIND), dimension(:), pointer :: divergence_1hPa
@@ -1142,11 +1192,13 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'temperature_100hPa', temperature_100hPa)
         call mpas_pool_get_array(diag, 'temperature_70hPa', temperature_70hPa)
         call mpas_pool_get_array(diag, 'temperature_50hPa', temperature_50hPa)
+        call mpas_pool_get_array(diag, 'temperature_40hPa', temperature_40hPa)
         call mpas_pool_get_array(diag, 'temperature_30hPa', temperature_30hPa)
         call mpas_pool_get_array(diag, 'temperature_20hPa', temperature_20hPa)
         call mpas_pool_get_array(diag, 'temperature_10hPa', temperature_10hPa)
         call mpas_pool_get_array(diag, 'temperature_7hPa', temperature_7hPa)
         call mpas_pool_get_array(diag, 'temperature_5hPa', temperature_5hPa)
+        call mpas_pool_get_array(diag, 'temperature_4hPa', temperature_4hPa)
         call mpas_pool_get_array(diag, 'temperature_3hPa', temperature_3hPa)
         call mpas_pool_get_array(diag, 'temperature_2hPa', temperature_2hPa)
         call mpas_pool_get_array(diag, 'temperature_1hPa', temperature_1hPa)
@@ -1176,11 +1228,13 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'uzonal_100hPa', uzonal_100hPa)
         call mpas_pool_get_array(diag, 'uzonal_70hPa', uzonal_70hPa)
         call mpas_pool_get_array(diag, 'uzonal_50hPa', uzonal_50hPa)
+        call mpas_pool_get_array(diag, 'uzonal_40hPa', uzonal_40hPa)
         call mpas_pool_get_array(diag, 'uzonal_30hPa', uzonal_30hPa)
         call mpas_pool_get_array(diag, 'uzonal_20hPa', uzonal_20hPa)
         call mpas_pool_get_array(diag, 'uzonal_10hPa', uzonal_10hPa)
         call mpas_pool_get_array(diag, 'uzonal_7hPa', uzonal_7hPa)
         call mpas_pool_get_array(diag, 'uzonal_5hPa', uzonal_5hPa)
+        call mpas_pool_get_array(diag, 'uzonal_4hPa', uzonal_4hPa)
         call mpas_pool_get_array(diag, 'uzonal_3hPa', uzonal_3hPa)
         call mpas_pool_get_array(diag, 'uzonal_2hPa', uzonal_2hPa)
         call mpas_pool_get_array(diag, 'uzonal_1hPa', uzonal_1hPa)
@@ -1196,11 +1250,13 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'umeridional_100hPa', umeridional_100hPa)
         call mpas_pool_get_array(diag, 'umeridional_70hPa', umeridional_70hPa)
         call mpas_pool_get_array(diag, 'umeridional_50hPa', umeridional_50hPa)
+        call mpas_pool_get_array(diag, 'umeridional_40hPa', umeridional_40hPa)
         call mpas_pool_get_array(diag, 'umeridional_30hPa', umeridional_30hPa)
         call mpas_pool_get_array(diag, 'umeridional_20hPa', umeridional_20hPa)
         call mpas_pool_get_array(diag, 'umeridional_10hPa', umeridional_10hPa)
         call mpas_pool_get_array(diag, 'umeridional_7hPa', umeridional_7hPa)
         call mpas_pool_get_array(diag, 'umeridional_5hPa', umeridional_5hPa)
+        call mpas_pool_get_array(diag, 'umeridional_4hPa', umeridional_4hPa)
         call mpas_pool_get_array(diag, 'umeridional_3hPa', umeridional_3hPa)
         call mpas_pool_get_array(diag, 'umeridional_2hPa', umeridional_2hPa)
         call mpas_pool_get_array(diag, 'umeridional_1hPa', umeridional_1hPa)
@@ -1215,11 +1271,13 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'height_100hPa', height_100hPa)
         call mpas_pool_get_array(diag, 'height_70hPa', height_70hPa)
         call mpas_pool_get_array(diag, 'height_50hPa', height_50hPa)
+        call mpas_pool_get_array(diag, 'height_40hPa', height_40hPa)
         call mpas_pool_get_array(diag, 'height_30hPa', height_30hPa)
         call mpas_pool_get_array(diag, 'height_20hPa', height_20hPa)
         call mpas_pool_get_array(diag, 'height_10hPa', height_10hPa)
         call mpas_pool_get_array(diag, 'height_7hPa', height_7hPa)
         call mpas_pool_get_array(diag, 'height_5hPa', height_5hPa)
+        call mpas_pool_get_array(diag, 'height_4hPa', height_4hPa)
         call mpas_pool_get_array(diag, 'height_3hPa', height_3hPa)
         call mpas_pool_get_array(diag, 'height_2hPa', height_2hPa)
         call mpas_pool_get_array(diag, 'height_1hPa', height_1hPa)
@@ -1235,11 +1293,13 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'w_100hPa', w_100hPa)
         call mpas_pool_get_array(diag, 'w_70hPa', w_70hPa)
         call mpas_pool_get_array(diag, 'w_50hPa', w_50hPa)
+        call mpas_pool_get_array(diag, 'w_40hPa', w_40hPa)
         call mpas_pool_get_array(diag, 'w_30hPa', w_30hPa)
         call mpas_pool_get_array(diag, 'w_20hPa', w_20hPa)
         call mpas_pool_get_array(diag, 'w_10hPa', w_10hPa)
         call mpas_pool_get_array(diag, 'w_7hPa', w_7hPa)
         call mpas_pool_get_array(diag, 'w_5hPa', w_5hPa)
+        call mpas_pool_get_array(diag, 'w_4hPa', w_4hPa)
         call mpas_pool_get_array(diag, 'w_3hPa', w_3hPa)
         call mpas_pool_get_array(diag, 'w_2hPa', w_2hPa)
         call mpas_pool_get_array(diag, 'w_1hPa', w_1hPa)
@@ -1255,11 +1315,13 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'vorticity_100hPa', vorticity_100hPa)
         call mpas_pool_get_array(diag, 'vorticity_70hPa', vorticity_70hPa)
         call mpas_pool_get_array(diag, 'vorticity_50hPa', vorticity_50hPa)
+        call mpas_pool_get_array(diag, 'vorticity_40hPa', vorticity_40hPa)
         call mpas_pool_get_array(diag, 'vorticity_30hPa', vorticity_30hPa)
         call mpas_pool_get_array(diag, 'vorticity_20hPa', vorticity_20hPa)
         call mpas_pool_get_array(diag, 'vorticity_10hPa', vorticity_10hPa)
         call mpas_pool_get_array(diag, 'vorticity_7hPa', vorticity_7hPa)
         call mpas_pool_get_array(diag, 'vorticity_5hPa', vorticity_5hPa)
+        call mpas_pool_get_array(diag, 'vorticity_4hPa', vorticity_4hPa)
         call mpas_pool_get_array(diag, 'vorticity_3hPa', vorticity_3hPa)
         call mpas_pool_get_array(diag, 'vorticity_2hPa', vorticity_2hPa)
         call mpas_pool_get_array(diag, 'vorticity_1hPa', vorticity_1hPa)
@@ -1275,11 +1337,13 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'divergence_100hPa', divergence_100hPa)
         call mpas_pool_get_array(diag, 'divergence_70hPa', divergence_70hPa)
         call mpas_pool_get_array(diag, 'divergence_50hPa', divergence_50hPa)
+        call mpas_pool_get_array(diag, 'divergence_40hPa', divergence_40hPa)
         call mpas_pool_get_array(diag, 'divergence_30hPa', divergence_30hPa)
         call mpas_pool_get_array(diag, 'divergence_20hPa', divergence_20hPa)
         call mpas_pool_get_array(diag, 'divergence_10hPa', divergence_10hPa)
         call mpas_pool_get_array(diag, 'divergence_7hPa', divergence_7hPa)
         call mpas_pool_get_array(diag, 'divergence_5hPa', divergence_5hPa)
+        call mpas_pool_get_array(diag, 'divergence_4hPa', divergence_4hPa)
         call mpas_pool_get_array(diag, 'divergence_3hPa', divergence_3hPa)
         call mpas_pool_get_array(diag, 'divergence_2hPa', divergence_2hPa)
         call mpas_pool_get_array(diag, 'divergence_1hPa', divergence_1hPa)
@@ -1467,7 +1531,7 @@ module isobaric_diagnostics
         end if
        
        !interpolation to fixed pressure levels for fields located at cells centers and at mass points:
-        nIntP = 18
+        nIntP = 20
         if(.not.allocated(field_interp)) allocate(field_interp(nCells,nIntP) )
         if(.not.allocated(press_interp)) allocate(press_interp(nCells,nIntP) )
         do iCell = 1, nCells
@@ -1482,15 +1546,17 @@ module isobaric_diagnostics
            press_interp(iCell,8) = 100.0_RKIND
            press_interp(iCell,9) = 70.0_RKIND
            press_interp(iCell,10) = 50.0_RKIND
-           press_interp(iCell,11) = 30.0_RKIND
-           press_interp(iCell,12) = 20.0_RKIND
+           press_interp(iCell,11) = 40.0_RKIND
+           press_interp(iCell,12) = 30.0_RKIND
+           press_interp(iCell,13) = 20.0_RKIND
 
-           press_interp(iCell,13) = 10.0_RKIND
-           press_interp(iCell,14) = 7.0_RKIND
-           press_interp(iCell,15) = 5.0_RKIND
-           press_interp(iCell,16) = 3.0_RKIND
-           press_interp(iCell,17) = 2.0_RKIND
-           press_interp(iCell,18) = 1.0_RKIND
+           press_interp(iCell,14) = 10.0_RKIND
+           press_interp(iCell,15) = 7.0_RKIND
+           press_interp(iCell,16) = 5.0_RKIND
+           press_interp(iCell,17) = 4.0_RKIND
+           press_interp(iCell,18) = 3.0_RKIND
+           press_interp(iCell,19) = 2.0_RKIND
+           press_interp(iCell,20) = 1.0_RKIND
         enddo
 
         if(.not.allocated(p_interp)) allocate(p_interp(nIntP) )
@@ -1498,25 +1564,28 @@ module isobaric_diagnostics
            p_interp(2) = 2.0_RKIND
            p_interp(3) = 3.0_RKIND
 
-           p_interp(4) = 5.0_RKIND
-           p_interp(5) = 7.0_RKIND
-           p_interp(6) = 10.0_RKIND
+           p_interp(4) = 4.0_RKIND
+           p_interp(5) = 5.0_RKIND
+           p_interp(6) = 7.0_RKIND
 
-           p_interp(7) = 20.0_RKIND
-           p_interp(8) = 30.0_RKIND
-           p_interp(9) = 50.0_RKIND
+           p_interp(7) = 10.0_RKIND
+           p_interp(8) = 20.0_RKIND
+           p_interp(9) = 30.0_RKIND
 
-           p_interp(10) = 70.0_RKIND
-           p_interp(11) = 100.0_RKIND
-           p_interp(12) = 150.0_RKIND
+           p_interp(10) = 40.0_RKIND
+           p_interp(11) = 50.0_RKIND
+           p_interp(12) = 70.0_RKIND
 
-           p_interp(13) = 200.0_RKIND
-           p_interp(14) = 250.0_RKIND
-           p_interp(15) = 300.0_RKIND
+           p_interp(13) = 100.0_RKIND
+           p_interp(14) = 150.0_RKIND
+           p_interp(15) = 200.0_RKIND
 
-           p_interp(16) = 500.0_RKIND
-           p_interp(17) = 700.0_RKIND
-           p_interp(18) = 850.0_RKIND
+           p_interp(16) = 250.0_RKIND
+           p_interp(17) = 300.0_RKIND
+
+           p_interp(18) = 500.0_RKIND
+           p_interp(19) = 700.0_RKIND
+           p_interp(20) = 850.0_RKIND
        
         if(.not.allocated(press_in)) allocate(press_in(nCells,nVertLevels))
         do iCell = 1, nCells
@@ -1544,25 +1613,27 @@ module isobaric_diagnostics
             temperature_2hPa(1:nCells) = field_interp(1:nCells,2)
             temperature_3hPa(1:nCells) = field_interp(1:nCells,3)
 
-            temperature_5hPa(1:nCells) = field_interp(1:nCells,4)
-            temperature_7hPa(1:nCells) = field_interp(1:nCells,5)
-            temperature_10hPa(1:nCells) = field_interp(1:nCells,6)
+            temperature_4hPa(1:nCells) = field_interp(1:nCells,4)
+            temperature_5hPa(1:nCells) = field_interp(1:nCells,5)
+            temperature_7hPa(1:nCells) = field_interp(1:nCells,6)
 
-            temperature_20hPa(1:nCells) = field_interp(1:nCells,7)
-            temperature_30hPa(1:nCells) = field_interp(1:nCells,8)
-            temperature_50hPa(1:nCells) = field_interp(1:nCells,9)
+            temperature_10hPa(1:nCells) = field_interp(1:nCells,7)
+            temperature_20hPa(1:nCells) = field_interp(1:nCells,8)
+            temperature_30hPa(1:nCells) = field_interp(1:nCells,9)
 
-            temperature_70hPa(1:nCells) = field_interp(1:nCells,10)
-            temperature_100hPa(1:nCells) = field_interp(1:nCells,11)
-            temperature_150hPa(1:nCells) = field_interp(1:nCells,12)
+            temperature_40hPa(1:nCells) = field_interp(1:nCells,10)
+            temperature_50hPa(1:nCells) = field_interp(1:nCells,11)
+            temperature_70hPa(1:nCells) = field_interp(1:nCells,12)
 
-            temperature_200hPa(1:nCells) = field_interp(1:nCells,13)
-            temperature_250hPa(1:nCells) = field_interp(1:nCells,14)
-            temperature_300hPa(1:nCells) = field_interp(1:nCells,15)
+            temperature_100hPa(1:nCells) = field_interp(1:nCells,13)
+            temperature_150hPa(1:nCells) = field_interp(1:nCells,14)
+            temperature_200hPa(1:nCells) = field_interp(1:nCells,15)
+            temperature_250hPa(1:nCells) = field_interp(1:nCells,16)
+            temperature_300hPa(1:nCells) = field_interp(1:nCells,17)
 
-            temperature_500hPa(1:nCells) = field_interp(1:nCells,16)
-            temperature_700hPa(1:nCells) = field_interp(1:nCells,17)
-            temperature_850hPa(1:nCells) = field_interp(1:nCells,18)
+            temperature_500hPa(1:nCells) = field_interp(1:nCells,18)
+            temperature_700hPa(1:nCells) = field_interp(1:nCells,19)
+            temperature_850hPa(1:nCells) = field_interp(1:nCells,20)
            ! write(0,*) '--- end interpolate temperature:'
         end if
        
@@ -1619,25 +1690,27 @@ module isobaric_diagnostics
             uzonal_2hPa(1:nCells) = field_interp(1:nCells,2)
             uzonal_3hPa(1:nCells) = field_interp(1:nCells,3)
 
-            uzonal_5hPa(1:nCells) = field_interp(1:nCells,4)
-            uzonal_7hPa(1:nCells) = field_interp(1:nCells,5)
-            uzonal_10hPa(1:nCells) = field_interp(1:nCells,6)
+            uzonal_4hPa(1:nCells) = field_interp(1:nCells,4)
+            uzonal_5hPa(1:nCells) = field_interp(1:nCells,5)
+            uzonal_7hPa(1:nCells) = field_interp(1:nCells,6)
 
-            uzonal_20hPa(1:nCells) = field_interp(1:nCells,7)
-            uzonal_30hPa(1:nCells) = field_interp(1:nCells,8)
-            uzonal_50hPa(1:nCells) = field_interp(1:nCells,9)
+            uzonal_10hPa(1:nCells) = field_interp(1:nCells,7)
+            uzonal_20hPa(1:nCells) = field_interp(1:nCells,8)
+            uzonal_30hPa(1:nCells) = field_interp(1:nCells,9)
 
-            uzonal_70hPa(1:nCells) = field_interp(1:nCells,10)
-            uzonal_100hPa(1:nCells) = field_interp(1:nCells,11)
-            uzonal_150hPa(1:nCells) = field_interp(1:nCells,12)
+            uzonal_40hPa(1:nCells) = field_interp(1:nCells,10)
+            uzonal_50hPa(1:nCells) = field_interp(1:nCells,11)
+            uzonal_70hPa(1:nCells) = field_interp(1:nCells,12)
 
-            uzonal_200hPa(1:nCells) = field_interp(1:nCells,13)
-            uzonal_250hPa(1:nCells) = field_interp(1:nCells,14)
-            uzonal_300hPa(1:nCells) = field_interp(1:nCells,15)
+            uzonal_100hPa(1:nCells) = field_interp(1:nCells,13)
+            uzonal_150hPa(1:nCells) = field_interp(1:nCells,14)
+            uzonal_200hPa(1:nCells) = field_interp(1:nCells,15)
+            uzonal_250hPa(1:nCells) = field_interp(1:nCells,16)
+            uzonal_300hPa(1:nCells) = field_interp(1:nCells,17)
 
-            uzonal_500hPa(1:nCells) = field_interp(1:nCells,16)
-            uzonal_700hPa(1:nCells) = field_interp(1:nCells,17)
-            uzonal_850hPa(1:nCells) = field_interp(1:nCells,18)
+            uzonal_500hPa(1:nCells) = field_interp(1:nCells,18)
+            uzonal_700hPa(1:nCells) = field_interp(1:nCells,19)
+            uzonal_850hPa(1:nCells) = field_interp(1:nCells,20)
            ! write(0,*) '--- end interpolate zonal wind:'
         end if
        
@@ -1657,25 +1730,27 @@ module isobaric_diagnostics
             umeridional_2hPa(1:nCells) = field_interp(1:nCells,2)
             umeridional_3hPa(1:nCells) = field_interp(1:nCells,3)
 
-            umeridional_5hPa(1:nCells) = field_interp(1:nCells,4)
-            umeridional_7hPa(1:nCells) = field_interp(1:nCells,5)
-            umeridional_10hPa(1:nCells) = field_interp(1:nCells,6)
+            umeridional_4hPa(1:nCells) = field_interp(1:nCells,4)
+            umeridional_5hPa(1:nCells) = field_interp(1:nCells,5)
+            umeridional_7hPa(1:nCells) = field_interp(1:nCells,6)
 
-            umeridional_20hPa(1:nCells) = field_interp(1:nCells,7)
-            umeridional_30hPa(1:nCells) = field_interp(1:nCells,8)
-            umeridional_50hPa(1:nCells) = field_interp(1:nCells,9)
+            umeridional_10hPa(1:nCells) = field_interp(1:nCells,7)
+            umeridional_20hPa(1:nCells) = field_interp(1:nCells,8)
+            umeridional_30hPa(1:nCells) = field_interp(1:nCells,9)
 
-            umeridional_70hPa(1:nCells) = field_interp(1:nCells,10)
-            umeridional_100hPa(1:nCells) = field_interp(1:nCells,11)
-            umeridional_150hPa(1:nCells) = field_interp(1:nCells,12)
+            umeridional_40hPa(1:nCells) = field_interp(1:nCells,10)
+            umeridional_50hPa(1:nCells) = field_interp(1:nCells,11)
+            umeridional_70hPa(1:nCells) = field_interp(1:nCells,12)
 
-            umeridional_200hPa(1:nCells) = field_interp(1:nCells,13)
-            umeridional_250hPa(1:nCells) = field_interp(1:nCells,14)
-            umeridional_300hPa(1:nCells) = field_interp(1:nCells,15)
+            umeridional_100hPa(1:nCells) = field_interp(1:nCells,13)
+            umeridional_150hPa(1:nCells) = field_interp(1:nCells,14)
+            umeridional_200hPa(1:nCells) = field_interp(1:nCells,15)
+            umeridional_250hPa(1:nCells) = field_interp(1:nCells,16)
+            umeridional_300hPa(1:nCells) = field_interp(1:nCells,17)
 
-            umeridional_500hPa(1:nCells) = field_interp(1:nCells,16)
-            umeridional_700hPa(1:nCells) = field_interp(1:nCells,17)
-            umeridional_850hPa(1:nCells) = field_interp(1:nCells,18)
+            umeridional_500hPa(1:nCells) = field_interp(1:nCells,18)
+            umeridional_700hPa(1:nCells) = field_interp(1:nCells,19)
+            umeridional_850hPa(1:nCells) = field_interp(1:nCells,20)
            ! write(0,*) '--- end interpolate meridional wind:'
         end if
 
@@ -1695,25 +1770,27 @@ module isobaric_diagnostics
             divergence_2hPa(1:nCells) = field_interp(1:nCells,2)
             divergence_3hPa(1:nCells) = field_interp(1:nCells,3)
 
-            divergence_5hPa(1:nCells) = field_interp(1:nCells,4)
-            divergence_7hPa(1:nCells) = field_interp(1:nCells,5)
-            divergence_10hPa(1:nCells) = field_interp(1:nCells,6)
+            divergence_4hPa(1:nCells) = field_interp(1:nCells,4)
+            divergence_5hPa(1:nCells) = field_interp(1:nCells,5)
+            divergence_7hPa(1:nCells) = field_interp(1:nCells,6)
 
-            divergence_20hPa(1:nCells) = field_interp(1:nCells,7)
-            divergence_30hPa(1:nCells) = field_interp(1:nCells,8)
-            divergence_50hPa(1:nCells) = field_interp(1:nCells,9)
+            divergence_10hPa(1:nCells) = field_interp(1:nCells,7)
+            divergence_20hPa(1:nCells) = field_interp(1:nCells,8)
+            divergence_30hPa(1:nCells) = field_interp(1:nCells,9)
 
-            divergence_70hPa(1:nCells) = field_interp(1:nCells,10)
-            divergence_100hPa(1:nCells) = field_interp(1:nCells,11)
-            divergence_150hPa(1:nCells) = field_interp(1:nCells,12)
+            divergence_40hPa(1:nCells) = field_interp(1:nCells,10)
+            divergence_50hPa(1:nCells) = field_interp(1:nCells,11)
+            divergence_70hPa(1:nCells) = field_interp(1:nCells,12)
 
-            divergence_200hPa(1:nCells) = field_interp(1:nCells,13)
-            divergence_250hPa(1:nCells) = field_interp(1:nCells,14)
-            divergence_300hPa(1:nCells) = field_interp(1:nCells,15)
+            divergence_100hPa(1:nCells) = field_interp(1:nCells,13)
+            divergence_150hPa(1:nCells) = field_interp(1:nCells,14)
+            divergence_200hPa(1:nCells) = field_interp(1:nCells,15)
+            divergence_250hPa(1:nCells) = field_interp(1:nCells,16)
+            divergence_300hPa(1:nCells) = field_interp(1:nCells,17)
 
-            divergence_500hPa(1:nCells) = field_interp(1:nCells,16)
-            divergence_700hPa(1:nCells) = field_interp(1:nCells,17)
-            divergence_850hPa(1:nCells) = field_interp(1:nCells,18)
+            divergence_500hPa(1:nCells) = field_interp(1:nCells,18)
+            divergence_700hPa(1:nCells) = field_interp(1:nCells,19)
+            divergence_850hPa(1:nCells) = field_interp(1:nCells,20)
            ! write(0,*) '--- end interpolate divergence :'
         end if
 
@@ -1763,25 +1840,27 @@ module isobaric_diagnostics
             w_2hPa(1:nCells) = field_interp(1:nCells,2)
             w_3hPa(1:nCells) = field_interp(1:nCells,3)
 
-            w_5hPa(1:nCells) = field_interp(1:nCells,4)
-            w_7hPa(1:nCells) = field_interp(1:nCells,5)
-            w_10hPa(1:nCells) = field_interp(1:nCells,6)
+            w_4hPa(1:nCells) = field_interp(1:nCells,4)
+            w_5hPa(1:nCells) = field_interp(1:nCells,5)
+            w_7hPa(1:nCells) = field_interp(1:nCells,6)
 
-            w_20hPa(1:nCells) = field_interp(1:nCells,7)
-            w_30hPa(1:nCells) = field_interp(1:nCells,8)
-            w_50hPa(1:nCells) = field_interp(1:nCells,9)
+            w_10hPa(1:nCells) = field_interp(1:nCells,7)
+            w_20hPa(1:nCells) = field_interp(1:nCells,8)
+            w_30hPa(1:nCells) = field_interp(1:nCells,9)
 
-            w_70hPa(1:nCells) = field_interp(1:nCells,10)
-            w_100hPa(1:nCells) = field_interp(1:nCells,11)
-            w_150hPa(1:nCells) = field_interp(1:nCells,12)
+            w_40hPa(1:nCells) = field_interp(1:nCells,10)
+            w_50hPa(1:nCells) = field_interp(1:nCells,11)
+            w_70hPa(1:nCells) = field_interp(1:nCells,12)
 
-            w_200hPa(1:nCells) = field_interp(1:nCells,13)
-            w_250hPa(1:nCells) = field_interp(1:nCells,14)
-            w_300hPa(1:nCells) = field_interp(1:nCells,15)
+            w_100hPa(1:nCells) = field_interp(1:nCells,13)
+            w_150hPa(1:nCells) = field_interp(1:nCells,14)
+            w_200hPa(1:nCells) = field_interp(1:nCells,15)
+            w_250hPa(1:nCells) = field_interp(1:nCells,16)
+            w_300hPa(1:nCells) = field_interp(1:nCells,17)
 
-            w_500hPa(1:nCells) = field_interp(1:nCells,16)
-            w_700hPa(1:nCells) = field_interp(1:nCells,17)
-            w_850hPa(1:nCells) = field_interp(1:nCells,18)
+            w_500hPa(1:nCells) = field_interp(1:nCells,18)
+            w_700hPa(1:nCells) = field_interp(1:nCells,19)
+            w_850hPa(1:nCells) = field_interp(1:nCells,20)
        
             if(allocated(field_in)) deallocate(field_in)
             if(allocated(press_in)) deallocate(press_in)
@@ -1793,7 +1872,7 @@ module isobaric_diagnostics
        
         if (NEED_VORTICITY) then
            !interpolation to fixed pressure levels for fields located at cell vertices and at mass points:
-            nIntP = 18
+            nIntP = 20
             if(.not.allocated(field_interp)) allocate(field_interp(nVertices,nIntP) )
             if(.not.allocated(press_interp)) allocate(press_interp(nVertices,nIntP) )
             do iVert = 1, nVertices
@@ -1809,14 +1888,16 @@ module isobaric_diagnostics
                press_interp(iVert,9) = 70.0_RKIND
                press_interp(iVert,10) = 50.0_RKIND
                press_interp(iVert,11) = 30.0_RKIND
-               press_interp(iVert,12) = 20.0_RKIND
+               press_interp(iVert,12) = 40.0_RKIND
+               press_interp(iVert,13) = 20.0_RKIND
 
-               press_interp(iVert,13) = 10.0_RKIND
-               press_interp(iVert,14) = 7.0_RKIND
-               press_interp(iVert,15) = 5.0_RKIND
-               press_interp(iVert,16) = 3.0_RKIND
-               press_interp(iVert,17) = 2.0_RKIND
-               press_interp(iVert,18) = 1.0_RKIND
+               press_interp(iVert,14) = 10.0_RKIND
+               press_interp(iVert,15) = 7.0_RKIND
+               press_interp(iVert,16) = 5.0_RKIND
+               press_interp(iVert,17) = 4.0_RKIND
+               press_interp(iVert,18) = 3.0_RKIND
+               press_interp(iVert,19) = 2.0_RKIND
+               press_interp(iVert,20) = 1.0_RKIND
             enddo
        
             if(.not.allocated(press_in)) allocate(press_in(nVertices,nVertLevels))
@@ -1842,25 +1923,27 @@ module isobaric_diagnostics
             vorticity_2hPa(1:nVertices) = field_interp(1:nVertices,2)
             vorticity_3hPa(1:nVertices) = field_interp(1:nVertices,3)
 
-            vorticity_5hPa(1:nVertices) = field_interp(1:nVertices,4)
-            vorticity_7hPa(1:nVertices) = field_interp(1:nVertices,5)
-            vorticity_10hPa(1:nVertices) = field_interp(1:nVertices,6)
+            vorticity_4hPa(1:nVertices) = field_interp(1:nVertices,4)
+            vorticity_5hPa(1:nVertices) = field_interp(1:nVertices,5)
+            vorticity_7hPa(1:nVertices) = field_interp(1:nVertices,6)
 
-            vorticity_20hPa(1:nVertices) = field_interp(1:nVertices,7)
-            vorticity_30hPa(1:nVertices) = field_interp(1:nVertices,8)
-            vorticity_50hPa(1:nVertices) = field_interp(1:nVertices,9)
+            vorticity_10hPa(1:nVertices) = field_interp(1:nVertices,7)
+            vorticity_20hPa(1:nVertices) = field_interp(1:nVertices,8)
+            vorticity_30hPa(1:nVertices) = field_interp(1:nVertices,9)
 
-            vorticity_70hPa(1:nVertices) = field_interp(1:nVertices,10)
-            vorticity_100hPa(1:nVertices) = field_interp(1:nVertices,11)
-            vorticity_150hPa(1:nVertices) = field_interp(1:nVertices,12)
+            vorticity_40hPa(1:nVertices) = field_interp(1:nVertices,10)
+            vorticity_50hPa(1:nVertices) = field_interp(1:nVertices,11)
+            vorticity_70hPa(1:nVertices) = field_interp(1:nVertices,12)
 
-            vorticity_200hPa(1:nCells) = field_interp(1:nCells,13)
-            vorticity_250hPa(1:nCells) = field_interp(1:nCells,14)
-            vorticity_300hPa(1:nCells) = field_interp(1:nCells,15)
+            vorticity_100hPa(1:nVertices) = field_interp(1:nVertices,13)
+            vorticity_150hPa(1:nVertices) = field_interp(1:nVertices,14)
+            vorticity_200hPa(1:nCells) = field_interp(1:nCells,15)
+            vorticity_250hPa(1:nCells) = field_interp(1:nCells,16)
+            vorticity_300hPa(1:nCells) = field_interp(1:nCells,17)
 
-            vorticity_500hPa(1:nCells) = field_interp(1:nCells,16)
-            vorticity_700hPa(1:nCells) = field_interp(1:nCells,17)
-            vorticity_850hPa(1:nCells) = field_interp(1:nCells,18)
+            vorticity_500hPa(1:nCells) = field_interp(1:nCells,18)
+            vorticity_700hPa(1:nCells) = field_interp(1:nCells,19)
+            vorticity_850hPa(1:nCells) = field_interp(1:nCells,20)
            ! write(0,*) '--- end interpolate relative vorticity:'
 
             if(allocated(field_interp)) deallocate(field_interp)

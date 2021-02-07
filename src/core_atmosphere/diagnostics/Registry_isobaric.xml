@@ -28,6 +28,9 @@
         <var name="temperature_5hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 5 hPa"/>
 
+        <var name="temperature_4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 4 hPa"/>
+
         <var name="temperature_7hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 7 hPa"/>
 
@@ -39,6 +42,9 @@
 
         <var name="temperature_30hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 30 hPa"/>
+
+        <var name="temperature_40hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 40 hPa"/>
 
         <var name="temperature_50hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 50 hPa"/>
@@ -154,6 +160,9 @@
         <var name="height_3hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 3 hPa"/>
 
+        <var name="height_4hPa" type="real" dimensions="nCells Time" units="m"
+             description="Geometric height interpolated to 4 hPa"/>
+
         <var name="height_5hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 5 hPa"/>
 
@@ -168,6 +177,9 @@
 
         <var name="height_30hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 30 hPa"/>
+
+        <var name="height_40hPa" type="real" dimensions="nCells Time" units="m"
+             description="Geometric height interpolated to 40 hPa"/>
 
         <var name="height_50hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 50 hPa"/>
@@ -211,6 +223,9 @@
         <var name="uzonal_3hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 3 hPa"/>
 
+        <var name="uzonal_4hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 4 hPa"/>
+
         <var name="uzonal_5hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 5 hPa"/>
 
@@ -225,6 +240,9 @@
 
         <var name="uzonal_30hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 30 hPa"/>
+
+        <var name="uzonal_40hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 40 hPa"/>
 
         <var name="uzonal_50hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 50 hPa"/>
@@ -304,6 +322,9 @@
         <var name="umeridional_3hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 3 hPa"/>
 
+        <var name="umeridional_4hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 4 hPa"/>
+
         <var name="umeridional_5hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 5 hPa"/>
 
@@ -318,6 +339,9 @@
 
         <var name="umeridional_30hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 30 hPa"/>
+
+        <var name="umeridional_40hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 40 hPa"/>
 
         <var name="umeridional_50hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 50 hPa"/>
@@ -397,6 +421,9 @@
         <var name="w_3hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 3 hPa"/>
 
+        <var name="w_4hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+             description="Vertical velocity vertically interpolated to 4 hPa"/>
+
         <var name="w_5hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 5 hPa"/>
 
@@ -411,6 +438,9 @@
 
         <var name="w_30hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 30 hPa"/>
+
+        <var name="w_40hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+             description="Vertical velocity vertically interpolated to 40 hPa"/>
 
         <var name="w_50hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 50 hPa"/>
@@ -490,6 +520,9 @@
         <var name="vorticity_3hPa" type="real" dimensions="nVertices Time" units="s^{-1}"
              description="Relative vorticity vertically interpolated to 3 hPa"/>
 
+        <var name="vorticity_4hPa" type="real" dimensions="nVertices Time" units="s^{-1}"
+             description="Relative vorticity vertically interpolated to 4 hPa"/>
+
         <var name="vorticity_5hPa" type="real" dimensions="nVertices Time" units="s^{-1}"
              description="Relative vorticity vertically interpolated to 5 hPa"/>
 
@@ -504,6 +537,9 @@
 
         <var name="vorticity_30hPa" type="real" dimensions="nVertices Time" units="s^{-1}"
              description="Relative vorticity vertically interpolated to 30 hPa"/>
+
+        <var name="vorticity_40hPa" type="real" dimensions="nVertices Time" units="s^{-1}"
+             description="Relative vorticity vertically interpolated to 40 hPa"/>
 
         <var name="vorticity_50hPa" type="real" dimensions="nVertices Time" units="s^{-1}"
              description="Relative vorticity vertically interpolated to 50 hPa"/>
@@ -583,6 +619,9 @@
         <var name="divergence_3hPa" type="real" dimensions="nCells Time" units="s^{-1}"
              description="Divergence vertically interpolated to 3 hPa"/>
 
+        <var name="divergence_4hPa" type="real" dimensions="nCells Time" units="s^{-1}"
+             description="Divergence vertically interpolated to 4 hPa"/>
+
         <var name="divergence_5hPa" type="real" dimensions="nCells Time" units="s^{-1}"
              description="Divergence vertically interpolated to 5 hPa"/>
 
@@ -597,6 +636,9 @@
 
         <var name="divergence_30hPa" type="real" dimensions="nCells Time" units="s^{-1}"
              description="Divergence vertically interpolated to 30 hPa"/>
+
+        <var name="divergence_40hPa" type="real" dimensions="nCells Time" units="s^{-1}"
+             description="Divergence vertically interpolated to 40 hPa"/>
 
         <var name="divergence_50hPa" type="real" dimensions="nCells Time" units="s^{-1}"
              description="Divergence vertically interpolated to 50 hPa"/>
