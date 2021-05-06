@@ -16,23 +16,87 @@
         <var name="mslp" type="real" dimensions="nCells Time" units="Pa"
              description="Mean sea-level pressure"/>
 
-        <var name="temperature_1hPa" type="real" dimensions="nCells Time" units="K"
-             description="Temperature vertically interpolated to 1 hPa"/>
 
-        <var name="temperature_2hPa" type="real" dimensions="nCells Time" units="K"
-             description="Temperature vertically interpolated to 2 hPa"/>
+        <var name="temperature_3.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 3.2 hPa"/>
 
-        <var name="temperature_3hPa" type="real" dimensions="nCells Time" units="K"
-             description="Temperature vertically interpolated to 3 hPa"/>
+        <var name="temperature_4.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 4.1 hPa"/>
 
         <var name="temperature_5hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 5 hPa"/>
 
-        <var name="temperature_4hPa" type="real" dimensions="nCells Time" units="K"
-             description="Temperature vertically interpolated to 4 hPa"/>
+        <var name="temperature_6.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 6.2 hPa"/>
 
-        <var name="temperature_7hPa" type="real" dimensions="nCells Time" units="K"
-             description="Temperature vertically interpolated to 7 hPa"/>
+        <var name="temperature_7.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 7.6 hPa"/>
+
+        <var name="temperature_9.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 9.3 hPa"/>
+
+        <var name="temperature_11.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 11.3 hPa"/>
+
+        <var name="temperature_13.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 13.6 hPa"/>
+
+        <var name="temperature_16.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 16.5 hPa"/>
+
+        <var name="temperature_19.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 19.8 hPa"/>
+
+
+        <var name="temperature_23.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 23.7 hPa"/>
+
+        <var name="temperature_28.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 28.4 hPa"/>
+
+        <var name="temperature_33.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 33.8 hPa"/>
+
+        <var name="temperature_40.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 40.2 hPa"/>
+
+        <var name="temperature_47.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 47.6 hPa"/>
+
+        <var name="temperature_56.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 56.4 hPa"/>
+
+        <var name="temperature_66.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 66.6 hPa"/>
+
+        <var name="temperature_78.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 78.5 hPa"/>
+
+        <var name="temperature_92.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 92.4 hPa"/>
+
+        <var name="temperature_108.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 108.7 hPa"/>
+
+        <var name="temperature_127.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 127.8 hPa"/>
+
+        <var name="temperature_150.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 150.4 hPa"/>
+
+
+        <var name="temperature_176.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 176.9 hPa"/>
+
+        <var name="temperature_208.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 208.2 hPa"/>
+
+        <var name="temperature_244.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 244.9 hPa"/>
+
+        <var name="temperature_288.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 288.1 hPa"/>
+
 
         <var name="temperature_10hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 10 hPa"/>
@@ -43,14 +107,8 @@
         <var name="temperature_30hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 30 hPa"/>
 
-        <var name="temperature_40hPa" type="real" dimensions="nCells Time" units="K"
-             description="Temperature vertically interpolated to 40 hPa"/>
-
         <var name="temperature_50hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 50 hPa"/>
-
-        <var name="temperature_70hPa" type="real" dimensions="nCells Time" units="K"
-             description="Temperature vertically interpolated to 70 hPa"/>
 
         <var name="temperature_100hPa" type="real" dimensions="nCells Time" units="K"
              description="Temperature vertically interpolated to 100 hPa"/>
@@ -151,23 +209,87 @@
         <var name="dewpoint_925hPa" type="real" dimensions="nCells Time" units="K"
              description="Dewpoint temperature vertically interpolated to 925 hPa"/>
 
-        <var name="height_1hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 1 hPa"/>
 
-        <var name="height_2hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 2 hPa"/>
+        <var name="height_3.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 3.2 hPa"/>
 
-        <var name="height_3hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 3 hPa"/>
+        <var name="height_4.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 4.1 hPa"/>
 
-        <var name="height_4hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 4 hPa"/>
+        <var name="height_5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 5 hPa"/>
 
-        <var name="height_5hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 5 hPa"/>
+        <var name="height_6.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 6.2 hPa"/>
 
-        <var name="height_7hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 7 hPa"/>
+        <var name="height_7.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 7.6 hPa"/>
+
+        <var name="height_9.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 9.3 hPa"/>
+
+        <var name="height_11.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 11.3 hPa"/>
+
+        <var name="height_13.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 13.6 hPa"/>
+
+        <var name="height_16.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 16.5 hPa"/>
+
+        <var name="height_19.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 19.8 hPa"/>
+
+
+        <var name="height_23.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 23.7 hPa"/>
+
+        <var name="height_28.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 28.4 hPa"/>
+
+        <var name="height_33.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 33.8 hPa"/>
+
+        <var name="height_40.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 40.2 hPa"/>
+
+        <var name="height_47.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 47.6 hPa"/>
+
+        <var name="height_56.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 56.4 hPa"/>
+
+        <var name="height_66.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 66.6 hPa"/>
+
+        <var name="height_78.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 78.5 hPa"/>
+
+        <var name="height_92.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 92.4 hPa"/>
+
+        <var name="height_108.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 108.7 hPa"/>
+
+        <var name="height_127.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 127.8 hPa"/>
+
+        <var name="height_150.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 150.4 hPa"/>
+
+
+        <var name="height_176.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 176.9 hPa"/>
+
+        <var name="height_208.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 208.2 hPa"/>
+
+        <var name="height_244.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Geometric height vertically interpolated to 244.9 hPa"/>
+
+        <var name="height_288.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Temperature vertically interpolated to 288.1 hPa"/>
+
 
         <var name="height_10hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 10 hPa"/>
@@ -178,14 +300,8 @@
         <var name="height_30hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 30 hPa"/>
 
-        <var name="height_40hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 40 hPa"/>
-
         <var name="height_50hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 50 hPa"/>
-
-        <var name="height_70hPa" type="real" dimensions="nCells Time" units="m"
-             description="Geometric height interpolated to 70 hPa"/>
 
         <var name="height_100hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 100 hPa"/>
@@ -214,23 +330,87 @@
         <var name="height_925hPa" type="real" dimensions="nCells Time" units="m"
              description="Geometric height interpolated to 925 hPa"/>
 
-        <var name="uzonal_1hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed zonal wind at cell centers, vertically interpolated to 1 hPa"/>
 
-        <var name="uzonal_2hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed zonal wind at cell centers, vertically interpolated to 2 hPa"/>
+        <var name="uzonal_3.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 3.2 hPa"/>
 
-        <var name="uzonal_3hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed zonal wind at cell centers, vertically interpolated to 3 hPa"/>
+        <var name="uzonal_4.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 4.1 hPa"/>
 
-        <var name="uzonal_4hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed zonal wind at cell centers, vertically interpolated to 4 hPa"/>
-
-        <var name="uzonal_5hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+        <var name="uzonal_5hPa" type="real" dimensions="nCells Time" units="K"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 5 hPa"/>
 
-        <var name="uzonal_7hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed zonal wind at cell centers, vertically interpolated to 7 hPa"/>
+        <var name="uzonal_6.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 6.2 hPa"/>
+
+        <var name="uzonal_7.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 7.6 hPa"/>
+
+        <var name="uzonal_9.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 9.3 hPa"/>
+
+        <var name="uzonal_11.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 11.3 hPa"/>
+
+        <var name="uzonal_13.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 13.6 hPa"/>
+
+        <var name="uzonal_16.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 16.5 hPa"/>
+
+        <var name="uzonal_19.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 19.8 hPa"/>
+
+
+        <var name="uzonal_23.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 23.7 hPa"/>
+
+        <var name="uzonal_28.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 28.4 hPa"/>
+
+        <var name="uzonal_33.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 33.8 hPa"/>
+
+        <var name="uzonal_40.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 40.2 hPa"/>
+
+        <var name="uzonal_47.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 47.6 hPa"/>
+
+        <var name="uzonal_56.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 56.4 hPa"/>
+
+        <var name="uzonal_66.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 66.6 hPa"/>
+
+        <var name="uzonal_78.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 78.5 hPa"/>
+
+        <var name="uzonal_92.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 92.4 hPa"/>
+
+        <var name="uzonal_108.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 108.7 hPa"/>
+
+        <var name="uzonal_127.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 127.8 hPa"/>
+
+        <var name="uzonal_150.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 150.4 hPa"/>
+
+
+        <var name="uzonal_176.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 176.9 hPa"/>
+
+        <var name="uzonal_208.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 208.2 hPa"/>
+
+        <var name="uzonal_244.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 244.9 hPa"/>
+
+        <var name="uzonal_288.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed zonal wind at cell centers, vertically interpolated to 288.1 hPa"/>
+
 
         <var name="uzonal_10hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 10 hPa"/>
@@ -241,14 +421,8 @@
         <var name="uzonal_30hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 30 hPa"/>
 
-        <var name="uzonal_40hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed zonal wind at cell centers, vertically interpolated to 40 hPa"/>
-
         <var name="uzonal_50hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 50 hPa"/>
-
-        <var name="uzonal_70hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed zonal wind at cell centers, vertically interpolated to 70 hPa"/>
 
         <var name="uzonal_100hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 100 hPa"/>
@@ -313,23 +487,87 @@
         <var name="uzonal_28km" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed zonal wind at cell centers, vertically interpolated to 28km"/>
 
-        <var name="umeridional_1hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 1 hPa"/>
 
-        <var name="umeridional_2hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 2 hPa"/>
+        <var name="umeridional_3.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 3.2 hPa"/>
 
-        <var name="umeridional_3hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 3 hPa"/>
+        <var name="umeridional_4.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 4.1 hPa"/>
 
-        <var name="umeridional_4hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 4 hPa"/>
-
-        <var name="umeridional_5hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+        <var name="umeridional_5hPa" type="real" dimensions="nCells Time" units="K"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 5 hPa"/>
 
-        <var name="umeridional_7hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 7 hPa"/>
+        <var name="umeridional_6.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 6.2 hPa"/>
+
+        <var name="umeridional_7.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 7.6 hPa"/>
+
+        <var name="umeridional_9.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 9.3 hPa"/>
+
+        <var name="umeridional_11.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 11.3 hPa"/>
+
+        <var name="umeridional_13.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 13.6 hPa"/>
+
+        <var name="umeridional_16.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 16.5 hPa"/>
+
+        <var name="umeridional_19.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 19.8 hPa"/>
+
+
+        <var name="umeridional_23.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 23.7 hPa"/>
+
+        <var name="umeridional_28.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 28.4 hPa"/>
+
+        <var name="umeridional_33.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 33.8 hPa"/>
+
+        <var name="umeridional_40.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 40.2 hPa"/>
+
+        <var name="umeridional_47.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 47.6 hPa"/>
+
+        <var name="umeridional_56.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 56.4 hPa"/>
+
+        <var name="umeridional_66.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 66.6 hPa"/>
+
+        <var name="umeridional_78.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 78.5 hPa"/>
+
+        <var name="umeridional_92.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 92.4 hPa"/>
+
+        <var name="umeridional_108.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 108.7 hPa"/>
+
+        <var name="umeridional_127.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 127.8 hPa"/>
+
+        <var name="umeridional_150.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 150.4 hPa"/>
+
+
+        <var name="umeridional_176.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 176.9 hPa"/>
+
+        <var name="umeridional_208.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 208.2 hPa"/>
+
+        <var name="umeridional_244.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 244.9 hPa"/>
+
+        <var name="umeridional_288.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 288.1 hPa"/>
+
 
         <var name="umeridional_10hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 10 hPa"/>
@@ -340,14 +578,8 @@
         <var name="umeridional_30hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 30 hPa"/>
 
-        <var name="umeridional_40hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 40 hPa"/>
-
         <var name="umeridional_50hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 50 hPa"/>
-
-        <var name="umeridional_70hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Reconstructed meridonal wind at cell centers, vertically interpolated to 70 hPa"/>
 
         <var name="umeridional_100hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridonal wind at cell centers, vertically interpolated to 100 hPa"/>
@@ -412,23 +644,87 @@
         <var name="umeridional_28km" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Reconstructed meridional wind at cell centers, vertically interpolated to 28km"/>
 
-        <var name="w_1hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Vertical velocity vertically interpolated to 1 hPa"/>
 
-        <var name="w_2hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Vertical velocity vertically interpolated to 2 hPa"/>
+        <var name="w_3.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 3.2 hPa"/>
 
-        <var name="w_3hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Vertical velocity vertically interpolated to 3 hPa"/>
+        <var name="w_4.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 4.1 hPa"/>
 
-        <var name="w_4hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Vertical velocity vertically interpolated to 4 hPa"/>
-
-        <var name="w_5hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
+        <var name="w_5hPa" type="real" dimensions="nCells Time" units="K"
              description="Vertical velocity vertically interpolated to 5 hPa"/>
 
-        <var name="w_7hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Vertical velocity vertically interpolated to 7 hPa"/>
+        <var name="w_6.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 6.2 hPa"/>
+
+        <var name="w_7.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 7.6 hPa"/>
+
+        <var name="w_9.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 9.3 hPa"/>
+
+        <var name="w_11.3hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 11.3 hPa"/>
+
+        <var name="w_13.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 13.6 hPa"/>
+
+        <var name="w_16.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 16.5 hPa"/>
+
+        <var name="w_19.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 19.8 hPa"/>
+
+
+        <var name="w_23.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 23.7 hPa"/>
+
+        <var name="w_28.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 28.4 hPa"/>
+
+        <var name="w_33.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 33.8 hPa"/>
+
+        <var name="w_40.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 40.2 hPa"/>
+
+        <var name="w_47.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 47.6 hPa"/>
+
+        <var name="w_56.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 56.4 hPa"/>
+
+        <var name="w_66.6hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 66.6 hPa"/>
+
+        <var name="w_78.5hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 78.5 hPa"/>
+
+        <var name="w_92.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 92.4 hPa"/>
+
+        <var name="w_108.7hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 108.7 hPa"/>
+
+        <var name="w_127.8hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 127.8 hPa"/>
+
+        <var name="w_150.4hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 150.4 hPa"/>
+
+
+        <var name="w_176.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 176.9 hPa"/>
+
+        <var name="w_208.2hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 208.2 hPa"/>
+
+        <var name="w_244.9hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 244.9 hPa"/>
+
+        <var name="w_288.1hPa" type="real" dimensions="nCells Time" units="K"
+             description="Vertical velocity vertically interpolated to 288.1 hPa"/>
+
 
         <var name="w_10hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 10 hPa"/>
@@ -439,14 +735,8 @@
         <var name="w_30hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 30 hPa"/>
 
-        <var name="w_40hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Vertical velocity vertically interpolated to 40 hPa"/>
-
         <var name="w_50hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 50 hPa"/>
-
-        <var name="w_70hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
-             description="Vertical velocity vertically interpolated to 70 hPa"/>
 
         <var name="w_100hPa" type="real" dimensions="nCells Time" units="m s^{-1}"
              description="Vertical velocity vertically interpolated to 100 hPa"/>

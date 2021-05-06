@@ -28,16 +28,47 @@ module isobaric_diagnostics
     logical :: need_mslp, &
                need_relhum_200, need_relhum_250, need_relhum_500, need_relhum_700, need_relhum_850, need_relhum_925, &
                need_dewpoint_200, need_dewpoint_250, need_dewpoint_500, need_dewpoint_700, need_dewpoint_850, need_dewpoint_925, &
+
                need_temp_200, need_temp_250, need_temp_500, need_temp_700, need_temp_850, need_temp_925, &
-               need_temp_300, need_temp_150, need_temp_100, need_temp_70, need_temp_50, need_temp_40, need_temp_30, need_temp_20, need_temp_10, need_temp_7, need_temp_5, need_temp_4, need_temp_3, need_temp_2, need_temp_1, &
+               need_temp_288_1, need_temp_244_9, need_temp_208_2, need_temp_176_9, need_temp_150_4, & 
+               need_temp_127_8, need_temp_108_7, need_temp_92_4,  need_temp_78_5,  need_temp_66_6,  & 
+               need_temp_56_4,  need_temp_47_6,  need_temp_40_2,  need_temp_33_8,  need_temp_28_4,  & 
+               need_temp_23_7, need_temp_19_8, need_temp_16_5,  need_temp_13_6,  need_temp_11_3,    & 
+               need_temp_9_3, need_temp_7_6, need_temp_6_2,  need_temp_5,  need_temp_4_1, need_temp_3_2, & 
+               need_temp_300, need_temp_150, need_temp_100, need_temp_50, need_temp_30, need_temp_20, need_temp_10, &
+
                need_height_200, need_height_250, need_height_500, need_height_700, need_height_850, need_height_925, &
-               need_height_300, need_height_150, need_height_100, need_height_70, need_height_50, need_height_40, need_height_30, need_height_20, need_height_10, need_height_7, need_height_5, need_height_3, need_height_4, need_height_2, need_height_1, &
+               need_height_288_1, need_height_244_9, need_height_208_2, need_height_176_9, need_height_150_4, & 
+               need_height_127_8, need_height_108_7, need_height_92_4,  need_height_78_5,  need_height_66_6,  & 
+               need_height_56_4,  need_height_47_6,  need_height_40_2,  need_height_33_8,  need_height_28_4,  & 
+               need_height_23_7, need_height_19_8, need_height_16_5,  need_height_13_6,  need_height_11_3,    & 
+               need_height_9_3, need_height_7_6, need_height_6_2,  need_height_5,  need_height_4_1, need_height_3_2, & 
+               need_height_300, need_height_150, need_height_100, need_height_50, need_height_30, need_height_20, need_height_10, &
+
                need_uzonal_200, need_uzonal_250, need_uzonal_500, need_uzonal_700, need_uzonal_850, need_uzonal_925, &
-               need_uzonal_300, need_uzonal_150, need_uzonal_100, need_uzonal_70, need_uzonal_50, need_uzonal_40, need_uzonal_30, need_uzonal_20, need_uzonal_10, need_uzonal_7, need_uzonal_5, need_uzonal_4, need_uzonal_3, need_uzonal_2, need_uzonal_1, &
+               need_uzonal_288_1, need_uzonal_244_9, need_uzonal_208_2, need_uzonal_176_9, need_uzonal_150_4, & 
+               need_uzonal_127_8, need_uzonal_108_7, need_uzonal_92_4,  need_uzonal_78_5,  need_uzonal_66_6,  & 
+               need_uzonal_56_4,  need_uzonal_47_6,  need_uzonal_40_2,  need_uzonal_33_8,  need_uzonal_28_4,  & 
+               need_uzonal_23_7, need_uzonal_19_8, need_uzonal_16_5,  need_uzonal_13_6,  need_uzonal_11_3,    & 
+               need_uzonal_9_3, need_uzonal_7_6, need_uzonal_6_2,  need_uzonal_5,  need_uzonal_4_1, need_uzonal_3_2, & 
+               need_uzonal_300, need_uzonal_150, need_uzonal_100, need_uzonal_50, need_uzonal_30, need_uzonal_20, need_uzonal_10, &
+
                need_umeridional_200, need_umeridional_250, need_umeridional_500, need_umeridional_700, need_umeridional_850, need_umeridional_925, &
-               need_umeridional_300, need_umeridional_150, need_umeridional_100, need_umeridional_70, need_umeridional_50, need_umeridional_40, need_umeridional_30, need_umeridional_20, need_umeridional_10, need_umeridional_7, need_umeridional_5, need_umeridional_4, need_umeridional_3, need_umeridional_2, need_umeridional_1, &
+               need_umeridional_288_1, need_umeridional_244_9, need_umeridional_208_2, need_umeridional_176_9, need_umeridional_150_4, & 
+               need_umeridional_127_8, need_umeridional_108_7, need_umeridional_92_4,  need_umeridional_78_5,  need_umeridional_66_6,  & 
+               need_umeridional_56_4,  need_umeridional_47_6,  need_umeridional_40_2,  need_umeridional_33_8,  need_umeridional_28_4,  & 
+               need_umeridional_23_7, need_umeridional_19_8, need_umeridional_16_5,  need_umeridional_13_6,  need_umeridional_11_3,    & 
+               need_umeridional_9_3, need_umeridional_7_6, need_umeridional_6_2,  need_umeridional_5,  need_umeridional_4_1, need_umeridional_3_2, & 
+               need_umeridional_300, need_umeridional_150, need_umeridional_100, need_umeridional_50, need_umeridional_30, need_umeridional_20, need_umeridional_10, &
+
                need_w_200, need_w_250, need_w_500, need_w_700, need_w_850, need_w_925, &
-               need_w_300, need_w_150, need_w_100, need_w_70, need_w_50, need_w_40, need_w_30, need_w_20, need_w_10, need_w_7, need_w_5, need_w_4, need_w_3, need_w_2, need_w_1, &
+               need_w_288_1, need_w_244_9, need_w_208_2, need_w_176_9, need_w_150_4, & 
+               need_w_127_8, need_w_108_7, need_w_92_4,  need_w_78_5,  need_w_66_6,  & 
+               need_w_56_4,  need_w_47_6,  need_w_40_2,  need_w_33_8,  need_w_28_4,  & 
+               need_w_23_7, need_w_19_8, need_w_16_5,  need_w_13_6,  need_w_11_3,    & 
+               need_w_9_3, need_w_7_6, need_w_6_2,  need_w_5,  need_w_4_1, need_w_3_2, & 
+               need_w_300, need_w_150, need_w_100, need_w_50, need_w_30, need_w_20, need_w_10, &
+
                need_vorticity_200, need_vorticity_250, need_vorticity_500, need_vorticity_700, need_vorticity_850, need_vorticity_925, &
                need_vorticity_300, need_vorticity_150, need_vorticity_100, need_vorticity_70, need_vorticity_50, need_vorticity_40, need_vorticity_30, need_vorticity_20, need_vorticity_10, need_vorticity_7, need_vorticity_5, need_vorticity_4, need_vorticity_3, need_vorticity_2, need_vorticity_1, &
                need_divergence_200, need_divergence_250, need_divergence_500, need_divergence_700, need_divergence_850, need_divergence_925, &
@@ -189,15 +220,9 @@ module isobaric_diagnostics
         need_temp_100 = MPAS_field_will_be_written('temperature_100hPa')
         need_temp = need_temp .or. need_temp_100
         need_any_diags = need_any_diags .or. need_temp_100
-        need_temp_70 = MPAS_field_will_be_written('temperature_70hPa')
-        need_temp = need_temp .or. need_temp_70
-        need_any_diags = need_any_diags .or. need_temp_70
         need_temp_50 = MPAS_field_will_be_written('temperature_50hPa')
         need_temp = need_temp .or. need_temp_50
         need_any_diags = need_any_diags .or. need_temp_50
-        need_temp_40 = MPAS_field_will_be_written('temperature_40hPa')
-        need_temp = need_temp .or. need_temp_40
-        need_any_diags = need_any_diags .or. need_temp_40
         need_temp_30 = MPAS_field_will_be_written('temperature_30hPa')
         need_temp = need_temp .or. need_temp_30
         need_any_diags = need_any_diags .or. need_temp_30
@@ -207,24 +232,85 @@ module isobaric_diagnostics
         need_temp_10 = MPAS_field_will_be_written('temperature_10hPa')
         need_temp = need_temp .or. need_temp_10
         need_any_diags = need_any_diags .or. need_temp_10
-        need_temp_7 = MPAS_field_will_be_written('temperature_7hPa')
-        need_temp = need_temp .or. need_temp_7
-        need_any_diags = need_any_diags .or. need_temp_7
+
+        need_temp_288_1 = MPAS_field_will_be_written('temperature_288.1hPa')
+        need_temp = need_temp .or. need_temp_288_1
+        need_any_diags = need_any_diags .or. need_temp_288_1
+        need_temp_244_9 = MPAS_field_will_be_written('temperature_244.9hPa')
+        need_temp = need_temp .or. need_temp_244_9
+        need_any_diags = need_any_diags .or. need_temp_244_9
+        need_temp_208_2 = MPAS_field_will_be_written('temperature_208.2hPa')
+        need_temp = need_temp .or. need_temp_208_2
+        need_any_diags = need_any_diags .or. need_temp_208_2
+        need_temp_176_9 = MPAS_field_will_be_written('temperature_176.9hPa')
+        need_temp = need_temp .or. need_temp_176_9
+        need_any_diags = need_any_diags .or. need_temp_176_9
+        need_temp_150_4 = MPAS_field_will_be_written('temperature_150.4hPa')
+        need_temp = need_temp .or. need_temp_150_4
+        need_any_diags = need_any_diags .or. need_temp_150_4
+        need_temp_127_8 = MPAS_field_will_be_written('temperature_127.8hPa')
+        need_temp = need_temp .or. need_temp_127_8
+        need_any_diags = need_any_diags .or. need_temp_127_8
+        need_temp_108_7 = MPAS_field_will_be_written('temperature_108.7hPa')
+        need_temp = need_temp .or. need_temp_108_7
+        need_any_diags = need_any_diags .or. need_temp_108_7
+        need_temp_92_4 = MPAS_field_will_be_written('temperature_92.4hPa')
+        need_temp = need_temp .or. need_temp_92_4
+        need_any_diags = need_any_diags .or. need_temp_92_4
+        need_temp_78_5 = MPAS_field_will_be_written('temperature_78.5hPa')
+        need_temp = need_temp .or. need_temp_78_5
+        need_any_diags = need_any_diags .or. need_temp_78_5
+        need_temp_66_6 = MPAS_field_will_be_written('temperature_66.6hPa')
+        need_temp = need_temp .or. need_temp_66_6
+        need_any_diags = need_any_diags .or. need_temp_66_6
+        need_temp_56_4 = MPAS_field_will_be_written('temperature_56.4hPa')
+        need_temp = need_temp .or. need_temp_56_4
+        need_any_diags = need_any_diags .or. need_temp_56_4
+        need_temp_47_6 = MPAS_field_will_be_written('temperature_47.6hPa')
+        need_temp = need_temp .or. need_temp_47_6
+        need_any_diags = need_any_diags .or. need_temp_47_6
+        need_temp_40_2 = MPAS_field_will_be_written('temperature_40.2hPa')
+        need_temp = need_temp .or. need_temp_40_2
+        need_any_diags = need_any_diags .or. need_temp_40_2
+        need_temp_33_8 = MPAS_field_will_be_written('temperature_33.8hPa')
+        need_temp = need_temp .or. need_temp_33_8
+        need_any_diags = need_any_diags .or. need_temp_33_8
+        need_temp_28_4 = MPAS_field_will_be_written('temperature_28.4hPa')
+        need_temp = need_temp .or. need_temp_28_4
+        need_any_diags = need_any_diags .or. need_temp_28_4
+        need_temp_23_7 = MPAS_field_will_be_written('temperature_23.7hPa')
+        need_temp = need_temp .or. need_temp_23_7
+        need_any_diags = need_any_diags .or. need_temp_23_7
+        need_temp_19_8 = MPAS_field_will_be_written('temperature_19.8hPa')
+        need_temp = need_temp .or. need_temp_19_8
+        need_any_diags = need_any_diags .or. need_temp_19_8
+        need_temp_16_5 = MPAS_field_will_be_written('temperature_16.5hPa')
+        need_temp = need_temp .or. need_temp_16_5
+        need_any_diags = need_any_diags .or. need_temp_16_5
+        need_temp_13_6 = MPAS_field_will_be_written('temperature_13.6hPa')
+        need_temp = need_temp .or. need_temp_13_6
+        need_any_diags = need_any_diags .or. need_temp_13_6
+        need_temp_11_3 = MPAS_field_will_be_written('temperature_11.3hPa')
+        need_temp = need_temp .or. need_temp_11_3
+        need_any_diags = need_any_diags .or. need_temp_11_3
+        need_temp_9_3 = MPAS_field_will_be_written('temperature_9.3hPa')
+        need_temp = need_temp .or. need_temp_9_3
+        need_any_diags = need_any_diags .or. need_temp_9_3
+        need_temp_7_6 = MPAS_field_will_be_written('temperature_7.6hPa')
+        need_temp = need_temp .or. need_temp_7_6
+        need_any_diags = need_any_diags .or. need_temp_7_6
+        need_temp_6_2 = MPAS_field_will_be_written('temperature_6.2hPa')
+        need_temp = need_temp .or. need_temp_6_2
+        need_any_diags = need_any_diags .or. need_temp_6_2
         need_temp_5 = MPAS_field_will_be_written('temperature_5hPa')
         need_temp = need_temp .or. need_temp_5
         need_any_diags = need_any_diags .or. need_temp_5
-        need_temp_4 = MPAS_field_will_be_written('temperature_4hPa')
-        need_temp = need_temp .or. need_temp_4
-        need_any_diags = need_any_diags .or. need_temp_4
-        need_temp_3 = MPAS_field_will_be_written('temperature_3hPa')
-        need_temp = need_temp .or. need_temp_3
-        need_any_diags = need_any_diags .or. need_temp_3
-        need_temp_2 = MPAS_field_will_be_written('temperature_2hPa')
-        need_temp = need_temp .or. need_temp_2
-        need_any_diags = need_any_diags .or. need_temp_2
-        need_temp_1 = MPAS_field_will_be_written('temperature_1hPa')
-        need_temp = need_temp .or. need_temp_1
-        need_any_diags = need_any_diags .or. need_temp_1
+        need_temp_4_1 = MPAS_field_will_be_written('temperature_4.1hPa')
+        need_temp = need_temp .or. need_temp_4_1
+        need_any_diags = need_any_diags .or. need_temp_4_1
+        need_temp_3_2 = MPAS_field_will_be_written('temperature_3.2hPa')
+        need_temp = need_temp .or. need_temp_3_2
+        need_any_diags = need_any_diags .or. need_temp_3_2
 
         need_height_200 = MPAS_field_will_be_written('height_200hPa')
         need_height = need_height .or. need_height_200
@@ -253,15 +339,9 @@ module isobaric_diagnostics
         need_height_100 = MPAS_field_will_be_written('height_100hPa')
         need_height = need_height .or. need_height_100
         need_any_diags = need_any_diags .or. need_height_100
-        need_height_70 = MPAS_field_will_be_written('height_70hPa')
-        need_height = need_height .or. need_height_70
-        need_any_diags = need_any_diags .or. need_height_70
         need_height_50 = MPAS_field_will_be_written('height_50hPa')
         need_height = need_height .or. need_height_50
         need_any_diags = need_any_diags .or. need_height_50
-        need_height_40 = MPAS_field_will_be_written('height_40hPa')
-        need_height = need_height .or. need_height_40
-        need_any_diags = need_any_diags .or. need_height_40
         need_height_30 = MPAS_field_will_be_written('height_30hPa')
         need_height = need_height .or. need_height_30
         need_any_diags = need_any_diags .or. need_height_30
@@ -271,24 +351,86 @@ module isobaric_diagnostics
         need_height_10 = MPAS_field_will_be_written('height_10hPa')
         need_height = need_height .or. need_height_10
         need_any_diags = need_any_diags .or. need_height_10
-        need_height_7 = MPAS_field_will_be_written('height_7hPa')
-        need_height = need_height .or. need_height_7
-        need_any_diags = need_any_diags .or. need_height_7
+
+        need_height_288_1 = MPAS_field_will_be_written('height_288.1hPa')
+        need_height = need_height .or. need_height_288_1
+        need_any_diags = need_any_diags .or. need_height_288_1
+        need_height_244_9 = MPAS_field_will_be_written('height_244.9hPa')
+        need_height = need_height .or. need_height_244_9
+        need_any_diags = need_any_diags .or. need_height_244_9
+        need_height_208_2 = MPAS_field_will_be_written('height_208.2hPa')
+        need_height = need_height .or. need_height_208_2
+        need_any_diags = need_any_diags .or. need_height_208_2
+        need_height_176_9 = MPAS_field_will_be_written('height_176.9hPa')
+        need_height = need_height .or. need_height_176_9
+        need_any_diags = need_any_diags .or. need_height_176_9
+        need_height_150_4 = MPAS_field_will_be_written('height_150.4hPa')
+        need_height = need_height .or. need_height_150_4
+        need_any_diags = need_any_diags .or. need_height_150_4
+        need_height_127_8 = MPAS_field_will_be_written('height_127.8hPa')
+        need_height = need_height .or. need_height_127_8
+        need_any_diags = need_any_diags .or. need_height_127_8
+        need_height_108_7 = MPAS_field_will_be_written('height_108.7hPa')
+        need_height = need_height .or. need_height_108_7
+        need_any_diags = need_any_diags .or. need_height_108_7
+        need_height_92_4 = MPAS_field_will_be_written('height_92.4hPa')
+        need_height = need_height .or. need_height_92_4
+        need_any_diags = need_any_diags .or. need_height_92_4
+        need_height_78_5 = MPAS_field_will_be_written('height_78.5hPa')
+        need_height = need_height .or. need_height_78_5
+        need_any_diags = need_any_diags .or. need_height_78_5
+        need_height_66_6 = MPAS_field_will_be_written('height_66.6hPa')
+        need_height = need_height .or. need_height_66_6
+        need_any_diags = need_any_diags .or. need_height_66_6
+        need_height_56_4 = MPAS_field_will_be_written('height_56.4hPa')
+        need_height = need_height .or. need_height_56_4
+        need_any_diags = need_any_diags .or. need_height_56_4
+        need_height_47_6 = MPAS_field_will_be_written('height_47.6hPa')
+        need_height = need_height .or. need_height_47_6
+        need_any_diags = need_any_diags .or. need_height_47_6
+        need_height_40_2 = MPAS_field_will_be_written('height_40.2hPa')
+        need_height = need_height .or. need_height_40_2
+        need_any_diags = need_any_diags .or. need_height_40_2
+        need_height_33_8 = MPAS_field_will_be_written('height_33.8hPa')
+        need_height = need_height .or. need_height_33_8
+        need_any_diags = need_any_diags .or. need_height_33_8
+        need_height_28_4 = MPAS_field_will_be_written('height_28.4hPa')
+        need_height = need_height .or. need_height_28_4
+        need_any_diags = need_any_diags .or. need_height_28_4
+        need_height_23_7 = MPAS_field_will_be_written('height_23.7hPa')
+        need_height = need_height .or. need_height_23_7
+        need_any_diags = need_any_diags .or. need_height_23_7
+        need_height_19_8 = MPAS_field_will_be_written('height_19.8hPa')
+        need_height = need_height .or. need_height_19_8
+        need_any_diags = need_any_diags .or. need_height_19_8
+        need_height_16_5 = MPAS_field_will_be_written('height_16.5hPa')
+        need_height = need_height .or. need_height_16_5
+        need_any_diags = need_any_diags .or. need_height_16_5
+        need_height_13_6 = MPAS_field_will_be_written('height_13.6hPa')
+        need_height = need_height .or. need_height_13_6
+        need_any_diags = need_any_diags .or. need_height_13_6
+        need_height_11_3 = MPAS_field_will_be_written('height_11.3hPa')
+        need_height = need_height .or. need_height_11_3
+        need_any_diags = need_any_diags .or. need_height_11_3
+        need_height_9_3 = MPAS_field_will_be_written('height_9.3hPa')
+        need_height = need_height .or. need_height_9_3
+        need_any_diags = need_any_diags .or. need_height_9_3
+        need_height_7_6 = MPAS_field_will_be_written('height_7.6hPa')
+        need_height = need_height .or. need_height_7_6
+        need_any_diags = need_any_diags .or. need_height_7_6
+        need_height_6_2 = MPAS_field_will_be_written('height_6.2hPa')
+        need_height = need_height .or. need_height_6_2
+        need_any_diags = need_any_diags .or. need_height_6_2
         need_height_5 = MPAS_field_will_be_written('height_5hPa')
         need_height = need_height .or. need_height_5
         need_any_diags = need_any_diags .or. need_height_5
-        need_height_4 = MPAS_field_will_be_written('height_4hPa')
-        need_height = need_height .or. need_height_4
-        need_any_diags = need_any_diags .or. need_height_4
-        need_height_3 = MPAS_field_will_be_written('height_3hPa')
-        need_height = need_height .or. need_height_3
-        need_any_diags = need_any_diags .or. need_height_3
-        need_height_2 = MPAS_field_will_be_written('height_2hPa')
-        need_height = need_height .or. need_height_2
-        need_any_diags = need_any_diags .or. need_height_2
-        need_height_1 = MPAS_field_will_be_written('height_1hPa')
-        need_height = need_height .or. need_height_1
-        need_any_diags = need_any_diags .or. need_height_1
+        need_height_4_1 = MPAS_field_will_be_written('height_4.1hPa')
+        need_height = need_height .or. need_height_4_1
+        need_any_diags = need_any_diags .or. need_height_4_1
+        need_height_3_2 = MPAS_field_will_be_written('height_3.2hPa')
+        need_height = need_height .or. need_height_3_2
+        need_any_diags = need_any_diags .or. need_height_3_2
+
 
         need_uzonal_200 = MPAS_field_will_be_written('uzonal_200hPa')
         need_uzonal = need_uzonal .or. need_uzonal_200
@@ -317,15 +459,9 @@ module isobaric_diagnostics
         need_uzonal_100 = MPAS_field_will_be_written('uzonal_100hPa')
         need_uzonal = need_uzonal .or. need_uzonal_100
         need_any_diags = need_any_diags .or. need_uzonal_100
-        need_uzonal_70 = MPAS_field_will_be_written('uzonal_70hPa')
-        need_uzonal = need_uzonal .or. need_uzonal_70
-        need_any_diags = need_any_diags .or. need_uzonal_70
         need_uzonal_50 = MPAS_field_will_be_written('uzonal_50hPa')
         need_uzonal = need_uzonal .or. need_uzonal_50
         need_any_diags = need_any_diags .or. need_uzonal_50
-        need_uzonal_40 = MPAS_field_will_be_written('uzonal_40hPa')
-        need_uzonal = need_uzonal .or. need_uzonal_40
-        need_any_diags = need_any_diags .or. need_uzonal_40
         need_uzonal_30 = MPAS_field_will_be_written('uzonal_30hPa')
         need_uzonal = need_uzonal .or. need_uzonal_30
         need_any_diags = need_any_diags .or. need_uzonal_30
@@ -335,24 +471,86 @@ module isobaric_diagnostics
         need_uzonal_10 = MPAS_field_will_be_written('uzonal_10hPa')
         need_uzonal = need_uzonal .or. need_uzonal_10
         need_any_diags = need_any_diags .or. need_uzonal_10
-        need_uzonal_7 = MPAS_field_will_be_written('uzonal_7hPa')
-        need_uzonal = need_uzonal .or. need_uzonal_7
-        need_any_diags = need_any_diags .or. need_uzonal_7
+
+        need_uzonal_288_1 = MPAS_field_will_be_written('uzonal_288.1hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_288_1
+        need_any_diags = need_any_diags .or. need_uzonal_288_1
+        need_uzonal_244_9 = MPAS_field_will_be_written('uzonal_244.9hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_244_9
+        need_any_diags = need_any_diags .or. need_uzonal_244_9
+        need_uzonal_208_2 = MPAS_field_will_be_written('uzonal_208.2hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_208_2
+        need_any_diags = need_any_diags .or. need_uzonal_208_2
+        need_uzonal_176_9 = MPAS_field_will_be_written('uzonal_176.9hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_176_9
+        need_any_diags = need_any_diags .or. need_uzonal_176_9
+        need_uzonal_150_4 = MPAS_field_will_be_written('uzonal_150.4hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_150_4
+        need_any_diags = need_any_diags .or. need_uzonal_150_4
+        need_uzonal_127_8 = MPAS_field_will_be_written('uzonal_127.8hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_127_8
+        need_any_diags = need_any_diags .or. need_uzonal_127_8
+        need_uzonal_108_7 = MPAS_field_will_be_written('uzonal_108.7hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_108_7
+        need_any_diags = need_any_diags .or. need_uzonal_108_7
+        need_uzonal_92_4 = MPAS_field_will_be_written('uzonal_92.4hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_92_4
+        need_any_diags = need_any_diags .or. need_uzonal_92_4
+        need_uzonal_78_5 = MPAS_field_will_be_written('uzonal_78.5hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_78_5
+        need_any_diags = need_any_diags .or. need_uzonal_78_5
+        need_uzonal_66_6 = MPAS_field_will_be_written('uzonal_66.6hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_66_6
+        need_any_diags = need_any_diags .or. need_uzonal_66_6
+        need_uzonal_56_4 = MPAS_field_will_be_written('uzonal_56.4hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_56_4
+        need_any_diags = need_any_diags .or. need_uzonal_56_4
+        need_uzonal_47_6 = MPAS_field_will_be_written('uzonal_47.6hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_47_6
+        need_any_diags = need_any_diags .or. need_uzonal_47_6
+        need_uzonal_40_2 = MPAS_field_will_be_written('uzonal_40.2hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_40_2
+        need_any_diags = need_any_diags .or. need_uzonal_40_2
+        need_uzonal_33_8 = MPAS_field_will_be_written('uzonal_33.8hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_33_8
+        need_any_diags = need_any_diags .or. need_uzonal_33_8
+        need_uzonal_28_4 = MPAS_field_will_be_written('uzonal_28.4hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_28_4
+        need_any_diags = need_any_diags .or. need_uzonal_28_4
+        need_uzonal_23_7 = MPAS_field_will_be_written('uzonal_23.7hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_23_7
+        need_any_diags = need_any_diags .or. need_uzonal_23_7
+        need_uzonal_19_8 = MPAS_field_will_be_written('uzonal_19.8hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_19_8
+        need_any_diags = need_any_diags .or. need_uzonal_19_8
+        need_uzonal_16_5 = MPAS_field_will_be_written('uzonal_16.5hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_16_5
+        need_any_diags = need_any_diags .or. need_uzonal_16_5
+        need_uzonal_13_6 = MPAS_field_will_be_written('uzonal_13.6hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_13_6
+        need_any_diags = need_any_diags .or. need_uzonal_13_6
+        need_uzonal_11_3 = MPAS_field_will_be_written('uzonal_11.3hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_11_3
+        need_any_diags = need_any_diags .or. need_uzonal_11_3
+        need_uzonal_9_3 = MPAS_field_will_be_written('uzonal_9.3hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_9_3
+        need_any_diags = need_any_diags .or. need_uzonal_9_3
+        need_uzonal_7_6 = MPAS_field_will_be_written('uzonal_7.6hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_7_6
+        need_any_diags = need_any_diags .or. need_uzonal_7_6
+        need_uzonal_6_2 = MPAS_field_will_be_written('uzonal_6.2hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_6_2
+        need_any_diags = need_any_diags .or. need_uzonal_6_2
         need_uzonal_5 = MPAS_field_will_be_written('uzonal_5hPa')
         need_uzonal = need_uzonal .or. need_uzonal_5
         need_any_diags = need_any_diags .or. need_uzonal_5
-        need_uzonal_4 = MPAS_field_will_be_written('uzonal_4hPa')
-        need_uzonal = need_uzonal .or. need_uzonal_4
-        need_any_diags = need_any_diags .or. need_uzonal_4
-        need_uzonal_3 = MPAS_field_will_be_written('uzonal_3hPa')
-        need_uzonal = need_uzonal .or. need_uzonal_3
-        need_any_diags = need_any_diags .or. need_uzonal_3
-        need_uzonal_2 = MPAS_field_will_be_written('uzonal_2hPa')
-        need_uzonal = need_uzonal .or. need_uzonal_2
-        need_any_diags = need_any_diags .or. need_uzonal_2
-        need_uzonal_1 = MPAS_field_will_be_written('uzonal_1hPa')
-        need_uzonal = need_uzonal .or. need_uzonal_1
-        need_any_diags = need_any_diags .or. need_uzonal_1
+        need_uzonal_4_1 = MPAS_field_will_be_written('uzonal_4.1hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_4_1
+        need_any_diags = need_any_diags .or. need_uzonal_4_1
+        need_uzonal_3_2 = MPAS_field_will_be_written('uzonal_3.2hPa')
+        need_uzonal = need_uzonal .or. need_uzonal_3_2
+        need_any_diags = need_any_diags .or. need_uzonal_3_2
+
 
         need_umeridional_200 = MPAS_field_will_be_written('umeridional_200hPa')
         need_umeridional = need_umeridional .or. need_umeridional_200
@@ -381,9 +579,6 @@ module isobaric_diagnostics
         need_umeridional_100 = MPAS_field_will_be_written('umeridional_100hPa')
         need_umeridional = need_umeridional .or. need_umeridional_100
         need_any_diags = need_any_diags .or. need_umeridional_100
-        need_umeridional_70 = MPAS_field_will_be_written('umeridional_70hPa')
-        need_umeridional = need_umeridional .or. need_umeridional_70
-        need_any_diags = need_any_diags .or. need_umeridional_70
         need_umeridional_50 = MPAS_field_will_be_written('umeridional_50hPa')
         need_umeridional = need_umeridional .or. need_umeridional_50
         need_any_diags = need_any_diags .or. need_umeridional_50
@@ -396,21 +591,86 @@ module isobaric_diagnostics
         need_umeridional_10 = MPAS_field_will_be_written('umeridional_10hPa')
         need_umeridional = need_umeridional .or. need_umeridional_10
         need_any_diags = need_any_diags .or. need_umeridional_10
-        need_umeridional_7 = MPAS_field_will_be_written('umeridional_7hPa')
-        need_umeridional = need_umeridional .or. need_umeridional_7
-        need_any_diags = need_any_diags .or. need_umeridional_7
+
+        need_umeridional_288_1 = MPAS_field_will_be_written('umeridional_288.1hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_288_1
+        need_any_diags = need_any_diags .or. need_umeridional_288_1
+        need_umeridional_244_9 = MPAS_field_will_be_written('umeridional_244.9hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_244_9
+        need_any_diags = need_any_diags .or. need_umeridional_244_9
+        need_umeridional_208_2 = MPAS_field_will_be_written('umeridional_208.2hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_208_2
+        need_any_diags = need_any_diags .or. need_umeridional_208_2
+        need_umeridional_176_9 = MPAS_field_will_be_written('umeridional_176.9hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_176_9
+        need_any_diags = need_any_diags .or. need_umeridional_176_9
+        need_umeridional_150_4 = MPAS_field_will_be_written('umeridional_150.4hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_150_4
+        need_any_diags = need_any_diags .or. need_umeridional_150_4
+        need_umeridional_127_8 = MPAS_field_will_be_written('umeridional_127.8hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_127_8
+        need_any_diags = need_any_diags .or. need_umeridional_127_8
+        need_umeridional_108_7 = MPAS_field_will_be_written('umeridional_108.7hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_108_7
+        need_any_diags = need_any_diags .or. need_umeridional_108_7
+        need_umeridional_92_4 = MPAS_field_will_be_written('umeridional_92.4hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_92_4
+        need_any_diags = need_any_diags .or. need_umeridional_92_4
+        need_umeridional_78_5 = MPAS_field_will_be_written('umeridional_78.5hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_78_5
+        need_any_diags = need_any_diags .or. need_umeridional_78_5
+        need_umeridional_66_6 = MPAS_field_will_be_written('umeridional_66.6hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_66_6
+        need_any_diags = need_any_diags .or. need_umeridional_66_6
+        need_umeridional_56_4 = MPAS_field_will_be_written('umeridional_56.4hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_56_4
+        need_any_diags = need_any_diags .or. need_umeridional_56_4
+        need_umeridional_47_6 = MPAS_field_will_be_written('umeridional_47.6hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_47_6
+        need_any_diags = need_any_diags .or. need_umeridional_47_6
+        need_umeridional_40_2 = MPAS_field_will_be_written('umeridional_40.2hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_40_2
+        need_any_diags = need_any_diags .or. need_umeridional_40_2
+        need_umeridional_33_8 = MPAS_field_will_be_written('umeridional_33.8hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_33_8
+        need_any_diags = need_any_diags .or. need_umeridional_33_8
+        need_umeridional_28_4 = MPAS_field_will_be_written('umeridional_28.4hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_28_4
+        need_any_diags = need_any_diags .or. need_umeridional_28_4
+        need_umeridional_23_7 = MPAS_field_will_be_written('umeridional_23.7hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_23_7
+        need_any_diags = need_any_diags .or. need_umeridional_23_7
+        need_umeridional_19_8 = MPAS_field_will_be_written('umeridional_19.8hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_19_8
+        need_any_diags = need_any_diags .or. need_umeridional_19_8
+        need_umeridional_16_5 = MPAS_field_will_be_written('umeridional_16.5hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_16_5
+        need_any_diags = need_any_diags .or. need_umeridional_16_5
+        need_umeridional_13_6 = MPAS_field_will_be_written('umeridional_13.6hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_13_6
+        need_any_diags = need_any_diags .or. need_umeridional_13_6
+        need_umeridional_11_3 = MPAS_field_will_be_written('umeridional_11.3hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_11_3
+        need_any_diags = need_any_diags .or. need_umeridional_11_3
+        need_umeridional_9_3 = MPAS_field_will_be_written('umeridional_9.3hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_9_3
+        need_any_diags = need_any_diags .or. need_umeridional_9_3
+        need_umeridional_7_6 = MPAS_field_will_be_written('umeridional_7.6hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_7_6
+        need_any_diags = need_any_diags .or. need_umeridional_7_6
+        need_umeridional_6_2 = MPAS_field_will_be_written('umeridional_6.2hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_6_2
+        need_any_diags = need_any_diags .or. need_umeridional_6_2
         need_umeridional_5 = MPAS_field_will_be_written('umeridional_5hPa')
         need_umeridional = need_umeridional .or. need_umeridional_5
         need_any_diags = need_any_diags .or. need_umeridional_5
-        need_umeridional_3 = MPAS_field_will_be_written('umeridional_3hPa')
-        need_umeridional = need_umeridional .or. need_umeridional_3
-        need_any_diags = need_any_diags .or. need_umeridional_3
-        need_umeridional_2 = MPAS_field_will_be_written('umeridional_2hPa')
-        need_umeridional = need_umeridional .or. need_umeridional_2
-        need_any_diags = need_any_diags .or. need_umeridional_2
-        need_umeridional_1 = MPAS_field_will_be_written('umeridional_1hPa')
-        need_umeridional = need_umeridional .or. need_umeridional_1
-        need_any_diags = need_any_diags .or. need_umeridional_1
+        need_umeridional_4_1 = MPAS_field_will_be_written('umeridional_4.1hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_4_1
+        need_any_diags = need_any_diags .or. need_umeridional_4_1
+        need_umeridional_3_2 = MPAS_field_will_be_written('umeridional_3.2hPa')
+        need_umeridional = need_umeridional .or. need_umeridional_3_2
+        need_any_diags = need_any_diags .or. need_umeridional_3_2
+
 
         need_w_200 = MPAS_field_will_be_written('w_200hPa')
         need_w = need_w .or. need_w_200
@@ -439,15 +699,9 @@ module isobaric_diagnostics
         need_w_100 = MPAS_field_will_be_written('w_100hPa')
         need_w = need_w .or. need_w_100
         need_any_diags = need_any_diags .or. need_w_100
-        need_w_70 = MPAS_field_will_be_written('w_70hPa')
-        need_w = need_w .or. need_w_70
-        need_any_diags = need_any_diags .or. need_w_70
         need_w_50 = MPAS_field_will_be_written('w_50hPa')
         need_w = need_w .or. need_w_50
         need_any_diags = need_any_diags .or. need_w_50
-        need_w_40 = MPAS_field_will_be_written('w_40hPa')
-        need_w = need_w .or. need_w_40
-        need_any_diags = need_any_diags .or. need_w_40
         need_w_30 = MPAS_field_will_be_written('w_30hPa')
         need_w = need_w .or. need_w_30
         need_any_diags = need_any_diags .or. need_w_30
@@ -457,24 +711,85 @@ module isobaric_diagnostics
         need_w_10 = MPAS_field_will_be_written('w_10hPa')
         need_w = need_w .or. need_w_10
         need_any_diags = need_any_diags .or. need_w_10
-        need_w_7 = MPAS_field_will_be_written('w_7hPa')
-        need_w = need_w .or. need_w_7
-        need_any_diags = need_any_diags .or. need_w_7
+
+        need_w_288_1 = MPAS_field_will_be_written('w_288.1hPa')
+        need_w = need_w .or. need_w_288_1
+        need_any_diags = need_any_diags .or. need_w_288_1
+        need_w_244_9 = MPAS_field_will_be_written('w_244.9hPa')
+        need_w = need_w .or. need_w_244_9
+        need_any_diags = need_any_diags .or. need_w_244_9
+        need_w_208_2 = MPAS_field_will_be_written('w_208.2hPa')
+        need_w = need_w .or. need_w_208_2
+        need_any_diags = need_any_diags .or. need_w_208_2
+        need_w_176_9 = MPAS_field_will_be_written('w_176.9hPa')
+        need_w = need_w .or. need_w_176_9
+        need_any_diags = need_any_diags .or. need_w_176_9
+        need_w_150_4 = MPAS_field_will_be_written('w_150.4hPa')
+        need_w = need_w .or. need_w_150_4
+        need_any_diags = need_any_diags .or. need_w_150_4
+        need_w_127_8 = MPAS_field_will_be_written('w_127.8hPa')
+        need_w = need_w .or. need_w_127_8
+        need_any_diags = need_any_diags .or. need_w_127_8
+        need_w_108_7 = MPAS_field_will_be_written('w_108.7hPa')
+        need_w = need_w .or. need_w_108_7
+        need_any_diags = need_any_diags .or. need_w_108_7
+        need_w_92_4 = MPAS_field_will_be_written('w_92.4hPa')
+        need_w = need_w .or. need_w_92_4
+        need_any_diags = need_any_diags .or. need_w_92_4
+        need_w_78_5 = MPAS_field_will_be_written('w_78.5hPa')
+        need_w = need_w .or. need_w_78_5
+        need_any_diags = need_any_diags .or. need_w_78_5
+        need_w_66_6 = MPAS_field_will_be_written('w_66.6hPa')
+        need_w = need_w .or. need_w_66_6
+        need_any_diags = need_any_diags .or. need_w_66_6
+        need_w_56_4 = MPAS_field_will_be_written('w_56.4hPa')
+        need_w = need_w .or. need_w_56_4
+        need_any_diags = need_any_diags .or. need_w_56_4
+        need_w_47_6 = MPAS_field_will_be_written('w_47.6hPa')
+        need_w = need_w .or. need_w_47_6
+        need_any_diags = need_any_diags .or. need_w_47_6
+        need_w_40_2 = MPAS_field_will_be_written('w_40.2hPa')
+        need_w = need_w .or. need_w_40_2
+        need_any_diags = need_any_diags .or. need_w_40_2
+        need_w_33_8 = MPAS_field_will_be_written('w_33.8hPa')
+        need_w = need_w .or. need_w_33_8
+        need_any_diags = need_any_diags .or. need_w_33_8
+        need_w_28_4 = MPAS_field_will_be_written('w_28.4hPa')
+        need_w = need_w .or. need_w_28_4
+        need_any_diags = need_any_diags .or. need_w_28_4
+        need_w_23_7 = MPAS_field_will_be_written('w_23.7hPa')
+        need_w = need_w .or. need_w_23_7
+        need_any_diags = need_any_diags .or. need_w_23_7
+        need_w_19_8 = MPAS_field_will_be_written('w_19.8hPa')
+        need_w = need_w .or. need_w_19_8
+        need_any_diags = need_any_diags .or. need_w_19_8
+        need_w_16_5 = MPAS_field_will_be_written('w_16.5hPa')
+        need_w = need_w .or. need_w_16_5
+        need_any_diags = need_any_diags .or. need_w_16_5
+        need_w_13_6 = MPAS_field_will_be_written('w_13.6hPa')
+        need_w = need_w .or. need_w_13_6
+        need_any_diags = need_any_diags .or. need_w_13_6
+        need_w_11_3 = MPAS_field_will_be_written('w_11.3hPa')
+        need_w = need_w .or. need_w_11_3
+        need_any_diags = need_any_diags .or. need_w_11_3
+        need_w_9_3 = MPAS_field_will_be_written('w_9.3hPa')
+        need_w = need_w .or. need_w_9_3
+        need_any_diags = need_any_diags .or. need_w_9_3
+        need_w_7_6 = MPAS_field_will_be_written('w_7.6hPa')
+        need_w = need_w .or. need_w_7_6
+        need_any_diags = need_any_diags .or. need_w_7_6
+        need_w_6_2 = MPAS_field_will_be_written('w_6.2hPa')
+        need_w = need_w .or. need_w_6_2
+        need_any_diags = need_any_diags .or. need_w_6_2
         need_w_5 = MPAS_field_will_be_written('w_5hPa')
         need_w = need_w .or. need_w_5
         need_any_diags = need_any_diags .or. need_w_5
-        need_w_4 = MPAS_field_will_be_written('w_4hPa')
-        need_w = need_w .or. need_w_4
-        need_any_diags = need_any_diags .or. need_w_4
-        need_w_3 = MPAS_field_will_be_written('w_3hPa')
-        need_w = need_w .or. need_w_3
-        need_any_diags = need_any_diags .or. need_w_3
-        need_w_2 = MPAS_field_will_be_written('w_2hPa')
-        need_w = need_w .or. need_w_2
-        need_any_diags = need_any_diags .or. need_w_2
-        need_w_1 = MPAS_field_will_be_written('w_1hPa')
-        need_w = need_w .or. need_w_1
-        need_any_diags = need_any_diags .or. need_w_1
+        need_w_4_1 = MPAS_field_will_be_written('w_4.1hPa')
+        need_w = need_w .or. need_w_4_1
+        need_any_diags = need_any_diags .or. need_w_4_1
+        need_w_3_2 = MPAS_field_will_be_written('w_3.2hPa')
+        need_w = need_w .or. need_w_3_2
+        need_any_diags = need_any_diags .or. need_w_3_2
 
         need_vorticity_200 = MPAS_field_will_be_written('vorticity_200hPa')
         need_vorticity = need_vorticity .or. need_vorticity_200
@@ -885,18 +1200,37 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: temperature_300hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_150hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_100hPa
-        real (kind=RKIND), dimension(:), pointer :: temperature_70hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_50hPa
-        real (kind=RKIND), dimension(:), pointer :: temperature_40hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_30hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_20hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_10hPa
-        real (kind=RKIND), dimension(:), pointer :: temperature_7hPa
+
+        real (kind=RKIND), dimension(:), pointer :: temperature_288_1hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_244_9hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_208_2hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_176_9hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_150_4hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_127_8hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_108_7hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_92_4hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_78_5hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_66_6hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_56_4hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_47_6hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_40_2hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_33_8hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_28_4hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_23_7hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_19_8hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_16_5hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_13_6hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_11_3hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_9_3hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_7_6hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_6_2hPa
         real (kind=RKIND), dimension(:), pointer :: temperature_5hPa
-        real (kind=RKIND), dimension(:), pointer :: temperature_4hPa
-        real (kind=RKIND), dimension(:), pointer :: temperature_3hPa
-        real (kind=RKIND), dimension(:), pointer :: temperature_2hPa
-        real (kind=RKIND), dimension(:), pointer :: temperature_1hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_4_1hPa
+        real (kind=RKIND), dimension(:), pointer :: temperature_3_2hPa
        
         real (kind=RKIND), dimension(:), pointer :: relhum_200hPa
         real (kind=RKIND), dimension(:), pointer :: relhum_250hPa
@@ -921,18 +1255,37 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: uzonal_300hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_150hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_100hPa
-        real (kind=RKIND), dimension(:), pointer :: uzonal_70hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_50hPa
-        real (kind=RKIND), dimension(:), pointer :: uzonal_40hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_30hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_20hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_10hPa
-        real (kind=RKIND), dimension(:), pointer :: uzonal_7hPa
+
+        real (kind=RKIND), dimension(:), pointer :: uzonal_288_1hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_244_9hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_208_2hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_176_9hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_150_4hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_127_8hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_108_7hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_92_4hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_78_5hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_66_6hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_56_4hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_47_6hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_40_2hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_33_8hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_28_4hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_23_7hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_19_8hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_16_5hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_13_6hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_11_3hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_9_3hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_7_6hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_6_2hPa
         real (kind=RKIND), dimension(:), pointer :: uzonal_5hPa
-        real (kind=RKIND), dimension(:), pointer :: uzonal_4hPa
-        real (kind=RKIND), dimension(:), pointer :: uzonal_3hPa
-        real (kind=RKIND), dimension(:), pointer :: uzonal_2hPa
-        real (kind=RKIND), dimension(:), pointer :: uzonal_1hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_4_1hPa
+        real (kind=RKIND), dimension(:), pointer :: uzonal_3_2hPa
        
         real (kind=RKIND), dimension(:), pointer :: umeridional_200hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_250hPa
@@ -943,18 +1296,37 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: umeridional_300hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_150hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_100hPa
-        real (kind=RKIND), dimension(:), pointer :: umeridional_70hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_50hPa
-        real (kind=RKIND), dimension(:), pointer :: umeridional_40hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_30hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_20hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_10hPa
-        real (kind=RKIND), dimension(:), pointer :: umeridional_7hPa
+
+        real (kind=RKIND), dimension(:), pointer :: umeridional_288_1hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_244_9hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_208_2hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_176_9hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_150_4hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_127_8hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_108_7hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_92_4hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_78_5hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_66_6hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_56_4hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_47_6hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_40_2hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_33_8hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_28_4hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_23_7hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_19_8hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_16_5hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_13_6hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_11_3hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_9_3hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_7_6hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_6_2hPa
         real (kind=RKIND), dimension(:), pointer :: umeridional_5hPa
-        real (kind=RKIND), dimension(:), pointer :: umeridional_4hPa
-        real (kind=RKIND), dimension(:), pointer :: umeridional_3hPa
-        real (kind=RKIND), dimension(:), pointer :: umeridional_2hPa
-        real (kind=RKIND), dimension(:), pointer :: umeridional_1hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_4_1hPa
+        real (kind=RKIND), dimension(:), pointer :: umeridional_3_2hPa
        
         real (kind=RKIND), dimension(:), pointer :: height_200hPa
         real (kind=RKIND), dimension(:), pointer :: height_250hPa
@@ -962,20 +1334,40 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: height_700hPa
         real (kind=RKIND), dimension(:), pointer :: height_850hPa
         real (kind=RKIND), dimension(:), pointer :: height_925hPa
+        real (kind=RKIND), dimension(:), pointer :: height_300hPa
         real (kind=RKIND), dimension(:), pointer :: height_150hPa
         real (kind=RKIND), dimension(:), pointer :: height_100hPa
-        real (kind=RKIND), dimension(:), pointer :: height_70hPa
         real (kind=RKIND), dimension(:), pointer :: height_50hPa
-        real (kind=RKIND), dimension(:), pointer :: height_40hPa
         real (kind=RKIND), dimension(:), pointer :: height_30hPa
         real (kind=RKIND), dimension(:), pointer :: height_20hPa
         real (kind=RKIND), dimension(:), pointer :: height_10hPa
-        real (kind=RKIND), dimension(:), pointer :: height_7hPa
+
+        real (kind=RKIND), dimension(:), pointer :: height_288_1hPa
+        real (kind=RKIND), dimension(:), pointer :: height_244_9hPa
+        real (kind=RKIND), dimension(:), pointer :: height_208_2hPa
+        real (kind=RKIND), dimension(:), pointer :: height_176_9hPa
+        real (kind=RKIND), dimension(:), pointer :: height_150_4hPa
+        real (kind=RKIND), dimension(:), pointer :: height_127_8hPa
+        real (kind=RKIND), dimension(:), pointer :: height_108_7hPa
+        real (kind=RKIND), dimension(:), pointer :: height_92_4hPa
+        real (kind=RKIND), dimension(:), pointer :: height_78_5hPa
+        real (kind=RKIND), dimension(:), pointer :: height_66_6hPa
+        real (kind=RKIND), dimension(:), pointer :: height_56_4hPa
+        real (kind=RKIND), dimension(:), pointer :: height_47_6hPa
+        real (kind=RKIND), dimension(:), pointer :: height_40_2hPa
+        real (kind=RKIND), dimension(:), pointer :: height_33_8hPa
+        real (kind=RKIND), dimension(:), pointer :: height_28_4hPa
+        real (kind=RKIND), dimension(:), pointer :: height_23_7hPa
+        real (kind=RKIND), dimension(:), pointer :: height_19_8hPa
+        real (kind=RKIND), dimension(:), pointer :: height_16_5hPa
+        real (kind=RKIND), dimension(:), pointer :: height_13_6hPa
+        real (kind=RKIND), dimension(:), pointer :: height_11_3hPa
+        real (kind=RKIND), dimension(:), pointer :: height_9_3hPa
+        real (kind=RKIND), dimension(:), pointer :: height_7_6hPa
+        real (kind=RKIND), dimension(:), pointer :: height_6_2hPa
         real (kind=RKIND), dimension(:), pointer :: height_5hPa
-        real (kind=RKIND), dimension(:), pointer :: height_4hPa
-        real (kind=RKIND), dimension(:), pointer :: height_3hPa
-        real (kind=RKIND), dimension(:), pointer :: height_2hPa
-        real (kind=RKIND), dimension(:), pointer :: height_1hPa
+        real (kind=RKIND), dimension(:), pointer :: height_4_1hPa
+        real (kind=RKIND), dimension(:), pointer :: height_3_2hPa
        
         real (kind=RKIND), dimension(:), pointer :: w_200hPa
         real (kind=RKIND), dimension(:), pointer :: w_250hPa
@@ -986,18 +1378,37 @@ module isobaric_diagnostics
         real (kind=RKIND), dimension(:), pointer :: w_300hPa
         real (kind=RKIND), dimension(:), pointer :: w_150hPa
         real (kind=RKIND), dimension(:), pointer :: w_100hPa
-        real (kind=RKIND), dimension(:), pointer :: w_70hPa
         real (kind=RKIND), dimension(:), pointer :: w_50hPa
-        real (kind=RKIND), dimension(:), pointer :: w_40hPa
         real (kind=RKIND), dimension(:), pointer :: w_30hPa
         real (kind=RKIND), dimension(:), pointer :: w_20hPa
         real (kind=RKIND), dimension(:), pointer :: w_10hPa
-        real (kind=RKIND), dimension(:), pointer :: w_7hPa
+
+        real (kind=RKIND), dimension(:), pointer :: w_288_1hPa
+        real (kind=RKIND), dimension(:), pointer :: w_244_9hPa
+        real (kind=RKIND), dimension(:), pointer :: w_208_2hPa
+        real (kind=RKIND), dimension(:), pointer :: w_176_9hPa
+        real (kind=RKIND), dimension(:), pointer :: w_150_4hPa
+        real (kind=RKIND), dimension(:), pointer :: w_127_8hPa
+        real (kind=RKIND), dimension(:), pointer :: w_108_7hPa
+        real (kind=RKIND), dimension(:), pointer :: w_92_4hPa
+        real (kind=RKIND), dimension(:), pointer :: w_78_5hPa
+        real (kind=RKIND), dimension(:), pointer :: w_66_6hPa
+        real (kind=RKIND), dimension(:), pointer :: w_56_4hPa
+        real (kind=RKIND), dimension(:), pointer :: w_47_6hPa
+        real (kind=RKIND), dimension(:), pointer :: w_40_2hPa
+        real (kind=RKIND), dimension(:), pointer :: w_33_8hPa
+        real (kind=RKIND), dimension(:), pointer :: w_28_4hPa
+        real (kind=RKIND), dimension(:), pointer :: w_23_7hPa
+        real (kind=RKIND), dimension(:), pointer :: w_19_8hPa
+        real (kind=RKIND), dimension(:), pointer :: w_16_5hPa
+        real (kind=RKIND), dimension(:), pointer :: w_13_6hPa
+        real (kind=RKIND), dimension(:), pointer :: w_11_3hPa
+        real (kind=RKIND), dimension(:), pointer :: w_9_3hPa
+        real (kind=RKIND), dimension(:), pointer :: w_7_6hPa
+        real (kind=RKIND), dimension(:), pointer :: w_6_2hPa
         real (kind=RKIND), dimension(:), pointer :: w_5hPa
-        real (kind=RKIND), dimension(:), pointer :: w_4hPa
-        real (kind=RKIND), dimension(:), pointer :: w_3hPa
-        real (kind=RKIND), dimension(:), pointer :: w_2hPa
-        real (kind=RKIND), dimension(:), pointer :: w_1hPa
+        real (kind=RKIND), dimension(:), pointer :: w_4_1hPa
+        real (kind=RKIND), dimension(:), pointer :: w_3_2hPa
        
         real (kind=RKIND), dimension(:), pointer :: vorticity_200hPa
         real (kind=RKIND), dimension(:), pointer :: vorticity_250hPa
@@ -1190,18 +1601,38 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'temperature_300hPa', temperature_300hPa)
         call mpas_pool_get_array(diag, 'temperature_150hPa', temperature_150hPa)
         call mpas_pool_get_array(diag, 'temperature_100hPa', temperature_100hPa)
-        call mpas_pool_get_array(diag, 'temperature_70hPa', temperature_70hPa)
         call mpas_pool_get_array(diag, 'temperature_50hPa', temperature_50hPa)
-        call mpas_pool_get_array(diag, 'temperature_40hPa', temperature_40hPa)
         call mpas_pool_get_array(diag, 'temperature_30hPa', temperature_30hPa)
         call mpas_pool_get_array(diag, 'temperature_20hPa', temperature_20hPa)
         call mpas_pool_get_array(diag, 'temperature_10hPa', temperature_10hPa)
-        call mpas_pool_get_array(diag, 'temperature_7hPa', temperature_7hPa)
+
+        call mpas_pool_get_array(diag, 'temperature_288.1hPa', temperature_288_1hPa)
+        call mpas_pool_get_array(diag, 'temperature_244.9hPa', temperature_244_9hPa)
+        call mpas_pool_get_array(diag, 'temperature_208.2hPa', temperature_208_2hPa)
+        call mpas_pool_get_array(diag, 'temperature_176.9hPa', temperature_176_9hPa)
+        call mpas_pool_get_array(diag, 'temperature_150.4hPa', temperature_150_4hPa)
+        call mpas_pool_get_array(diag, 'temperature_127.8hPa', temperature_127_8hPa)
+        call mpas_pool_get_array(diag, 'temperature_108.7hPa', temperature_108_7hPa)
+        call mpas_pool_get_array(diag, 'temperature_92.4hPa', temperature_92_4hPa)
+        call mpas_pool_get_array(diag, 'temperature_78.5hPa', temperature_78_5hPa)
+        call mpas_pool_get_array(diag, 'temperature_66.6hPa', temperature_66_6hPa)
+        call mpas_pool_get_array(diag, 'temperature_56.4hPa', temperature_56_4hPa)
+        call mpas_pool_get_array(diag, 'temperature_47.6hPa', temperature_47_6hPa)
+        call mpas_pool_get_array(diag, 'temperature_40.2hPa', temperature_40_2hPa)
+        call mpas_pool_get_array(diag, 'temperature_33.8hPa', temperature_33_8hPa)
+        call mpas_pool_get_array(diag, 'temperature_28.4hPa', temperature_28_4hPa)
+        call mpas_pool_get_array(diag, 'temperature_23.7hPa', temperature_23_7hPa)
+        call mpas_pool_get_array(diag, 'temperature_19.8hPa', temperature_19_8hPa)
+        call mpas_pool_get_array(diag, 'temperature_16.5hPa', temperature_16_5hPa)
+        call mpas_pool_get_array(diag, 'temperature_13.6hPa', temperature_13_6hPa)
+        call mpas_pool_get_array(diag, 'temperature_11.3hPa', temperature_11_3hPa)
+        call mpas_pool_get_array(diag, 'temperature_9.3hPa', temperature_9_3hPa)
+        call mpas_pool_get_array(diag, 'temperature_7.6hPa', temperature_7_6hPa)
+        call mpas_pool_get_array(diag, 'temperature_6.2hPa', temperature_6_2hPa)
         call mpas_pool_get_array(diag, 'temperature_5hPa', temperature_5hPa)
-        call mpas_pool_get_array(diag, 'temperature_4hPa', temperature_4hPa)
-        call mpas_pool_get_array(diag, 'temperature_3hPa', temperature_3hPa)
-        call mpas_pool_get_array(diag, 'temperature_2hPa', temperature_2hPa)
-        call mpas_pool_get_array(diag, 'temperature_1hPa', temperature_1hPa)
+        call mpas_pool_get_array(diag, 'temperature_4.1hPa', temperature_4_1hPa)
+        call mpas_pool_get_array(diag, 'temperature_3.2hPa', temperature_3_2hPa)
+
        
         call mpas_pool_get_array(diag, 'relhum_200hPa', relhum_200hPa)
         call mpas_pool_get_array(diag, 'relhum_250hPa', relhum_250hPa)
@@ -1226,18 +1657,37 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'uzonal_300hPa', uzonal_300hPa)
         call mpas_pool_get_array(diag, 'uzonal_150hPa', uzonal_150hPa)
         call mpas_pool_get_array(diag, 'uzonal_100hPa', uzonal_100hPa)
-        call mpas_pool_get_array(diag, 'uzonal_70hPa', uzonal_70hPa)
         call mpas_pool_get_array(diag, 'uzonal_50hPa', uzonal_50hPa)
-        call mpas_pool_get_array(diag, 'uzonal_40hPa', uzonal_40hPa)
         call mpas_pool_get_array(diag, 'uzonal_30hPa', uzonal_30hPa)
         call mpas_pool_get_array(diag, 'uzonal_20hPa', uzonal_20hPa)
         call mpas_pool_get_array(diag, 'uzonal_10hPa', uzonal_10hPa)
-        call mpas_pool_get_array(diag, 'uzonal_7hPa', uzonal_7hPa)
+
+        call mpas_pool_get_array(diag, 'uzonal_288.1hPa', uzonal_288_1hPa)
+        call mpas_pool_get_array(diag, 'uzonal_244.9hPa', uzonal_244_9hPa)
+        call mpas_pool_get_array(diag, 'uzonal_208.2hPa', uzonal_208_2hPa)
+        call mpas_pool_get_array(diag, 'uzonal_176.9hPa', uzonal_176_9hPa)
+        call mpas_pool_get_array(diag, 'uzonal_150.4hPa', uzonal_150_4hPa)
+        call mpas_pool_get_array(diag, 'uzonal_127.8hPa', uzonal_127_8hPa)
+        call mpas_pool_get_array(diag, 'uzonal_108.7hPa', uzonal_108_7hPa)
+        call mpas_pool_get_array(diag, 'uzonal_92.4hPa', uzonal_92_4hPa)
+        call mpas_pool_get_array(diag, 'uzonal_78.5hPa', uzonal_78_5hPa)
+        call mpas_pool_get_array(diag, 'uzonal_66.6hPa', uzonal_66_6hPa)
+        call mpas_pool_get_array(diag, 'uzonal_56.4hPa', uzonal_56_4hPa)
+        call mpas_pool_get_array(diag, 'uzonal_47.6hPa', uzonal_47_6hPa)
+        call mpas_pool_get_array(diag, 'uzonal_40.2hPa', uzonal_40_2hPa)
+        call mpas_pool_get_array(diag, 'uzonal_33.8hPa', uzonal_33_8hPa)
+        call mpas_pool_get_array(diag, 'uzonal_28.4hPa', uzonal_28_4hPa)
+        call mpas_pool_get_array(diag, 'uzonal_23.7hPa', uzonal_23_7hPa)
+        call mpas_pool_get_array(diag, 'uzonal_19.8hPa', uzonal_19_8hPa)
+        call mpas_pool_get_array(diag, 'uzonal_16.5hPa', uzonal_16_5hPa)
+        call mpas_pool_get_array(diag, 'uzonal_13.6hPa', uzonal_13_6hPa)
+        call mpas_pool_get_array(diag, 'uzonal_11.3hPa', uzonal_11_3hPa)
+        call mpas_pool_get_array(diag, 'uzonal_9.3hPa', uzonal_9_3hPa)
+        call mpas_pool_get_array(diag, 'uzonal_7.6hPa', uzonal_7_6hPa)
+        call mpas_pool_get_array(diag, 'uzonal_6.2hPa', uzonal_6_2hPa)
         call mpas_pool_get_array(diag, 'uzonal_5hPa', uzonal_5hPa)
-        call mpas_pool_get_array(diag, 'uzonal_4hPa', uzonal_4hPa)
-        call mpas_pool_get_array(diag, 'uzonal_3hPa', uzonal_3hPa)
-        call mpas_pool_get_array(diag, 'uzonal_2hPa', uzonal_2hPa)
-        call mpas_pool_get_array(diag, 'uzonal_1hPa', uzonal_1hPa)
+        call mpas_pool_get_array(diag, 'uzonal_4.1hPa', uzonal_4_1hPa)
+        call mpas_pool_get_array(diag, 'uzonal_3.2hPa', uzonal_3_2hPa)
        
         call mpas_pool_get_array(diag, 'umeridional_200hPa', umeridional_200hPa)
         call mpas_pool_get_array(diag, 'umeridional_250hPa', umeridional_250hPa)
@@ -1248,18 +1698,37 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'umeridional_300hPa', umeridional_300hPa)
         call mpas_pool_get_array(diag, 'umeridional_150hPa', umeridional_150hPa)
         call mpas_pool_get_array(diag, 'umeridional_100hPa', umeridional_100hPa)
-        call mpas_pool_get_array(diag, 'umeridional_70hPa', umeridional_70hPa)
         call mpas_pool_get_array(diag, 'umeridional_50hPa', umeridional_50hPa)
-        call mpas_pool_get_array(diag, 'umeridional_40hPa', umeridional_40hPa)
         call mpas_pool_get_array(diag, 'umeridional_30hPa', umeridional_30hPa)
         call mpas_pool_get_array(diag, 'umeridional_20hPa', umeridional_20hPa)
         call mpas_pool_get_array(diag, 'umeridional_10hPa', umeridional_10hPa)
-        call mpas_pool_get_array(diag, 'umeridional_7hPa', umeridional_7hPa)
+
+        call mpas_pool_get_array(diag, 'umeridional_288.1hPa', umeridional_288_1hPa)
+        call mpas_pool_get_array(diag, 'umeridional_244.9hPa', umeridional_244_9hPa)
+        call mpas_pool_get_array(diag, 'umeridional_208.2hPa', umeridional_208_2hPa)
+        call mpas_pool_get_array(diag, 'umeridional_176.9hPa', umeridional_176_9hPa)
+        call mpas_pool_get_array(diag, 'umeridional_150.4hPa', umeridional_150_4hPa)
+        call mpas_pool_get_array(diag, 'umeridional_127.8hPa', umeridional_127_8hPa)
+        call mpas_pool_get_array(diag, 'umeridional_108.7hPa', umeridional_108_7hPa)
+        call mpas_pool_get_array(diag, 'umeridional_92.4hPa', umeridional_92_4hPa)
+        call mpas_pool_get_array(diag, 'umeridional_78.5hPa', umeridional_78_5hPa)
+        call mpas_pool_get_array(diag, 'umeridional_66.6hPa', umeridional_66_6hPa)
+        call mpas_pool_get_array(diag, 'umeridional_56.4hPa', umeridional_56_4hPa)
+        call mpas_pool_get_array(diag, 'umeridional_47.6hPa', umeridional_47_6hPa)
+        call mpas_pool_get_array(diag, 'umeridional_40.2hPa', umeridional_40_2hPa)
+        call mpas_pool_get_array(diag, 'umeridional_33.8hPa', umeridional_33_8hPa)
+        call mpas_pool_get_array(diag, 'umeridional_28.4hPa', umeridional_28_4hPa)
+        call mpas_pool_get_array(diag, 'umeridional_23.7hPa', umeridional_23_7hPa)
+        call mpas_pool_get_array(diag, 'umeridional_19.8hPa', umeridional_19_8hPa)
+        call mpas_pool_get_array(diag, 'umeridional_16.5hPa', umeridional_16_5hPa)
+        call mpas_pool_get_array(diag, 'umeridional_13.6hPa', umeridional_13_6hPa)
+        call mpas_pool_get_array(diag, 'umeridional_11.3hPa', umeridional_11_3hPa)
+        call mpas_pool_get_array(diag, 'umeridional_9.3hPa', umeridional_9_3hPa)
+        call mpas_pool_get_array(diag, 'umeridional_7.6hPa', umeridional_7_6hPa)
+        call mpas_pool_get_array(diag, 'umeridional_6.2hPa', umeridional_6_2hPa)
         call mpas_pool_get_array(diag, 'umeridional_5hPa', umeridional_5hPa)
-        call mpas_pool_get_array(diag, 'umeridional_4hPa', umeridional_4hPa)
-        call mpas_pool_get_array(diag, 'umeridional_3hPa', umeridional_3hPa)
-        call mpas_pool_get_array(diag, 'umeridional_2hPa', umeridional_2hPa)
-        call mpas_pool_get_array(diag, 'umeridional_1hPa', umeridional_1hPa)
+        call mpas_pool_get_array(diag, 'umeridional_4.1hPa', umeridional_4_1hPa)
+        call mpas_pool_get_array(diag, 'umeridional_3.2hPa', umeridional_3_2hPa)
        
         call mpas_pool_get_array(diag, 'height_200hPa', height_200hPa)
         call mpas_pool_get_array(diag, 'height_250hPa', height_250hPa)
@@ -1267,20 +1736,40 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'height_700hPa', height_700hPa)
         call mpas_pool_get_array(diag, 'height_850hPa', height_850hPa)
         call mpas_pool_get_array(diag, 'height_925hPa', height_925hPa)
+        call mpas_pool_get_array(diag, 'height_300hPa', height_300hPa)
         call mpas_pool_get_array(diag, 'height_150hPa', height_150hPa)
         call mpas_pool_get_array(diag, 'height_100hPa', height_100hPa)
-        call mpas_pool_get_array(diag, 'height_70hPa', height_70hPa)
         call mpas_pool_get_array(diag, 'height_50hPa', height_50hPa)
-        call mpas_pool_get_array(diag, 'height_40hPa', height_40hPa)
         call mpas_pool_get_array(diag, 'height_30hPa', height_30hPa)
         call mpas_pool_get_array(diag, 'height_20hPa', height_20hPa)
         call mpas_pool_get_array(diag, 'height_10hPa', height_10hPa)
-        call mpas_pool_get_array(diag, 'height_7hPa', height_7hPa)
+
+        call mpas_pool_get_array(diag, 'height_288.1hPa', height_288_1hPa)
+        call mpas_pool_get_array(diag, 'height_244.9hPa', height_244_9hPa)
+        call mpas_pool_get_array(diag, 'height_208.2hPa', height_208_2hPa)
+        call mpas_pool_get_array(diag, 'height_176.9hPa', height_176_9hPa)
+        call mpas_pool_get_array(diag, 'height_150.4hPa', height_150_4hPa)
+        call mpas_pool_get_array(diag, 'height_127.8hPa', height_127_8hPa)
+        call mpas_pool_get_array(diag, 'height_108.7hPa', height_108_7hPa)
+        call mpas_pool_get_array(diag, 'height_92.4hPa', height_92_4hPa)
+        call mpas_pool_get_array(diag, 'height_78.5hPa', height_78_5hPa)
+        call mpas_pool_get_array(diag, 'height_66.6hPa', height_66_6hPa)
+        call mpas_pool_get_array(diag, 'height_56.4hPa', height_56_4hPa)
+        call mpas_pool_get_array(diag, 'height_47.6hPa', height_47_6hPa)
+        call mpas_pool_get_array(diag, 'height_40.2hPa', height_40_2hPa)
+        call mpas_pool_get_array(diag, 'height_33.8hPa', height_33_8hPa)
+        call mpas_pool_get_array(diag, 'height_28.4hPa', height_28_4hPa)
+        call mpas_pool_get_array(diag, 'height_23.7hPa', height_23_7hPa)
+        call mpas_pool_get_array(diag, 'height_19.8hPa', height_19_8hPa)
+        call mpas_pool_get_array(diag, 'height_16.5hPa', height_16_5hPa)
+        call mpas_pool_get_array(diag, 'height_13.6hPa', height_13_6hPa)
+        call mpas_pool_get_array(diag, 'height_11.3hPa', height_11_3hPa)
+        call mpas_pool_get_array(diag, 'height_9.3hPa', height_9_3hPa)
+        call mpas_pool_get_array(diag, 'height_7.6hPa', height_7_6hPa)
+        call mpas_pool_get_array(diag, 'height_6.2hPa', height_6_2hPa)
         call mpas_pool_get_array(diag, 'height_5hPa', height_5hPa)
-        call mpas_pool_get_array(diag, 'height_4hPa', height_4hPa)
-        call mpas_pool_get_array(diag, 'height_3hPa', height_3hPa)
-        call mpas_pool_get_array(diag, 'height_2hPa', height_2hPa)
-        call mpas_pool_get_array(diag, 'height_1hPa', height_1hPa)
+        call mpas_pool_get_array(diag, 'height_4.1hPa', height_4_1hPa)
+        call mpas_pool_get_array(diag, 'height_3.2hPa', height_3_2hPa)
        
         call mpas_pool_get_array(diag, 'w_200hPa', w_200hPa)
         call mpas_pool_get_array(diag, 'w_250hPa', w_250hPa)
@@ -1291,18 +1780,37 @@ module isobaric_diagnostics
         call mpas_pool_get_array(diag, 'w_300hPa', w_300hPa)
         call mpas_pool_get_array(diag, 'w_150hPa', w_150hPa)
         call mpas_pool_get_array(diag, 'w_100hPa', w_100hPa)
-        call mpas_pool_get_array(diag, 'w_70hPa', w_70hPa)
         call mpas_pool_get_array(diag, 'w_50hPa', w_50hPa)
-        call mpas_pool_get_array(diag, 'w_40hPa', w_40hPa)
         call mpas_pool_get_array(diag, 'w_30hPa', w_30hPa)
         call mpas_pool_get_array(diag, 'w_20hPa', w_20hPa)
         call mpas_pool_get_array(diag, 'w_10hPa', w_10hPa)
-        call mpas_pool_get_array(diag, 'w_7hPa', w_7hPa)
+
+        call mpas_pool_get_array(diag, 'w_288.1hPa', w_288_1hPa)
+        call mpas_pool_get_array(diag, 'w_244.9hPa', w_244_9hPa)
+        call mpas_pool_get_array(diag, 'w_208.2hPa', w_208_2hPa)
+        call mpas_pool_get_array(diag, 'w_176.9hPa', w_176_9hPa)
+        call mpas_pool_get_array(diag, 'w_150.4hPa', w_150_4hPa)
+        call mpas_pool_get_array(diag, 'w_127.8hPa', w_127_8hPa)
+        call mpas_pool_get_array(diag, 'w_108.7hPa', w_108_7hPa)
+        call mpas_pool_get_array(diag, 'w_92.4hPa', w_92_4hPa)
+        call mpas_pool_get_array(diag, 'w_78.5hPa', w_78_5hPa)
+        call mpas_pool_get_array(diag, 'w_66.6hPa', w_66_6hPa)
+        call mpas_pool_get_array(diag, 'w_56.4hPa', w_56_4hPa)
+        call mpas_pool_get_array(diag, 'w_47.6hPa', w_47_6hPa)
+        call mpas_pool_get_array(diag, 'w_40.2hPa', w_40_2hPa)
+        call mpas_pool_get_array(diag, 'w_33.8hPa', w_33_8hPa)
+        call mpas_pool_get_array(diag, 'w_28.4hPa', w_28_4hPa)
+        call mpas_pool_get_array(diag, 'w_23.7hPa', w_23_7hPa)
+        call mpas_pool_get_array(diag, 'w_19.8hPa', w_19_8hPa)
+        call mpas_pool_get_array(diag, 'w_16.5hPa', w_16_5hPa)
+        call mpas_pool_get_array(diag, 'w_13.6hPa', w_13_6hPa)
+        call mpas_pool_get_array(diag, 'w_11.3hPa', w_11_3hPa)
+        call mpas_pool_get_array(diag, 'w_9.3hPa', w_9_3hPa)
+        call mpas_pool_get_array(diag, 'w_7.6hPa', w_7_6hPa)
+        call mpas_pool_get_array(diag, 'w_6.2hPa', w_6_2hPa)
         call mpas_pool_get_array(diag, 'w_5hPa', w_5hPa)
-        call mpas_pool_get_array(diag, 'w_4hPa', w_4hPa)
-        call mpas_pool_get_array(diag, 'w_3hPa', w_3hPa)
-        call mpas_pool_get_array(diag, 'w_2hPa', w_2hPa)
-        call mpas_pool_get_array(diag, 'w_1hPa', w_1hPa)
+        call mpas_pool_get_array(diag, 'w_4.1hPa', w_4_1hPa)
+        call mpas_pool_get_array(diag, 'w_3.2hPa', w_3_2hPa)
        
         call mpas_pool_get_array(diag, 'vorticity_200hPa', vorticity_200hPa)
         call mpas_pool_get_array(diag, 'vorticity_250hPa', vorticity_250hPa)
@@ -1531,7 +2039,7 @@ module isobaric_diagnostics
         end if
        
        !interpolation to fixed pressure levels for fields located at cells centers and at mass points:
-        nIntP = 20
+        nIntP = 39
         if(.not.allocated(field_interp)) allocate(field_interp(nCells,nIntP) )
         if(.not.allocated(press_interp)) allocate(press_interp(nCells,nIntP) )
         do iCell = 1, nCells
@@ -1542,50 +2050,87 @@ module isobaric_diagnostics
            press_interp(iCell,5) = 850.0_RKIND
            press_interp(iCell,6) = 925.0_RKIND
 
-           press_interp(iCell,7) = 150.0_RKIND
-           press_interp(iCell,8) = 100.0_RKIND
-           press_interp(iCell,9) = 70.0_RKIND
+           press_interp(iCell,7) = 300.0_RKIND
+           press_interp(iCell,8) = 150.0_RKIND
+           press_interp(iCell,9) = 100.0_RKIND
            press_interp(iCell,10) = 50.0_RKIND
-           press_interp(iCell,11) = 40.0_RKIND
-           press_interp(iCell,12) = 30.0_RKIND
-           press_interp(iCell,13) = 20.0_RKIND
+           press_interp(iCell,11) = 30.0_RKIND
+           press_interp(iCell,12) = 20.0_RKIND
+           press_interp(iCell,13) = 10.0_RKIND
 
-           press_interp(iCell,14) = 10.0_RKIND
-           press_interp(iCell,15) = 7.0_RKIND
-           press_interp(iCell,16) = 5.0_RKIND
-           press_interp(iCell,17) = 4.0_RKIND
-           press_interp(iCell,18) = 3.0_RKIND
-           press_interp(iCell,19) = 2.0_RKIND
-           press_interp(iCell,20) = 1.0_RKIND
+           press_interp(iCell,14) = 288.1_RKIND
+           press_interp(iCell,15) = 244.9_RKIND
+           press_interp(iCell,16) = 208.2_RKIND
+           press_interp(iCell,17) = 176.9_RKIND
+           press_interp(iCell,18) = 150.4_RKIND
+           press_interp(iCell,19) = 127.8_RKIND
+           press_interp(iCell,20) = 108.7_RKIND
+           press_interp(iCell,21) = 92.4_RKIND
+           press_interp(iCell,22) = 78.5_RKIND
+           press_interp(iCell,23) = 66.6_RKIND
+           press_interp(iCell,24) = 56.4_RKIND
+           press_interp(iCell,25) = 47.6_RKIND
+           press_interp(iCell,26) = 40.2_RKIND
+           press_interp(iCell,27) = 33.8_RKIND
+           press_interp(iCell,28) = 28.4_RKIND
+           press_interp(iCell,29) = 23.7_RKIND
+           press_interp(iCell,30) = 19.8_RKIND
+           press_interp(iCell,31) = 16.5_RKIND
+           press_interp(iCell,32) = 13.6_RKIND
+           press_interp(iCell,33) = 11.3_RKIND
+           press_interp(iCell,34) = 9.3_RKIND
+           press_interp(iCell,35) = 7.6_RKIND
+           press_interp(iCell,36) = 6.2_RKIND
+           press_interp(iCell,37) = 5.0_RKIND
+           press_interp(iCell,38) = 4.1_RKIND
+           press_interp(iCell,39) = 3.2_RKIND
         enddo
 
         if(.not.allocated(p_interp)) allocate(p_interp(nIntP) )
-           p_interp(1) = 1.0_RKIND
-           p_interp(2) = 2.0_RKIND
-           p_interp(3) = 3.0_RKIND
+           p_interp(1) = 3.2_RKIND
+           p_interp(2) = 4.1_RKIND
+           p_interp(3) = 5.0_RKIND
+           p_interp(4) = 6.2_RKIND
+           p_interp(5) = 7.6_RKIND
+           p_interp(6) = 9.3_RKIND
 
-           p_interp(4) = 4.0_RKIND
-           p_interp(5) = 5.0_RKIND
-           p_interp(6) = 7.0_RKIND
+           p_interp(7) = 11.3_RKIND
+           p_interp(8) = 13.6_RKIND
+           p_interp(9) = 16.5_RKIND
+           p_interp(10) = 19.8_RKIND
+           p_interp(11) = 23.7_RKIND
+           p_interp(12) = 28.4_RKIND
+           p_interp(13) = 33.8_RKIND
+           p_interp(14) = 40.2_RKIND
+           p_interp(15) = 47.6_RKIND
 
-           p_interp(7) = 10.0_RKIND
-           p_interp(8) = 20.0_RKIND
-           p_interp(9) = 30.0_RKIND
+           p_interp(16) = 56.4_RKIND
+           p_interp(17) = 66.6_RKIND
+           p_interp(18) = 78.5_RKIND
+           p_interp(19) = 92.4_RKIND
 
-           p_interp(10) = 40.0_RKIND
-           p_interp(11) = 50.0_RKIND
-           p_interp(12) = 70.0_RKIND
+           p_interp(20) = 108.7_RKIND
+           p_interp(21) = 127.8_RKIND
+           p_interp(22) = 150.4_RKIND
+           p_interp(23) = 176.9_RKIND
+           p_interp(24) = 208.2_RKIND
+           p_interp(25) = 244.9_RKIND
+           p_interp(26) = 288.1_RKIND
 
-           p_interp(13) = 100.0_RKIND
-           p_interp(14) = 150.0_RKIND
-           p_interp(15) = 200.0_RKIND
+           p_interp(27) = 10.0_RKIND
+           p_interp(28) = 20.0_RKIND
+           p_interp(29) = 30.0_RKIND
+           p_interp(30) = 50.0_RKIND
+           p_interp(31) = 100.0_RKIND
+           p_interp(32) = 150.0_RKIND
+           p_interp(33) = 300.0_RKIND
 
-           p_interp(16) = 250.0_RKIND
-           p_interp(17) = 300.0_RKIND
-
-           p_interp(18) = 500.0_RKIND
-           p_interp(19) = 700.0_RKIND
-           p_interp(20) = 850.0_RKIND
+           p_interp(34) = 925.0_RKIND
+           p_interp(35) = 800.0_RKIND
+           p_interp(36) = 700.0_RKIND
+           p_interp(37) = 500.0_RKIND
+           p_interp(38) = 250.0_RKIND
+           p_interp(39) = 200.0_RKIND
        
         if(.not.allocated(press_in)) allocate(press_in(nCells,nVertLevels))
         do iCell = 1, nCells
@@ -1609,31 +2154,51 @@ module isobaric_diagnostics
 
             call DINTERP3DZ(temperature(:,1:nCells),pressure(:,1:nCells),p_interp,field_interp,nCells,nVertLevels,nIntP)
 
-            temperature_1hPa(1:nCells) = field_interp(1:nCells,1)
-            temperature_2hPa(1:nCells) = field_interp(1:nCells,2)
-            temperature_3hPa(1:nCells) = field_interp(1:nCells,3)
+            temperature_3_2hPa(1:nCells) = field_interp(1:nCells,1)
+            temperature_4_1hPa(1:nCells) = field_interp(1:nCells,2)
+            temperature_5hPa(1:nCells) = field_interp(1:nCells,3)
+            temperature_6_2hPa(1:nCells) = field_interp(1:nCells,4)
+            temperature_7_6hPa(1:nCells) = field_interp(1:nCells,5)
+            temperature_9_3hPa(1:nCells) = field_interp(1:nCells,6)
 
-            temperature_4hPa(1:nCells) = field_interp(1:nCells,4)
-            temperature_5hPa(1:nCells) = field_interp(1:nCells,5)
-            temperature_7hPa(1:nCells) = field_interp(1:nCells,6)
+            temperature_11_3hPa(1:nCells) = field_interp(1:nCells,7)
+            temperature_13_6hPa(1:nCells) = field_interp(1:nCells,8)
+            temperature_16_5hPa(1:nCells) = field_interp(1:nCells,9)
+            temperature_19_8hPa(1:nCells) = field_interp(1:nCells,10)
+            temperature_23_7hPa(1:nCells) = field_interp(1:nCells,11)
+            temperature_28_4hPa(1:nCells) = field_interp(1:nCells,12)
+            temperature_33_8hPa(1:nCells) = field_interp(1:nCells,13)
+            temperature_40_2hPa(1:nCells) = field_interp(1:nCells,14)
+            temperature_47_6hPa(1:nCells) = field_interp(1:nCells,15)
 
-            temperature_10hPa(1:nCells) = field_interp(1:nCells,7)
-            temperature_20hPa(1:nCells) = field_interp(1:nCells,8)
-            temperature_30hPa(1:nCells) = field_interp(1:nCells,9)
+            temperature_56_4hPa(1:nCells) = field_interp(1:nCells,16)
+            temperature_66_6hPa(1:nCells) = field_interp(1:nCells,17)
+            temperature_78_5hPa(1:nCells) = field_interp(1:nCells,18)
+            temperature_92_4hPa(1:nCells) = field_interp(1:nCells,19)
 
-            temperature_40hPa(1:nCells) = field_interp(1:nCells,10)
-            temperature_50hPa(1:nCells) = field_interp(1:nCells,11)
-            temperature_70hPa(1:nCells) = field_interp(1:nCells,12)
+            temperature_108_7hPa(1:nCells) = field_interp(1:nCells,20)
+            temperature_127_8hPa(1:nCells) = field_interp(1:nCells,21)
+            temperature_150_4hPa(1:nCells) = field_interp(1:nCells,22)
+            temperature_176_9hPa(1:nCells) = field_interp(1:nCells,23)
 
-            temperature_100hPa(1:nCells) = field_interp(1:nCells,13)
-            temperature_150hPa(1:nCells) = field_interp(1:nCells,14)
-            temperature_200hPa(1:nCells) = field_interp(1:nCells,15)
-            temperature_250hPa(1:nCells) = field_interp(1:nCells,16)
-            temperature_300hPa(1:nCells) = field_interp(1:nCells,17)
+            temperature_208_2hPa(1:nCells) = field_interp(1:nCells,24)
+            temperature_244_9hPa(1:nCells) = field_interp(1:nCells,25)
+            temperature_288_1hPa(1:nCells) = field_interp(1:nCells,26)
 
-            temperature_500hPa(1:nCells) = field_interp(1:nCells,18)
-            temperature_700hPa(1:nCells) = field_interp(1:nCells,19)
-            temperature_850hPa(1:nCells) = field_interp(1:nCells,20)
+            temperature_10hPa(1:nCells) = field_interp(1:nCells,27)
+            temperature_20hPa(1:nCells) = field_interp(1:nCells,28)
+            temperature_30hPa(1:nCells) = field_interp(1:nCells,29)
+            temperature_50hPa(1:nCells) = field_interp(1:nCells,30)
+            temperature_100hPa(1:nCells) = field_interp(1:nCells,31)
+            temperature_150hPa(1:nCells) = field_interp(1:nCells,32)
+            temperature_300hPa(1:nCells) = field_interp(1:nCells,33)
+
+            temperature_925hPa(1:nCells) = field_interp(1:nCells,34)
+            temperature_850hPa(1:nCells) = field_interp(1:nCells,35)
+            temperature_700hPa(1:nCells) = field_interp(1:nCells,36)
+            temperature_500hPa(1:nCells) = field_interp(1:nCells,37)
+            temperature_250hPa(1:nCells) = field_interp(1:nCells,38)
+            temperature_200hPa(1:nCells) = field_interp(1:nCells,39)
            ! write(0,*) '--- end interpolate temperature:'
         end if
        
@@ -1686,31 +2251,51 @@ module isobaric_diagnostics
 
             call DINTERP3DZ(uzonal(:,1:nCells),pressure(:,1:nCells),p_interp,field_interp,nCells,nVertLevels,nIntP)
 
-            uzonal_1hPa(1:nCells) = field_interp(1:nCells,1)
-            uzonal_2hPa(1:nCells) = field_interp(1:nCells,2)
-            uzonal_3hPa(1:nCells) = field_interp(1:nCells,3)
+            uzonal_3_2hPa(1:nCells) = field_interp(1:nCells,1)
+            uzonal_4_1hPa(1:nCells) = field_interp(1:nCells,2)
+            uzonal_5hPa(1:nCells) = field_interp(1:nCells,3)
+            uzonal_6_2hPa(1:nCells) = field_interp(1:nCells,4)
+            uzonal_7_6hPa(1:nCells) = field_interp(1:nCells,5)
+            uzonal_9_3hPa(1:nCells) = field_interp(1:nCells,6)
 
-            uzonal_4hPa(1:nCells) = field_interp(1:nCells,4)
-            uzonal_5hPa(1:nCells) = field_interp(1:nCells,5)
-            uzonal_7hPa(1:nCells) = field_interp(1:nCells,6)
+            uzonal_11_3hPa(1:nCells) = field_interp(1:nCells,7)
+            uzonal_13_6hPa(1:nCells) = field_interp(1:nCells,8)
+            uzonal_16_5hPa(1:nCells) = field_interp(1:nCells,9)
+            uzonal_19_8hPa(1:nCells) = field_interp(1:nCells,10)
+            uzonal_23_7hPa(1:nCells) = field_interp(1:nCells,11)
+            uzonal_28_4hPa(1:nCells) = field_interp(1:nCells,12)
+            uzonal_33_8hPa(1:nCells) = field_interp(1:nCells,13)
+            uzonal_40_2hPa(1:nCells) = field_interp(1:nCells,14)
+            uzonal_47_6hPa(1:nCells) = field_interp(1:nCells,15)
 
-            uzonal_10hPa(1:nCells) = field_interp(1:nCells,7)
-            uzonal_20hPa(1:nCells) = field_interp(1:nCells,8)
-            uzonal_30hPa(1:nCells) = field_interp(1:nCells,9)
+            uzonal_56_4hPa(1:nCells) = field_interp(1:nCells,16)
+            uzonal_66_6hPa(1:nCells) = field_interp(1:nCells,17)
+            uzonal_78_5hPa(1:nCells) = field_interp(1:nCells,18)
+            uzonal_92_4hPa(1:nCells) = field_interp(1:nCells,19)
 
-            uzonal_40hPa(1:nCells) = field_interp(1:nCells,10)
-            uzonal_50hPa(1:nCells) = field_interp(1:nCells,11)
-            uzonal_70hPa(1:nCells) = field_interp(1:nCells,12)
+            uzonal_108_7hPa(1:nCells) = field_interp(1:nCells,20)
+            uzonal_127_8hPa(1:nCells) = field_interp(1:nCells,21)
+            uzonal_150_4hPa(1:nCells) = field_interp(1:nCells,22)
+            uzonal_176_9hPa(1:nCells) = field_interp(1:nCells,23)
 
-            uzonal_100hPa(1:nCells) = field_interp(1:nCells,13)
-            uzonal_150hPa(1:nCells) = field_interp(1:nCells,14)
-            uzonal_200hPa(1:nCells) = field_interp(1:nCells,15)
-            uzonal_250hPa(1:nCells) = field_interp(1:nCells,16)
-            uzonal_300hPa(1:nCells) = field_interp(1:nCells,17)
+            uzonal_208_2hPa(1:nCells) = field_interp(1:nCells,24)
+            uzonal_244_9hPa(1:nCells) = field_interp(1:nCells,25)
+            uzonal_288_1hPa(1:nCells) = field_interp(1:nCells,26)
 
-            uzonal_500hPa(1:nCells) = field_interp(1:nCells,18)
-            uzonal_700hPa(1:nCells) = field_interp(1:nCells,19)
-            uzonal_850hPa(1:nCells) = field_interp(1:nCells,20)
+            uzonal_10hPa(1:nCells) = field_interp(1:nCells,27)
+            uzonal_20hPa(1:nCells) = field_interp(1:nCells,28)
+            uzonal_30hPa(1:nCells) = field_interp(1:nCells,29)
+            uzonal_50hPa(1:nCells) = field_interp(1:nCells,30)
+            uzonal_100hPa(1:nCells) = field_interp(1:nCells,31)
+            uzonal_150hPa(1:nCells) = field_interp(1:nCells,32)
+            uzonal_300hPa(1:nCells) = field_interp(1:nCells,33)
+
+            uzonal_925hPa(1:nCells) = field_interp(1:nCells,34)
+            uzonal_850hPa(1:nCells) = field_interp(1:nCells,35)
+            uzonal_700hPa(1:nCells) = field_interp(1:nCells,36)
+            uzonal_500hPa(1:nCells) = field_interp(1:nCells,37)
+            uzonal_250hPa(1:nCells) = field_interp(1:nCells,38)
+            uzonal_200hPa(1:nCells) = field_interp(1:nCells,39)
            ! write(0,*) '--- end interpolate zonal wind:'
         end if
        
@@ -1726,31 +2311,51 @@ module isobaric_diagnostics
 
             call DINTERP3DZ(umeridional(:,1:nCells),pressure(:,1:nCells),p_interp,field_interp,nCells,nVertLevels,nIntP)
 
-            umeridional_1hPa(1:nCells) = field_interp(1:nCells,1)
-            umeridional_2hPa(1:nCells) = field_interp(1:nCells,2)
-            umeridional_3hPa(1:nCells) = field_interp(1:nCells,3)
+            umeridional_3_2hPa(1:nCells) = field_interp(1:nCells,1)
+            umeridional_4_1hPa(1:nCells) = field_interp(1:nCells,2)
+            umeridional_5hPa(1:nCells) = field_interp(1:nCells,3)
+            umeridional_6_2hPa(1:nCells) = field_interp(1:nCells,4)
+            umeridional_7_6hPa(1:nCells) = field_interp(1:nCells,5)
+            umeridional_9_3hPa(1:nCells) = field_interp(1:nCells,6)
 
-            umeridional_4hPa(1:nCells) = field_interp(1:nCells,4)
-            umeridional_5hPa(1:nCells) = field_interp(1:nCells,5)
-            umeridional_7hPa(1:nCells) = field_interp(1:nCells,6)
+            umeridional_11_3hPa(1:nCells) = field_interp(1:nCells,7)
+            umeridional_13_6hPa(1:nCells) = field_interp(1:nCells,8)
+            umeridional_16_5hPa(1:nCells) = field_interp(1:nCells,9)
+            umeridional_19_8hPa(1:nCells) = field_interp(1:nCells,10)
+            umeridional_23_7hPa(1:nCells) = field_interp(1:nCells,11)
+            umeridional_28_4hPa(1:nCells) = field_interp(1:nCells,12)
+            umeridional_33_8hPa(1:nCells) = field_interp(1:nCells,13)
+            umeridional_40_2hPa(1:nCells) = field_interp(1:nCells,14)
+            umeridional_47_6hPa(1:nCells) = field_interp(1:nCells,15)
 
-            umeridional_10hPa(1:nCells) = field_interp(1:nCells,7)
-            umeridional_20hPa(1:nCells) = field_interp(1:nCells,8)
-            umeridional_30hPa(1:nCells) = field_interp(1:nCells,9)
+            umeridional_56_4hPa(1:nCells) = field_interp(1:nCells,16)
+            umeridional_66_6hPa(1:nCells) = field_interp(1:nCells,17)
+            umeridional_78_5hPa(1:nCells) = field_interp(1:nCells,18)
+            umeridional_92_4hPa(1:nCells) = field_interp(1:nCells,19)
 
-            umeridional_40hPa(1:nCells) = field_interp(1:nCells,10)
-            umeridional_50hPa(1:nCells) = field_interp(1:nCells,11)
-            umeridional_70hPa(1:nCells) = field_interp(1:nCells,12)
+            umeridional_108_7hPa(1:nCells) = field_interp(1:nCells,20)
+            umeridional_127_8hPa(1:nCells) = field_interp(1:nCells,21)
+            umeridional_150_4hPa(1:nCells) = field_interp(1:nCells,22)
+            umeridional_176_9hPa(1:nCells) = field_interp(1:nCells,23)
 
-            umeridional_100hPa(1:nCells) = field_interp(1:nCells,13)
-            umeridional_150hPa(1:nCells) = field_interp(1:nCells,14)
-            umeridional_200hPa(1:nCells) = field_interp(1:nCells,15)
-            umeridional_250hPa(1:nCells) = field_interp(1:nCells,16)
-            umeridional_300hPa(1:nCells) = field_interp(1:nCells,17)
+            umeridional_208_2hPa(1:nCells) = field_interp(1:nCells,24)
+            umeridional_244_9hPa(1:nCells) = field_interp(1:nCells,25)
+            umeridional_288_1hPa(1:nCells) = field_interp(1:nCells,26)
 
-            umeridional_500hPa(1:nCells) = field_interp(1:nCells,18)
-            umeridional_700hPa(1:nCells) = field_interp(1:nCells,19)
-            umeridional_850hPa(1:nCells) = field_interp(1:nCells,20)
+            umeridional_10hPa(1:nCells) = field_interp(1:nCells,27)
+            umeridional_20hPa(1:nCells) = field_interp(1:nCells,28)
+            umeridional_30hPa(1:nCells) = field_interp(1:nCells,29)
+            umeridional_50hPa(1:nCells) = field_interp(1:nCells,30)
+            umeridional_100hPa(1:nCells) = field_interp(1:nCells,31)
+            umeridional_150hPa(1:nCells) = field_interp(1:nCells,32)
+            umeridional_300hPa(1:nCells) = field_interp(1:nCells,33)
+
+            umeridional_925hPa(1:nCells) = field_interp(1:nCells,34)
+            umeridional_850hPa(1:nCells) = field_interp(1:nCells,35)
+            umeridional_700hPa(1:nCells) = field_interp(1:nCells,36)
+            umeridional_500hPa(1:nCells) = field_interp(1:nCells,37)
+            umeridional_250hPa(1:nCells) = field_interp(1:nCells,38)
+            umeridional_200hPa(1:nCells) = field_interp(1:nCells,39)
            ! write(0,*) '--- end interpolate meridional wind:'
         end if
 
@@ -1816,13 +2421,54 @@ module isobaric_diagnostics
                field_in(iCell,kk) = height(k,iCell)
             enddo
             enddo
-            call interp_tofixed_pressure(nCells,nVertLevelsP1,nIntP,press_in,field_in,press_interp,field_interp)
-            height_200hPa(1:nCells) = field_interp(1:nCells,1)
-            height_250hPa(1:nCells) = field_interp(1:nCells,2)
-            height_500hPa(1:nCells) = field_interp(1:nCells,3)
-            height_700hPa(1:nCells) = field_interp(1:nCells,4)
-            height_850hPa(1:nCells) = field_interp(1:nCells,5)
-            height_925hPa(1:nCells) = field_interp(1:nCells,6)
+            !call interp_tofixed_pressure(nCells,nVertLevelsP1,nIntP,press_in,field_in,press_interp,field_interp)
+            call DINTERP3DZ(.5*(height(1:nVertLevels,1:nCells)+height(2:nVertLevelsP1,1:nCells)),pressure(:,1:nCells),p_interp,field_interp,nCells,nVertLevels,nIntP)
+
+            height_3_2hPa(1:nCells) = field_interp(1:nCells,1)
+            height_4_1hPa(1:nCells) = field_interp(1:nCells,2)
+            height_5hPa(1:nCells) = field_interp(1:nCells,3)
+            height_6_2hPa(1:nCells) = field_interp(1:nCells,4)
+            height_7_6hPa(1:nCells) = field_interp(1:nCells,5)
+            height_9_3hPa(1:nCells) = field_interp(1:nCells,6)
+
+            height_11_3hPa(1:nCells) = field_interp(1:nCells,7)
+            height_13_6hPa(1:nCells) = field_interp(1:nCells,8)
+            height_16_5hPa(1:nCells) = field_interp(1:nCells,9)
+            height_19_8hPa(1:nCells) = field_interp(1:nCells,10)
+            height_23_7hPa(1:nCells) = field_interp(1:nCells,11)
+            height_28_4hPa(1:nCells) = field_interp(1:nCells,12)
+            height_33_8hPa(1:nCells) = field_interp(1:nCells,13)
+            height_40_2hPa(1:nCells) = field_interp(1:nCells,14)
+            height_47_6hPa(1:nCells) = field_interp(1:nCells,15)
+
+            height_56_4hPa(1:nCells) = field_interp(1:nCells,16)
+            height_66_6hPa(1:nCells) = field_interp(1:nCells,17)
+            height_78_5hPa(1:nCells) = field_interp(1:nCells,18)
+            height_92_4hPa(1:nCells) = field_interp(1:nCells,19)
+
+            height_108_7hPa(1:nCells) = field_interp(1:nCells,20)
+            height_127_8hPa(1:nCells) = field_interp(1:nCells,21)
+            height_150_4hPa(1:nCells) = field_interp(1:nCells,22)
+            height_176_9hPa(1:nCells) = field_interp(1:nCells,23)
+
+            height_208_2hPa(1:nCells) = field_interp(1:nCells,24)
+            height_244_9hPa(1:nCells) = field_interp(1:nCells,25)
+            height_288_1hPa(1:nCells) = field_interp(1:nCells,26)
+
+            height_10hPa(1:nCells) = field_interp(1:nCells,27)
+            height_20hPa(1:nCells) = field_interp(1:nCells,28)
+            height_30hPa(1:nCells) = field_interp(1:nCells,29)
+            height_50hPa(1:nCells) = field_interp(1:nCells,30)
+            height_100hPa(1:nCells) = field_interp(1:nCells,31)
+            height_150hPa(1:nCells) = field_interp(1:nCells,32)
+            height_300hPa(1:nCells) = field_interp(1:nCells,33)
+
+            height_925hPa(1:nCells) = field_interp(1:nCells,34)
+            height_850hPa(1:nCells) = field_interp(1:nCells,35)
+            height_700hPa(1:nCells) = field_interp(1:nCells,36)
+            height_500hPa(1:nCells) = field_interp(1:nCells,37)
+            height_250hPa(1:nCells) = field_interp(1:nCells,38)
+            height_200hPa(1:nCells) = field_interp(1:nCells,39)
            ! write(0,*) '--- end interpolate height:'
         
            !... vertical velocity
@@ -1836,31 +2482,51 @@ module isobaric_diagnostics
 
             call DINTERP3DZ(.5*(vvel(1:nVertLevels,1:nCells)+vvel(2:nVertLevelsP1,1:nCells)),pressure(:,1:nCells),p_interp,field_interp,nCells,nVertLevels,nIntP)
 
-            w_1hPa(1:nCells) = field_interp(1:nCells,1)
-            w_2hPa(1:nCells) = field_interp(1:nCells,2)
-            w_3hPa(1:nCells) = field_interp(1:nCells,3)
+            w_3_2hPa(1:nCells) = field_interp(1:nCells,1)
+            w_4_1hPa(1:nCells) = field_interp(1:nCells,2)
+            w_5hPa(1:nCells) = field_interp(1:nCells,3)
+            w_6_2hPa(1:nCells) = field_interp(1:nCells,4)
+            w_7_6hPa(1:nCells) = field_interp(1:nCells,5)
+            w_9_3hPa(1:nCells) = field_interp(1:nCells,6)
 
-            w_4hPa(1:nCells) = field_interp(1:nCells,4)
-            w_5hPa(1:nCells) = field_interp(1:nCells,5)
-            w_7hPa(1:nCells) = field_interp(1:nCells,6)
+            w_11_3hPa(1:nCells) = field_interp(1:nCells,7)
+            w_13_6hPa(1:nCells) = field_interp(1:nCells,8)
+            w_16_5hPa(1:nCells) = field_interp(1:nCells,9)
+            w_19_8hPa(1:nCells) = field_interp(1:nCells,10)
+            w_23_7hPa(1:nCells) = field_interp(1:nCells,11)
+            w_28_4hPa(1:nCells) = field_interp(1:nCells,12)
+            w_33_8hPa(1:nCells) = field_interp(1:nCells,13)
+            w_40_2hPa(1:nCells) = field_interp(1:nCells,14)
+            w_47_6hPa(1:nCells) = field_interp(1:nCells,15)
 
-            w_10hPa(1:nCells) = field_interp(1:nCells,7)
-            w_20hPa(1:nCells) = field_interp(1:nCells,8)
-            w_30hPa(1:nCells) = field_interp(1:nCells,9)
+            w_56_4hPa(1:nCells) = field_interp(1:nCells,16)
+            w_66_6hPa(1:nCells) = field_interp(1:nCells,17)
+            w_78_5hPa(1:nCells) = field_interp(1:nCells,18)
+            w_92_4hPa(1:nCells) = field_interp(1:nCells,19)
 
-            w_40hPa(1:nCells) = field_interp(1:nCells,10)
-            w_50hPa(1:nCells) = field_interp(1:nCells,11)
-            w_70hPa(1:nCells) = field_interp(1:nCells,12)
+            w_108_7hPa(1:nCells) = field_interp(1:nCells,20)
+            w_127_8hPa(1:nCells) = field_interp(1:nCells,21)
+            w_150_4hPa(1:nCells) = field_interp(1:nCells,22)
+            w_176_9hPa(1:nCells) = field_interp(1:nCells,23)
 
-            w_100hPa(1:nCells) = field_interp(1:nCells,13)
-            w_150hPa(1:nCells) = field_interp(1:nCells,14)
-            w_200hPa(1:nCells) = field_interp(1:nCells,15)
-            w_250hPa(1:nCells) = field_interp(1:nCells,16)
-            w_300hPa(1:nCells) = field_interp(1:nCells,17)
+            w_208_2hPa(1:nCells) = field_interp(1:nCells,24)
+            w_244_9hPa(1:nCells) = field_interp(1:nCells,25)
+            w_288_1hPa(1:nCells) = field_interp(1:nCells,26)
 
-            w_500hPa(1:nCells) = field_interp(1:nCells,18)
-            w_700hPa(1:nCells) = field_interp(1:nCells,19)
-            w_850hPa(1:nCells) = field_interp(1:nCells,20)
+            w_10hPa(1:nCells) = field_interp(1:nCells,27)
+            w_20hPa(1:nCells) = field_interp(1:nCells,28)
+            w_30hPa(1:nCells) = field_interp(1:nCells,29)
+            w_50hPa(1:nCells) = field_interp(1:nCells,30)
+            w_100hPa(1:nCells) = field_interp(1:nCells,31)
+            w_150hPa(1:nCells) = field_interp(1:nCells,32)
+            w_300hPa(1:nCells) = field_interp(1:nCells,33)
+
+            w_925hPa(1:nCells) = field_interp(1:nCells,34)
+            w_850hPa(1:nCells) = field_interp(1:nCells,35)
+            w_700hPa(1:nCells) = field_interp(1:nCells,36)
+            w_500hPa(1:nCells) = field_interp(1:nCells,37)
+            w_250hPa(1:nCells) = field_interp(1:nCells,38)
+            w_200hPa(1:nCells) = field_interp(1:nCells,39)
        
             if(allocated(field_in)) deallocate(field_in)
             if(allocated(press_in)) deallocate(press_in)
